@@ -494,138 +494,41 @@ class tx_tcdirectmail_mailer {
 	 * @return   void
 	 */
 	function raw_send($receiverRecord, $extraHeaders = array()) {
-		global $TYPO3_CONF_VARS;
 		$messageId = md5(microtime().$receiverRecord['email']).'@'.$this->hostname;
-		$boundary  = &$this->boundaries[0];
-		$subboundary = &$this->boundaries[1];
-		$terboundary = &$this->boundaries[2];
-		$body      = array();
-		$headers   = array("From: $this->senderName <$this->senderEmail>", "Message-ID: <$messageId>");
-
-		/* Both sendmail params and the use of bounce mails uses the "-f" parameter */
-		/* This is incompatible with other mail-methods than sendmail-interface, so please watch out here */
-		if ($this->bounceAddress) {
-			$sendmail_params .= "-f $this->bounceAddress ";
-			$headers[] = "Sender: $this->bounceAddress";
-		} else {
-			$headers[] = "Sender: $this->senderEmail";
-		}
-
-		if ($this->extConf['sendmail_params']) {
-			$sendmail_params .= $this->extConf['sendmail_params']; 
-		}
-
-		foreach ($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders'] as $header => $value) {
-			$headers[] = "$header: $value";
-		}
-
-		foreach ($extraHeaders as $header => $value) {
-			$headers[] = "$header: $value";
-		}
-
-		$headers[] = 'MIME-Version: 1.0';
-
-		/* Plain text? */
-		if ($receiverRecord['plain_only'] == 1) {
-			/* Attached files? */
-			if (count($this->files)) {   
-				$headers[] = "Content-Type: multipart/mixed;";
-				$headers[] = " boundary=\"$boundary\"";
-
-				/* Standard pre-mime text */
-				$body[] = 'This is a multi-part message in MIME format.';
-				$body[] = '';
-
-				/* Plain-body for mail with attached files */
-				$body[] = '--'.$boundary;      
-				$body[] = $this->getPlainChunck();
-				$body[] = '';
-				$body[] = $this->getAttachedFiles($boundary);
-				$body[] = "--$boundary--";   
-
-				/* No attached files? */
-			} else {
-				$headers[] = 'Content-Type: text/plain; charset="'.$this->charset.'"';
-				$headers[] = 'Content-Transfer-Encoding: quoted-printable';
-				$body[] = $this->qoutedPrintableEncode(t3lib_div::substUrlsInPlainText($this->plain,'all',$this->siteUrl));
-			}
-
-		/* or html */
-		} else {
-			/* Attached files? */
-			if (count($this->files)) {
-				$headers[] = 'Content-Type: multipart/mixed; charset="'.$this->charset.'";';
-				$headers[] = ' boundary="'.$boundary.'"';          
-
-				/* Standard pre-mime text */
-				$body[] = 'This is a multi-part message in MIME format.';
-				$body[] = '';
-
-				/* Envelope for the text and html versions */
-				$body[] = '--'.$boundary;
-				$body[] = 'Content-Type: multipart/alternative;';
-				$body[] = ' boundary="'.$subboundary.'"';   
-				$body[] = '';
-
-				/* For the alternative html and text versions */
-				$body[] = '--'.$subboundary;
-				$body[] = $this->getPlainChunck();
-				$body[] = '';
-				$body[] = '--'.$subboundary;
-
-				/* Do we have inline files or not. If we do, add a multipart/related part for the html-content & inline files */
-				if (count($this->inlinefiles)) {   
-					$body[] = $this->getHtmlChunckWithFiles ($terboundary);
-				} else {
-					$body[] = $this->getHtmlChunckWithoutFiles ();
-				}
-
-				$body[] = "--$subboundary--";
-				$body[] = '';            
-				$body[] = $this->getAttachedFiles($boundary);
-				$body[] = "--$boundary--";
-			/* No attached files */
-			} else {
-				$headers[] =  'Content-Type: multipart/alternative; charset="'.$this->charset.'";';
-				$headers[] =  ' boundary="'.$boundary.'"';
-				
-				/* Standard pre-mime text */
-				$body[] = 'This is a multi-part message in MIME format.';
-				$body[] = '';
-
-				/* For the alternative html and text versions */
-				$body[] = '--'.$boundary;
-				$body[] = $this->getPlainChunck();
-				$body[] = '';
-				$body[] = '--'.$boundary;
-
-				/* Do we have inline files or not. If we do, add a multipart/related part for the html-content & inline files */
-				if (count($this->inlinefiles)) {   
-					$body[] = $this->getHtmlChunckWithFiles ($subboundary);
-				} else {
-					$body[] = $this->getHtmlChunckWithoutFiles ();
-				}			
-				$body[] = "--$boundary--";
-				$body[] = '';
-			}
-		}
-
-		$title = preg_replace ('/=[=0-9A-Z]+/i', '=?'.strtoupper($this->charset).'?Q?\0?=', $this->qoutedPrintableEncode($this->title));
 
 		/* Hook for actions INSTEAD of actually sending the mail */
 		if (is_array($this->mailReplacers)) {
 			foreach($this->mailReplacers as $_procObj) {
 				$_procObj->mailReplacementHook($receiverRecord['email'], $title, implode("\n", $body), implode("\n", $headers), $this->bounceAddress);
 			}
-		} else {
-			/* Mail it */
+    } else {
+      /* Mail it */
+      $mail = t3lib_div::makeInstance('t3lib_mail_Message');
+      $mail->setTo(array($receiverRecord['email']))
+        ->setFrom(array($this->senderEmail => $this->senderName))
+        ->setSender($this->bounceAddress?$this->bounceAddress:$this->senderEmail)
+        ->setId($messageId)
+        ->setSubject($this->title)
+        ->addPart($this->plain, 'text/plain')
+        ->setBody($this->html, 'text/html')
+        ->setCharset($GLOBALS['TSFE']->metaCharset);
 
-			if ($sendmail_params) {
-				mail ($receiverRecord['email'], $title, implode("\n", $body), implode("\n", $headers), $sendmail_params);
-			} else {
-				mail ($receiverRecord['email'], $title, implode("\n", $body), implode("\n", $headers));
-			}
-		}
+      /* Get the inline files for use with pictures, stylesheets etc. */
+      foreach ($this->inlinefiles as $filename => $content) {
+        $attachment = Swift_Attachment::newInstance()
+          ->setFilename($filename)
+          //->setContentType('application/pdf')
+          ->setBody($content)
+          ;
+        $mail->attach($attachment);
+      }
+
+
+      $mail->send();
+      $success = $mail->isSent();
+
+
+    }
 	}
 
 	/** 
