@@ -133,7 +133,7 @@ class tx_tcdirectmail_module1 extends t3lib_SCbase {
             </script>
          ';
 
-         $headerSection = $this->doc->getHeader("pages",$this->pageinfo,$this->pageinfo["_thePath"])."<br>".$LANG->sL("LLL:EXT:lang/locallang_core.php:labels.path").": ".t3lib_div::fixed_lgd_pre($this->pageinfo["_thePath"],50);
+         $headerSection = $this->doc->getHeader("pages",$this->pageinfo,$this->pageinfo["_thePath"])."<br>".$LANG->sL("LLL:EXT:lang/locallang_core.php:labels.path").": ".t3lib_div::fixed_lgd_cs($this->pageinfo["_thePath"],-50);
 
          // Filter out functions defined as disallowed in the user-ts.
          if (is_array($GLOBALS['BE_USER']->userTS['tcdirectmail.']['modfuncDisallow.'])) {         
