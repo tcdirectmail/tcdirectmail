@@ -523,7 +523,6 @@ class tx_tcdirectmail_tools {
 		global $TYPO3_DB;
 
 		/* We will log tcdirectmails progress to the syslog daemon */
-		define_syslog_variables();
 		openlog ('tcdirectmail', LOG_ODELAY, LOG_MAIL);
 		$numberOfMails = 0;
 		$mailers = array();
