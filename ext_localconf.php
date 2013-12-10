@@ -27,4 +27,12 @@ $TYPO3_CONF_VARS['EXTCONF']['kickstarter']['sections']['tx_tcdirectmail_targets'
     'description' => 'Create additional directmail targets, based on your own tables.',
 );
 
+/** * Registering class to scheduler
+*/
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_tcdirectmail_scheduler'] = array(
+	'extension' => $_EXTKEY,
+	'title' => 'TcDirectMail task',
+	'description' => 'This task invokes tcdirectmail in order to process queued messages.',
+);
+
 ?>
