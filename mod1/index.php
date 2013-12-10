@@ -36,7 +36,6 @@ unset($MCONF);
 require_once ("conf.php");
 require_once ($BACK_PATH."init.php");
 require_once ($BACK_PATH."template.php");
-require_once (PATH_typo3conf.'/localconf.php');
 $LANG->includeLLFile("EXT:tcdirectmail/mod1/locallang.xml");
 #include ("locallang.php");
 require_once (PATH_t3lib."class.t3lib_scbase.php");
@@ -1066,4 +1065,4 @@ foreach($SOBE->include_once as $INC_FILE)   include_once($INC_FILE);
 $SOBE->main();
 $SOBE->printContent();
 
-?>
+?>
