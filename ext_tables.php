@@ -164,9 +164,16 @@ array_splice ($TCA["pages"]["columns"]["doktype"]["config"]["items"], 3, 0, arra
     ))
 );
 
-$TCA['pages']['types']['189'] = array (
-    'showitem' => "hidden;;;;1-1-1, doktype, title;;;;2-2-2, storage_pid, content_from_pid,;;;;3-3-3, tx_tcdirectmail_sendername, tx_tcdirectmail_senderemail, tx_tcdirectmail_bounceaccount, tx_tcdirectmail_plainconvert, tx_tcdirectmail_spy, tx_tcdirectmail_register_clicks, tx_tcdirectmail_usebcc,;;;;4-4-4, tx_tcdirectmail_senttime, tx_tcdirectmail_repeat, tx_tcdirectmail_real_target,tx_tcdirectmail_test_target,;;;;6-6-6, tx_tcdirectmail_attachfiles,",
+
+t3lib_SpriteManager::addTcaTypeIcon('pages', 189, t3lib_extMgm::extRelPath('tcdirectmail')."mail.gif");
+// Add the new doktype to the list of types available from the new page menu at the top of the page tree
+t3lib_extMgm::addUserTSConfig(
+        'options.pageTree.doktypesToShowInNewPageDragArea := addToList(189)'
 );
+
+
+$TCA['pages']['types']['189'] = $TCA['pages']['types']['1'];
+$TCA['pages']['types']['189']['showitem'] .= ',--div--;LLL:EXT:tcdirectmail/locallang_db.xml:pages.directmailtype, tx_tcdirectmail_sendername, tx_tcdirectmail_senderemail, tx_tcdirectmail_bounceaccount, tx_tcdirectmail_plainconvert, tx_tcdirectmail_spy, tx_tcdirectmail_register_clicks, tx_tcdirectmail_usebcc,;;;;4-4-4, tx_tcdirectmail_senttime, tx_tcdirectmail_repeat, tx_tcdirectmail_real_target,tx_tcdirectmail_test_target,;;;;6-6-6, tx_tcdirectmail_attachfiles';
 
 t3lib_extMgm::allowTableOnStandardPages("tx_tcdirectmail_targets");
 $TCA["tx_tcdirectmail_targets"] = Array (
