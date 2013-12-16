@@ -495,6 +495,7 @@ class tx_tcdirectmail_mailer {
 	 */
 	function raw_send($receiverRecord, $extraHeaders = array()) {
 		$messageId = md5(microtime().$receiverRecord['email']).'@'.$this->hostname;
+		$charset = $GLOBALS['TSFE']->metaCharset?$GLOBALS['TSFE']->metaCharset:'utf-8';
 
 		/* Hook for actions INSTEAD of actually sending the mail */
 		if (is_array($this->mailReplacers)) {
@@ -511,7 +512,7 @@ class tx_tcdirectmail_mailer {
         ->setSubject($this->title)
         ->addPart($this->plain, 'text/plain')
         ->setBody($this->html, 'text/html')
-        ->setCharset($GLOBALS['TSFE']->metaCharset);
+        ->setCharset($charset);
 
       /* Get the inline files for use with pictures, stylesheets etc. */
       foreach ($this->inlinefiles as $filename => $content) {
