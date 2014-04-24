@@ -33,7 +33,6 @@ class tx_tcdirectmail_mailer {
 	var $senderEmail = "test@test.net";
 	var $bounceAddress = 'bounce@test.test';
 	var $siteUrl = "http://www.test.test/";
-	var $homeUrl = "www.test.test/typo3conf/ext/tcdirectmail/";
 
 	/**
 	 * Constructor that set up basic internal datastructures. Do not call directly
@@ -316,7 +315,7 @@ class tx_tcdirectmail_mailer {
 	function insertSpy($authCode, $sendid) {
 		$this->html = str_replace (
 				'</body>', 
-				'<div><img src="'.$this->homeUrl.'web/beenthere.php?c='.$authCode.'&s='.$sendid.'" width="0" height="0" /></div></body>',
+				'<div><img src="'.$this->siteUrl.'index.php?eID=beenthere&c='.$authCode.'&s='.$sendid.'" width="0" height="0" /></div></body>',
 				$this->html);
 	}
     
@@ -430,21 +429,22 @@ class tx_tcdirectmail_mailer {
 		$links['plain'] = array();
 		$links['html'] = array();
 
-		/* Exchange all http:// links  html */
+		// Exchange all http:// links  html 
 		preg_match_all ('|<a [^>]*href="(http://[^"]*)"|Ui', $this->html, $urls);
+
 		foreach ($urls[1] as $i => $url) {
 			$links['html'][$i] = html_entity_decode($url);
 			  
-			/* Two step replace to be as precise as possible */
-			$link = str_replace($url, $this->homeUrl."web/click.php?l=$i&t=html&c=$authCode&s=$sendid", $urls[0][$i]);      
+			// Two step replace to be as precise as possible
+			$link = str_replace($url, $this->siteUrl."index.php?eID=click&l=$i&t=html&c=$authCode&s=$sendid", $urls[0][$i]);
 			$this->html  = str_replace($urls[0][$i], $link, $this->html);
 		}
 
-		/* Exchange all http:// links plaintext */
+		// Exchange all http:// links plaintext
 		preg_match_all ('|http://[^ \r\n\)]*|i', $this->plain, $urls);
 		foreach ($urls[0] as $i => $url) {
 			$links['plain'][$i] = html_entity_decode($url);
-			$this->plain = str_replace($url, $this->homeUrl."web/click.php?l=$i&t=plain&c=$authCode&s=$sendid", $this->plain);
+			$this->plain = str_replace($url, $this->siteUrl."index.php?eID=click&l=$i&t=plain&c=$authCode&s=$sendid", $this->plain);
 		}
 
 		return $links;   
@@ -461,14 +461,14 @@ class tx_tcdirectmail_mailer {
 		/* Exchange all http:// links  html */
 		preg_match_all ('|<a [^>]*href="(http://[^"]*)"|Ui', $this->html, $urls);
 		foreach ($urls[1] as $i => $url) {
-			$link = str_replace($url, $this->homeUrl."web/tclick.php?l=".base64_encode(html_entity_decode($url)), $urls[0][$i]);
+			$link = str_replace($url, $this->siteUrl."index.php?eID=tclick&l=".base64_encode(html_entity_decode($url)), $urls[0][$i]);
 			$this->html  = str_replace($urls[0][$i], $link, $this->html);
 		}
 
 		/* Exchange all http:// links plaintext */
 		preg_match_all ('|http://[^ \n\r\)]*|i', $this->plain, $urls);
 		foreach ($urls[0] as $i => $url) {   
-			$this->plain = str_replace($url, $this->homeUrl."web/tclick.php?l=".base64_encode($url),$this->plain);
+			$this->plain = str_replace($url, $this->siteUrl."index.php?eID=tclick&l=".base64_encode($url),$this->plain);
 		}
 	}
 	    

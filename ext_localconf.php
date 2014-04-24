@@ -35,4 +35,11 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_tcdirectmail
 	'description' => 'This task invokes tcdirectmail in order to process queued messages.',
 );
 
+/**
+ * Register click eID events
+ */
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['click'] = 'EXT:' . $_EXTKEY . '/eid/click.php';
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['tclick'] = 'EXT:' . $_EXTKEY . '/eid/tclick.php';
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['beenthere'] = 'EXT:' . $_EXTKEY . '/eid/beenthere.php';
+
 ?>

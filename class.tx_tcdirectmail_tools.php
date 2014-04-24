@@ -296,7 +296,6 @@ class tx_tcdirectmail_tools {
 		$mailer = new tx_tcdirectmail_mailer();
 		$domain = tx_tcdirectmail_tools::getDomainForPage($page);
 		$mailer->siteUrl = "http://$domain/";
-		$mailer->homeUrl = "http://$domain/".t3lib_extMgm::siteRelPath('tcdirectmail');
 		$mailer->senderName = tx_tcdirectmail_tools::getSenderForPage($page);
 		$mailer->senderEmail = tx_tcdirectmail_tools::getEmailForPage($page);
 		$mailer->bounceAddress = tx_tcdirectmail_tools::getBounceAddressForPage($page);
