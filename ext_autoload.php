@@ -17,6 +17,16 @@ return array(
     'tx_tcdirectmail_target_rawsql' => $extensionPath . 'class.tx_tcdirectmail_target_rawsql.php',
     'tx_tcdirectmail_target_sql' => $extensionPath . 'class.tx_tcdirectmail_target_sql.php',
     'tx_tcdirectmail_target_ttaddress' => $extensionPath . 'class.tx_tcdirectmail_target_ttaddress.php',
+    'tx_tcdirectmail_mailer' => $extensionPath . 'class.tx_tcdirectmail_mailer.php',
+    'tx_tcdirectmail_scheduler' => $extensionPath . 'class.tx_tcdirectmail_scheduler.php',
+    'tx_tcdirectmail_plain' => $extensionPath . 'class.tx_tcdirectmail_plain.php',
+    'tx_tcdirectmail_plain_template' => $extensionPath . 'class.tx_tcdirectmail_plain_template.php',
+    'tx_tcdirectmail_plain_html2text' => $extensionPath . 'class.tx_tcdirectmail_plain_html2text.php',
+    'tx_tcdirectmail_plain_simple' => $extensionPath . 'class.tx_tcdirectmail_plain_simple.php',
+    'tx_tcdirectmail_plain_lynx' => $extensionPath . 'class.tx_tcdirectmail_plain_lynx.php',
+    'tx_tcdirectmail_bouncehandler' => $extensionPath . 'class.tx_tcdirectmail_bouncehandler.php',
+    'tx_tcdirectmail_section_targets' => $extensionPath . 'section/class.tx_tcdirectmail_section_targets.php',
+    'tx_tcdirectmail_section_modulefunction' => $extensionPath . 'section/class.tx_tcdirectmail_section_modulefunction.php',
 );
 
 
