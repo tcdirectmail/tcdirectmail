@@ -1,8 +1,5 @@
 <?php
 
-require (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target.php');
-require (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_tools.php');
-
 /**
  * Implements the click events
  */
