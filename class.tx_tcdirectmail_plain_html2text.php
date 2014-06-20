@@ -74,8 +74,6 @@
 *  @since PHP 4.0.2
 */
 
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_plain.php');
-
 class tx_tcdirectmail_plain_html2text extends tx_tcdirectmail_plain
 {
     var $fetchMethod = 'src';
@@ -433,4 +431,3 @@ class tx_tcdirectmail_plain_html2text extends tx_tcdirectmail_plain
 
 }
 
-?>

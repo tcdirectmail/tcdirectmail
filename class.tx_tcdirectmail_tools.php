@@ -22,13 +22,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script! 
 ***************************************************************/
  
-require_once(PATH_t3lib.'class.t3lib_extmgm.php');
-require_once(PATH_t3lib.'class.t3lib_befunc.php');
-require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_mailer.php'); 
-foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['includeClassFiles'] as $file) {
-	require_once($file);
-}
- 
 /**
  * Toolbox for tcdirectmail and dependant extensions.
  *
@@ -590,4 +583,3 @@ class tx_tcdirectmail_tools {
 	}  
 }
 
-?>

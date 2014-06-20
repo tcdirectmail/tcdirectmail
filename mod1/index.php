@@ -38,15 +38,10 @@ require_once ($BACK_PATH."init.php");
 require_once ($BACK_PATH."template.php");
 $LANG->includeLLFile("EXT:tcdirectmail/mod1/locallang.xml");
 #include ("locallang.php");
-require_once (PATH_t3lib."class.t3lib_scbase.php");
 $BE_USER->modAccess($MCONF,1);   // This checks permissions and exits if the users has no permission for entry.
    // DEFAULT initialization of a module [END]
    
 $ICON_PATH = $BACK_PATH.'gfx/';   
-
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_tools.php');
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_mailer.php');
-
 
 class tx_tcdirectmail_module1 extends t3lib_SCbase {
    var $pageinfo;
@@ -1062,4 +1057,4 @@ foreach($SOBE->include_once as $INC_FILE)   include_once($INC_FILE);
 $SOBE->main();
 $SOBE->printContent();
 
-?>
+

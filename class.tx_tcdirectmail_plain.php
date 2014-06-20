@@ -26,10 +26,9 @@
 /**
  * Base class for construction plaintext for mails.
  *
- * @abstract
  */
 
-class tx_tcdirectmail_plain {
+abstract class tx_tcdirectmail_plain {
 	/**
 	 * Indicate how the class handles html-content. Can be either "src" og "url"
 	 * "src" indicates that you wish to supply the html-code in the parameter.
@@ -41,12 +40,11 @@ class tx_tcdirectmail_plain {
 	/**
 	 * Factory for plaintext converter objects.
 	 *
-	 * @static
 	 * @param   array      Page record
 	 * @param   string      Base url, if any, used in the plaintext.
 	 * @return   object      plain text object to use.
 	 */
-	function loadPlain($pageRecord, $baseUrl) {
+	static public function loadPlain($pageRecord, $baseUrl) {
 		$obj = new $pageRecord['tx_tcdirectmail_plainconvert'];
 
 		if (is_subclass_of($obj, 'tx_tcdirectmail_plain')) {
@@ -60,23 +58,22 @@ class tx_tcdirectmail_plain {
 	}
 
 	/**
-	* Apply html to the plaintext converter.
-	*
-	* @param   string      Html to convert.
-	* @return   void
-	*/
-	function setHtml($var) {
+     * Apply html to the plaintext converter.
+     *
+     * @param   string      Html to convert.
+     * @return   void
+     */
+	public function setHtml($var) {
 		die ('Implement setHtml-method');
 	}
 
 	/**
-	* Get the plaintext
-	*
-	* @return   string      The converted text.
-	*/
-	function getPlainText() {
+     * Get the plaintext
+     *
+     * @return   string      The converted text.
+     */
+	public function getPlainText() {
 		return $this->plainText;
 	}
 }
 
-?>

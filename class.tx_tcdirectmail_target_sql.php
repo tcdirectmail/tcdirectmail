@@ -16,7 +16,7 @@ class tx_tcdirectmail_target_sql extends tx_tcdirectmail_target {
 	 *
 	 * @return	array	Record with user data.
 	 */
-	function getRecord() {
+	public function getRecord() {
 		$r = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($this->data);
 		if (is_array($r)) {
 			if (!isset($r['plain_only'])) {
@@ -43,15 +43,15 @@ class tx_tcdirectmail_target_sql extends tx_tcdirectmail_target {
 		}
 	}   
    
-	function getCount() {
+	public function getCount() {
 		return $GLOBALS['TYPO3_DB']->sql_num_rows($this->data);
 	}
    
-	function resetTarget() {
+	public function resetTarget() {
 		$GLOBALS['TYPO3_DB']->sql_data_seek($this->data,0);
 	}
    
-	function getError() {
+	public function getError() {
 		return $GLOBALS['TYPO3_DB']->sql_error($this->data);
 	}
 	   
@@ -66,7 +66,7 @@ class tx_tcdirectmail_target_sql extends tx_tcdirectmail_target {
 	 * @param   integer    Status of the bounce
 	 * @return  bool       Status of the success of the removal.
 	 */
-	function disableReceiver($uid, $bounce_type) {
+	public function disableReceiver($uid, $bounce_type) {
 		global $TYPO3_DB;
 	      
 		if ($this->tableName <> 'undefinedtable') {

@@ -31,8 +31,6 @@
  * Copied and modified for specific fit to extending tcdirectmail targets
  */
 
-require_once(t3lib_extMgm::extPath('kickstarter').'class.tx_kickstarter_sectionbase.php');
-
 class tx_tcdirectmail_section_targets extends tx_kickstarter_sectionbase {
   var $sectionID = 'tx_tcdirectmail_targets';
 
@@ -738,7 +736,6 @@ class tx_tcdirectmail_section_targets extends tx_kickstarter_sectionbase {
 		
 		
 		$targetSource = "
-require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target_sql.php');
 	
 class $targetName extends tx_tcdirectmail_target_sql {
 	var \$tableName = \"$tableName\";
@@ -1614,5 +1611,3 @@ if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tcdirec
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tcdirectmail/sections/class.tx_tcdirectmail_section_targets.php']);
 }
 
-
-?>

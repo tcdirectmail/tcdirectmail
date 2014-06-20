@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/bin/php
 <?php
 /*************************************************************** 
 *  Copyright notice 
@@ -22,8 +22,6 @@
 * 
 *  This copyright notice MUST APPEAR in all copies of the script! 
 ***************************************************************/
-require('clirun.php');
-require_once(t3lib_extMgm::extPath('tcdirectmail')."class.tx_tcdirectmail_tools.php");
 
 /***************** Send script ********************/
 /* List pages NOT to send */
@@ -82,5 +80,4 @@ while ($page = $TYPO3_DB->sql_fetch_assoc($rs)) {
 }
 
 tx_tcdirectmail_tools::runSpool();
-                            
-?>
+

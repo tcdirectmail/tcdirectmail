@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/bin/php
 <?php
 /*************************************************************** 
 *  Copyright notice 
@@ -58,4 +58,4 @@ foreach ($servers as $server) {
 }
 
 unlink($fetchmailfile);
-?>
+

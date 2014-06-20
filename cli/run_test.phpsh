@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/bin/php
 <?php
 /*************************************************************** 
 *  Copyright notice 
@@ -22,8 +22,6 @@
 * 
 *  This copyright notice MUST APPEAR in all copies of the script! 
 ***************************************************************/
-require('clirun.php');
-require_once(t3lib_extMgm::extPath('tcdirectmail')."class.tx_tcdirectmail_tools.php");
 
 /* Get all test pages */
 $rs = $TYPO3_DB->sql_query("SELECT * 
@@ -38,5 +36,3 @@ while ($page = $TYPO3_DB->sql_fetch_assoc($rs)) {
     $TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_dotestsend = 0 WHERE uid = $page[uid]");
 }
 
-                            
-?>

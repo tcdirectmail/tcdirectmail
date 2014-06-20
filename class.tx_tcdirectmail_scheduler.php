@@ -22,8 +22,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(t3lib_extMgm::extPath('tcdirectmail') . 'class.tx_tcdirectmail_tools.php');
-
 /**
 * Class tx_directmail_scheduler
 *
@@ -100,4 +98,3 @@ class tx_tcdirectmail_scheduler extends tx_scheduler_Task {
 
 }
 
-?>

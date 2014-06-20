@@ -29,8 +29,6 @@
  * @author 	Daniel Schledermann <daniel@schledermann.net>
  */
 
-require_once(t3lib_extMgm::extPath('kickstarter').'sections/class.tx_kickstarter_section_modulefunction.php');
-
 class tx_tcdirectmail_section_modulefunction extends tx_kickstarter_section_modulefunction {
   var $sectionID = 'modulefunction';
 	/**
@@ -195,19 +193,12 @@ class tx_tcdirectmail_section_modulefunction extends tx_kickstarter_section_modu
 			0);
 			break;
 		    case 'web_txtcdirectmailM1':
-			$indexRequire = $this->sPS('
-				require_once(PATH_t3lib.\'class.t3lib_extobjbase.php\');
-			');
-			
 			$indexContent = $this->sPS('
 				
 			');
 			break;
 			
 		    default:
-			$indexRequire = $this->sPS('
-				require_once(PATH_t3lib.\'class.t3lib_extobjbase.php\');
-			');
 			$indexContent = $this->sPS(
 				'class '.$cN.' extends t3lib_extobjbase {
 
@@ -271,6 +262,3 @@ class tx_tcdirectmail_section_modulefunction extends tx_kickstarter_section_modu
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/kickstarter/sections/class.tx_kickstarter_section_modulefunction.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/kickstarter/sections/class.tx_kickstarter_section_modulefunction.php']);
 }
-
-
-?>

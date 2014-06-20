@@ -29,19 +29,17 @@
  * @abstract
  */
 
-class tx_tcdirectmail_target {
+abstract class tx_tcdirectmail_target {
 	var $fields;
 	var $data;
    
 	/**
 	 * This is the object factory, without init(), for all directmail targets.
 	 *
-	 * @final
-	 * @static
 	 * @param     integer     Uid of a tx_directmail_target from the database.
 	 * @return    object      Of directmail_target type.
 	 */
-	function getTarget($uid) {
+	public static function getTarget($uid) {
 		global $TYPO3_DB;
        
 		$rs = $TYPO3_DB->sql_query("SELECT * FROM tx_tcdirectmail_targets WHERE uid = $uid");
@@ -58,12 +56,10 @@ class tx_tcdirectmail_target {
 	/**
 	 * This is the object factory, with init(), for all directmail targets.
 	 *
-	 * @final
-	 * @static
 	 * @param     integer     Uid of a tx_directmail_target from the database.
 	 * @return    object      Of directmail_target type.
 	 */
-	function loadTarget ($uid) {
+	public static function loadTarget ($uid) {
 		$object = tx_tcdirectmail_target::getTarget($uid);
 		$object->init();
 		return $object;
@@ -72,12 +68,12 @@ class tx_tcdirectmail_target {
 	/**
 	 * This is the method called when a directmail_target is produced in the loadTarget factory
 	 *
-	 * @abstract
 	 * @return    void
 	 */
-	function init() {
-		die ('You need to implement the init-method.');
-	}
+	public function init() {
+        // As default I do nothing
+    }
+
 
 	/**
 	 * Fetch one receiver record from the directmail target. 
@@ -86,50 +82,38 @@ class tx_tcdirectmail_target {
 	 * To collect bounces you will need to have both fields "authCode" and "uid".
 	 * For compatibility with various subscription systems, the record can contain "tableName"-field.
 	 *
-	 * @abstract
 	 * @return   array      Assoc array with fields for the receiver
 	 */
-	function getRecord() {
-		die ('You need to implement the getRecord-method.');
-	}
+	public abstract function getRecord();
 
 	/**
 	 * Reset the directmail target, so the next record being fetched will be the first. 
 	 * Not currently in use by any known extension
 	 *
-	 * @abstract
 	 * @return   void
 	 */
-	function resetTarget() {
-		die ('You need to implement the resetTarget-method.');
-	}   
+	public abstract function resetTarget();
    
 	/**
 	 * Get the number of receivers in this directmail target
 	 *
-	 * @abstract
 	 * @return   integer      Numbers of receivers.
 	 */
-	function getCount() {
-		die ('You need to implement the getCount-method.');   
-	}
+	public abstract function getCount();
    
 	/**
 	 * Get error text if the fetching of the directmail target has somehow failed.
 	 *
-	 * @abstract
 	 * @return   string      Error text or empty string.
 	 */
-	function getError() {
-		die ('You need to implement the getError-method.');   
-	}
+	public abstract function getError();
    
 	/**
 	 * Here you can implement start events for a real send-out.
 	 * 
 	 * @return    void
 	 */
-	function startReal() {
+	public function startReal() {
 	}
 
 	/**
@@ -137,7 +121,7 @@ class tx_tcdirectmail_target {
 	 * 
 	 * @return    void
 	 */   
-	function endReal() {
+	public function endReal() {
 	}
 	   
 	/**
@@ -151,7 +135,7 @@ class tx_tcdirectmail_target {
 	 * @param   integer    Status of the bounce expect: TCDIRECTMAIL_HARDBOUNCE or TCDIRECTMAIL_SOFTBOUNCE 
 	 * @return  bool       Status of the success of the removal.
 	 */
-	function disableReceiver($uid, $bounce_type) {
+	public function disableReceiver($uid, $bounce_type) {
 		return false;
 	}
 
@@ -161,7 +145,7 @@ class tx_tcdirectmail_target {
 	 * @param	integer	Uid of the user that has opened the mail
 	 * @return	void
 	 */
-	function registerOpen ($uid) {
+	public function registerOpen ($uid) {
 	}
 
 	/**
@@ -170,7 +154,7 @@ class tx_tcdirectmail_target {
 	 * @param	integer	Uid of the user that has clicked a link
 	 * @return	void
 	 */
-	function registerClick ($uid) {
+	public function registerClick ($uid) {
 	}
 }
 

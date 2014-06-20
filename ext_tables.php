@@ -249,7 +249,3 @@ t3lib_extMgm::addToAllTCAtypes("tt_address","tx_tcdirectmail_bounce;;;;1-1-1");
 t3lib_div::loadTCA("be_users");
 t3lib_extMgm::addTCAcolumns("be_users",$tempColumns,1);
 t3lib_extMgm::addToAllTCAtypes("be_users","tx_tcdirectmail_bounce;;;;1-1-1");
-
-
-
-?>

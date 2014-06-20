@@ -43,4 +43,3 @@ $GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['tclick'] = 'EXT:' . $_EXTKEY .
 $GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['beenthere'] = 'EXT:' . $_EXTKEY . '/eid/beenthere.php';
 $GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['preview'] = 'EXT:' . $_EXTKEY . '/eid/preview.php';
 
-?>

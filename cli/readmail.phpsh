@@ -1,8 +1,5 @@
-#!/usr/local/bin/php
+#!/usr/bin/php
 <?php
-require ("clirun.php");
-require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_bouncehandler.php');
-require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_tools.php');
 
 $fd = fopen('php://stdin', 'r');
 while ($buffer = fread($fd, 8096)) {
@@ -29,4 +26,4 @@ switch ($bounce->status) {
 	/* Nothing to be done for other bounce types. */
 	break;
 }
-?>
+

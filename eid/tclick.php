@@ -4,4 +4,4 @@
  */
 
 header ('Location: '.base64_decode($_REQUEST['l']));
-?>
+

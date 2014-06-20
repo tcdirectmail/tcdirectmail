@@ -38,7 +38,7 @@ class tx_tcdirectmail_mailer {
 	 * Constructor that set up basic internal datastructures. Do not call directly
 	 *
 	 */
-	function tx_tcdirectmail_mailer () {
+	public function __construct() {
 		global $TYPO3_CONF_VARS;
     
 		/* Determine the supposed hostname */
@@ -89,7 +89,7 @@ class tx_tcdirectmail_mailer {
 	 * @param    string      Text to be encoded
 	 * @return   string      Encoded text
 	 */
-	function qoutedPrintableEncode($ascii_in = "") {
+	public function qoutedPrintableEncode($ascii_in = "") {
 		if(strtolower($this->charset) != 'utf-8' && function_exists('imap_8bit')){
 			return imap_8bit($ascii_in);
 		} else {
@@ -104,7 +104,7 @@ class tx_tcdirectmail_mailer {
 	 * @internal
 	 * @return   string      Determined charset encoding
 	 */
-	function getCharsetEncoding() {
+	public function getCharsetEncoding() {
 		/* Does the code come with anything? */
 		if (preg_match ('|<meta http-equiv="Content-Type" content="text/html; charset=([^"]*)" />|', $this->html_tpl, $match)) {
 			return $match[1];
@@ -125,7 +125,7 @@ class tx_tcdirectmail_mailer {
 	 * @static
 	 * @return    string      Mime type determined.
 	 */
-	function getMimeType($filename) {
+	public function getMimeType($filename) {
 		if (function_exists('mime_content_type')) {
 			return mime_content_type ($filename);
 		} else if (function_exists('finfo_file')) {
@@ -146,8 +146,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   string      Filename of file to attach.
 	 * @return   void
 	 */
-   
-	function addAttachment($filename) {
+	public function addAttachment($filename) {
 		if (trim($filename) != '') {
 			$path = explode ('/', $filename);
 			$basename = array_pop ($path);
@@ -162,7 +161,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   string      The title
 	 * @return   void
 	 */
-	function setTitle($src) {
+	public function setTitle($src) {
 		/* Detect what markers we need to substitute later on */
 		preg_match_all ('/###[\w]+###/', $src, $fields);
 		$this->titleMarkers = str_replace ('###', '', $fields[0]);
@@ -184,7 +183,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   string      The plain text content of the mail
 	 * @return   void
 	 */
-	function setPlain ($src) {
+	public function setPlain ($src) {
 		/* Remove html-comments */
 		$src = preg_replace('/<!--.*-->/U', '', $src);
       
@@ -204,12 +203,12 @@ class tx_tcdirectmail_mailer {
 	}
     
 	/**
-    	 * Set the html content on the mail
+     * Set the html content on the mail
 	 *
 	 * @param   string      The html content of the mail
 	 * @return   void
 	 */    
-	function setHtml ($src) {
+	public function setHtml ($src) {
 		/* Find linked css and convert into a style-tag */
 		preg_match_all('|<link rel="stylesheet" type="text/css" href="([^"]+)"[^>]+>|Ui', $src, $urls);
 		foreach ($urls[1] as $i => $url) {
@@ -286,7 +285,7 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return   array   Array with the fields from html, plain and title.
 	 */
-	function getMarkers() {
+	public function getMarkers() {
 		return array_unique(array_merge($this->htmlAdvancedMarkers,
 				$this->plainAdvancedMarkers,
 				$this->titleAdvancedMarkers,
@@ -300,7 +299,7 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return   void
 	 */
-	function testSpy () {
+	public function testSpy () {
 		$this->html = str_replace (
 					'</body>', 
 					'<div><img src="'.$this->siteUrl.'typo3/clear.gif" width="0" height="0" /></div></body>', 
@@ -312,7 +311,7 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return   void
 	 */
-	function insertSpy($authCode, $sendid) {
+	public function insertSpy($authCode, $sendid) {
 		$this->html = str_replace (
 				'</body>', 
 				'<div><img src="'.$this->siteUrl.'index.php?eID=beenthere&c='.$authCode.'&s='.$sendid.'" width="0" height="0" /></div></body>',
@@ -324,7 +323,7 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return   void
 	 */
-	function resetMarkers() {
+	public function resetMarkers() {
 		$this->html  = $this->html_tpl;
 		$this->plain = $this->plain_tpl;
 		$this->title = $this->title_tpl;
@@ -339,7 +338,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   string      Value to replace marker with.
 	 * @return   void
 	 */
-	function substituteMarker($name, $value) {
+	public function substituteMarker($name, $value) {
 		/* For each marker, only substitute if the field is registered as a marker. This approach has shown to 
 		 speed up things quite a bit.  */
 		if (in_array($name, $this->htmlAdvancedMarkers)) {
@@ -376,7 +375,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   boolean      Display value of marker.
 	 * @return   string      Source with applied marker.
 	 */
-	function advancedSubstituteMarker ($src, $name, $value) {
+	public function advancedSubstituteMarker ($src, $name, $value) {
 		preg_match_all("/###:IF: $name ###([\w\W]*)###:ELSE:###([\w\W]*)###:ENDIF:###/U", $src, $matches);
 		foreach ($matches[0] as $i => $full_mark) {
 			if ($value) {
@@ -404,7 +403,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   array      Assoc array with name => value pairs.
 	 * @return   void
 	 */
-	function substituteMarkers ($record) {
+	public function substituteMarkers ($record) {
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['substituteMarkersHook'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['substituteMarkersHook'] as $_classRef) {
 				$_procObj = & t3lib_div::getUserObj($_classRef);
@@ -425,7 +424,7 @@ class tx_tcdirectmail_mailer {
 	 * @param    string     Encryption code for the links
 	 * @return   array      Data structure with original links.
 	 */
-	function makeClickLinks ($authCode, $sendid) {
+	public function makeClickLinks ($authCode, $sendid) {
 		$links['plain'] = array();
 		$links['html'] = array();
 
@@ -457,7 +456,7 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return   void
 	 */
-	function testClickLinks () {
+	public function testClickLinks () {
 		/* Exchange all http:// links  html */
 		preg_match_all ('|<a [^>]*href="(http://[^"]*)"|Ui', $this->html, $urls);
 		foreach ($urls[1] as $i => $url) {
@@ -479,7 +478,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   array      Array with extra headers to apply to mails as name => value pairs.
 	 * @return   void
 	 */
-	function send ($receiverRecord, $extraHeaders = array()) {
+	public function send ($receiverRecord, $extraHeaders = array()) {
 		$this->substituteMarkers($receiverRecord);   
 		$this->raw_send($receiverRecord, $extraHeaders);
 		$this->resetMarkers();   
@@ -493,7 +492,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   array      Array with extra headers to apply to mails as name => value pairs.
 	 * @return   void
 	 */
-	function raw_send($receiverRecord, $extraHeaders = array()) {
+	public function raw_send($receiverRecord, $extraHeaders = array()) {
 		$messageId = md5(microtime().$receiverRecord['email']).'@'.$this->hostname;
 		$charset = $GLOBALS['TSFE']->metaCharset?$GLOBALS['TSFE']->metaCharset:'utf-8';
 
@@ -537,7 +536,7 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return	string	The plaintext code
 	 */
-	function getPlainChunck() {
+	public function getPlainChunck() {
 		$body[] = 'Content-Type: text/plain; charset="'.$this->charset.'"';
 		$body[] = 'Content-Transfer-Encoding: quoted-printable';
 		$body[] = '';
@@ -552,7 +551,7 @@ class tx_tcdirectmail_mailer {
 	 * @param	string	MIME boundary.
 	 * @return 	string	The HTML code.
 	 */
-	function getHtmlChunckWithFiles ($boundary) {
+	public function getHtmlChunckWithFiles ($boundary) {
 		$body[] = 'Content-Type: multipart/related;';
 		$body[] = " boundary=\"$boundary\"";
 		$body[] = '';
@@ -594,7 +593,7 @@ class tx_tcdirectmail_mailer {
 	 * @param	string	Charset
 	 * @return	string	The HTML code.
 	 */
-	function getHtmlChunckWithoutFiles () {
+	public function getHtmlChunckWithoutFiles () {
 		$body[] = "Content-Type: text/html; charset=\"$this->charset\"";
 
 		if ($this->extConf['html_base64']) {
@@ -617,7 +616,7 @@ class tx_tcdirectmail_mailer {
 	 * @param   string      MIME boundary to encode the MIME parts with.
 	 * @return   string      The MIME encoded files.
 	 */
-	function getAttachedFiles($boundary) {
+	public function getAttachedFiles($boundary) {
 		$body = array();
 
 		/* Attach the files */
@@ -635,4 +634,4 @@ class tx_tcdirectmail_mailer {
 		return implode("\n", $body);    
 	}
 }
-?>
+
