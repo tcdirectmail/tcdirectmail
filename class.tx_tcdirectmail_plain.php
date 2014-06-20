@@ -45,7 +45,7 @@ abstract class tx_tcdirectmail_plain {
 	 * @return   object      plain text object to use.
 	 */
 	static public function loadPlain($pageRecord, $baseUrl) {
-		$obj = new $pageRecord['tx_tcdirectmail_plainconvert'];
+		$obj =  t3lib_div::makeInstance($pageRecord['tx_tcdirectmail_plainconvert']);
 
 		if (is_subclass_of($obj, 'tx_tcdirectmail_plain')) {
 			$obj->record = $pageRecord;
