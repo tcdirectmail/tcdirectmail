@@ -212,10 +212,11 @@ class tx_tcdirectmail_mailer {
 		/* Find linked css and convert into a style-tag */
 		preg_match_all('|<link rel="stylesheet" type="text/css" href="([^"]+)"[^>]+>|Ui', $src, $urls);
 		foreach ($urls[1] as $i => $url) {
-			$get_url = str_replace($this->siteUrl, '', $url);
+				$urlParts = parse_url($url);
+				$get_url = $urlParts['path'];
 			$src = str_replace ($urls[0][$i], 
 				"<style type=\"text/css\">\n<!--\n"
-				.t3lib_div::getURL($this->realPath.str_replace($this->siteUrl, '', $url))
+				.t3lib_div::getURL($this->realPath.$get_url)
 				."\n-->\n</style>", $src);
 		}
 
@@ -233,7 +234,8 @@ class tx_tcdirectmail_mailer {
 			foreach ($replace_regs as $replace_reg) {
 				preg_match_all($replace_reg, $src, $urls);
 				foreach ($urls[1] as $i => $url) {
-					$get_url = str_replace($this->siteUrl, '', $url);
+					$urlParts = parse_url($url);
+					$get_url = $urlParts['path'];
 					$name = explode ('.', $get_url);
 					$ext = array_pop ($name);
 					$substname = substr(md5($url), 0, 10).'.'.$ext;
@@ -634,4 +636,3 @@ class tx_tcdirectmail_mailer {
 		return implode("\n", $body);    
 	}
 }
-

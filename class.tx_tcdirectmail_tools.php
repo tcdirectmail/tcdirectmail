@@ -412,7 +412,7 @@ class tx_tcdirectmail_tools {
 				if (t3lib_div::validEmail($receiver['email'])) {
 					$TYPO3_DB->exec_INSERTquery('tx_tcdirectmail_sentlog', array(   
 						'receiver' => $receiver['email'],
-						'user_uid' => $receiver['uid'], 
+						'user_uid' => intval($receiver['uid']),
 						'begintime' => $begintime,
 						'sendtime' => 0,
 						'userdata' => serialize($receiver),
@@ -582,4 +582,3 @@ class tx_tcdirectmail_tools {
 		closelog();
 	}  
 }
-
