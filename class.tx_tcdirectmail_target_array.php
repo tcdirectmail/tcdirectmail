@@ -1,7 +1,5 @@
 <?php
 
-require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target.php');
-
 /**
  * This is the basic class for extracting record from other data sources than the database.
  * Here the internal datastructure is an array.
@@ -56,4 +54,3 @@ class tx_tcdirectmail_target_array extends tx_tcdirectmail_target {
 	}
 }
 
-?>

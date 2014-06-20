@@ -1,6 +1,5 @@
 <?php
 
-require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target_array.php');
 class tx_tcdirectmail_target_csvurl extends tx_tcdirectmail_target_array {
     function init() {
    $this->data = array();    
@@ -21,4 +20,3 @@ class tx_tcdirectmail_target_csvurl extends tx_tcdirectmail_target_array {
     }
 }
 
-?>

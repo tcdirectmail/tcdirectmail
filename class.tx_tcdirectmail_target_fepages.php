@@ -1,6 +1,5 @@
 <?php
 
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target_sql.php');
 class tx_tcdirectmail_target_fepages extends tx_tcdirectmail_target_sql { 
 	var $tableName = 'fe_users';
 
@@ -23,4 +22,3 @@ class tx_tcdirectmail_target_fepages extends tx_tcdirectmail_target_sql {
 	}
 }
 
-?>

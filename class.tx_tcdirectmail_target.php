@@ -174,4 +174,3 @@ class tx_tcdirectmail_target {
 	}
 }
 
-?>

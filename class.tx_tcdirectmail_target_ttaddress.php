@@ -1,6 +1,5 @@
 <?php
 
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target_gentlesql.php');
 class tx_tcdirectmail_target_ttaddress extends tx_tcdirectmail_target_gentlesql { 
 	var $tableName = 'tt_address';
 
@@ -23,4 +22,3 @@ class tx_tcdirectmail_target_ttaddress extends tx_tcdirectmail_target_gentlesql 
 	}
 }
 
-?>

@@ -1,5 +1,4 @@
 <?php
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target_gentlesql.php');
 
 class tx_tcdirectmail_target_beusers extends tx_tcdirectmail_target_gentlesql { 
 	var $tableName = 'be_users';
@@ -18,4 +17,3 @@ class tx_tcdirectmail_target_beusers extends tx_tcdirectmail_target_gentlesql {
 	}
 }
    
-?>

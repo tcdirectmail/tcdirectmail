@@ -1,5 +1,4 @@
 <?php
-require_once (t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_target.php');
 
 /**
  * This is the basic SQL related directmail target. Methods implemented with DB calls.
@@ -79,4 +78,3 @@ class tx_tcdirectmail_target_sql extends tx_tcdirectmail_target {
 	}      
 }
 
-?>
