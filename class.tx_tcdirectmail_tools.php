@@ -286,7 +286,7 @@ class tx_tcdirectmail_tools {
 		}
 		
 		/* Configure the mailer */
-		$mailer = new tx_tcdirectmail_mailer();
+		$mailer = t3lib_div::makeInstance('tx_tcdirectmail_mailer');
 		$domain = tx_tcdirectmail_tools::getDomainForPage($page);
 		$mailer->siteUrl = "http://$domain/";
 		$mailer->senderName = tx_tcdirectmail_tools::getSenderForPage($page);
@@ -350,7 +350,7 @@ class tx_tcdirectmail_tools {
 				}
 			}
 
-			$target = new tx_tcdirectmail_target_array();
+			$target = t3lib_div::makeInstance('tx_tcdirectmail_target_array');
 			$target->data = $targetdata;
 			$target->resetTarget();
 		}

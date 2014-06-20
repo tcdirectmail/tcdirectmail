@@ -44,7 +44,7 @@ abstract class tx_tcdirectmail_target {
        
 		$rs = $TYPO3_DB->sql_query("SELECT * FROM tx_tcdirectmail_targets WHERE uid = $uid");
 		$fields = $TYPO3_DB->sql_fetch_assoc($rs);
-		$object = new $fields['targettype'];
+		$object = t3lib_div::makeInstance($fields['targettype']);
 		if (is_subclass_of($object, 'tx_tcdirectmail_target')) {
 			$object->fields = $fields;
 			return $object;
