@@ -706,11 +706,8 @@ class tx_tcdirectmail_module1 extends t3lib_SCbase {
 	}
 
 	function previewLink($type, $email) {
-	    return '<a target="_new" href="'.$GLOBALS['BACK_PATH']
-			.t3lib_extMgm::extRelPath('tcdirectmail')
-			.'web/preview.php?email='.rawurlencode($email).'&type='.$type.'&uid='.$_REQUEST['id'].'">'
-			.$GLOBALS['LANG']->getLL("preview_$type")
-			.'</a>';
+	    return '<a target="_new" href="/index.php?eID=preview&email='.rawurlencode($email).'&type='.$type.'&uid='.$_REQUEST['id'].'">'.
+            $GLOBALS['LANG']->getLL("preview_$type").'</a>';
 	}
 
 	function editTarget($uid) {
