@@ -340,68 +340,59 @@ if (!function_exists('user_displayfieldtitle')) {
 
 if (!function_exists('user_showreceivers')) {
     function user_showreceivers($PA, $fObj) {
-	require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_tools.php');
-	global $TYPO3_DB;
+        global $TYPO3_DB;
     
-	if (intval($PA['row']['uid']) == 0) {
-	    return "";
-	}
+        if (intval($PA['row']['uid']) == 0) {
+            return "";
+        }
 	
-	$uid = $PA['row']['uid'];
+        $uid = $PA['row']['uid'];
 	
-    
-	$target = tx_tcdirectmail_target::loadTarget($uid);
-    
+        $target = tx_tcdirectmail_target::loadTarget($uid);
 
-	if ($target->getError()) {
-	    return "Error";
-	}
+        if ($target->getError()) {
+            return "Error";
+        }
     
-	$i = 0;
-	$rows = array();
-	while ($row = $target->getRecord()) {
-	    if ($i == 0) {
-		$rows[-1] = array_map ('user_displayfieldtitle', array_keys($row));
-	    }
+        $i = 0;
+        $rows = array();
+        while ($row = $target->getRecord()) {
+            if ($i == 0) {
+                $rows[-1] = array_map ('user_displayfieldtitle', array_keys($row));
+            }
 	
-	    $rows[] = $row;    	
+            $rows[] = $row;
 	
-	    if ($i == 30) {
-		$rows[] = array('<strong>...</strong>', '<strong>'.$target->getCount().'&nbsp;Total</strong>');
-		break;
-	    }
-	    $i++;	
-	}
+            if ($i == 30) {
+                $rows[] = array('<strong>...</strong>', '<strong>'.$target->getCount().'&nbsp;Total</strong>');
+                break;
+            }
+            $i++;
+        }
 
-	if ($i < 30) {
+        if ($i < 30) {
     	    $rows[] = array('<strong>'.$target->getCount().'&nbsp;Total</strong>');
-	} 
+        }
     
-	foreach ($rows as $row) {
-	    $out .= '<tr>';
+        foreach ($rows as $row) {
+            $out .= '<tr>';
     	    foreach ($row as $field) {
-		$out .= "<td>$field</td>";
-	    }
+                $out .= "<td>$field</td>";
+            }
     	    $out .= '</tr>';
-	}
+        }
 	
-	$authCode = t3lib_div::stdAuthCode($target->fields);
+        $authCode = t3lib_div::stdAuthCode($target->fields);
 	
-    
-	return '<div style="height: 240px; width:430px; overflow: scroll; background-color: white;">'
-	      .'<p>Download: <a href="'.t3lib_extMgm::extRelPath('tcdirectmail')."web/xmldownload.php?authCode=$authCode&uid=$uid\">XML</a>&nbsp;"
-	      .'<a href="'.t3lib_extMgm::extRelPath('tcdirectmail')."web/csvdownload.php?authCode=$authCode&uid=$uid\">CSV</a></p>"
-	      .'<table>'.$out.'</table></div>';
+        return '<div style="height: 240px; width:430px; overflow: scroll; background-color: white;"><table>'.$out.'</table></div>';
     }
 }
 
 if (!function_exists('user_showalreadymailed')) {
-   function user_showalreadymailed($PA, $fObj) {
-      require_once(t3lib_extMgm::extPath('tcdirectmail').'class.tx_tcdirectmail_tools.php');
-      $target = tx_tcdirectmail_target::getTarget($PA['row']['uid']);
-      list($description, $sql) = unserialize($this->fields['alreadymailed']);
-      return '<div style="height: 120px; width:430px; overflow: scroll; background-color: white;"><p>'.$description.'</p></div>';
-   }
+    function user_showalreadymailed($PA, $fObj) {
+        $target = tx_tcdirectmail_target::getTarget($PA['row']['uid']);
+        list($description, $sql) = unserialize($this->fields['alreadymailed']);
+        return '<div style="height: 120px; width:430px; overflow: scroll; background-color: white;"><p>'.$description.'</p></div>';
+    }
 }
 
-?>
