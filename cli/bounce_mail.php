@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 $fd = fopen('php://stdin', 'r');
@@ -8,7 +7,6 @@ while ($buffer = fread($fd, 8096)) {
 fclose($fd);
 
 $bounce = new tx_tcdirectmail_bouncehandler($content);
-
 
 switch ($bounce->status) {
 	case TCDIRECTMAIL_HARDBOUNCE :
