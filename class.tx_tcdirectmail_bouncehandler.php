@@ -54,7 +54,7 @@ class tx_tcdirectmail_bouncehandler {
         '/Subject:\s*Delivery Status Notification[\s\S]+Failed/ix',
    );
 
-   public function tx_tcdirectmail_bouncehandler($mailsource) {
+   public function __construct($mailsource) {
       /* Calculate the bounce-score */
       $this->score = 0;
       

@@ -4,13 +4,22 @@ if (!isset($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Ma
 if (!isset($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Precedence'])) $TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Precedence'] = 'bulk';
 if (!isset($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Provided-by'])) $TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Sponsored-by'] = 'http://www.casalogic.dk/ - Open Source Experts.';
 
-/** * Registering class to scheduler
-*/
+/** 
+ * Registering class to scheduler
+ */
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_tcdirectmail_scheduler'] = array(
 	'extension' => $_EXTKEY,
 	'title' => 'TcDirectMail task',
 	'description' => 'This task invokes tcdirectmail in order to process queued messages.',
 );
+
+/**
+ * Registering class to the cliDispatch
+ */
+$TYPO3_CONF_VARS['SC_OPTIONS']['GLOBAL']['cliKeys']['bounce_mail'] = array(
+    'EXT:'.$_EXTKEY.'/cli/bounce_mail.php','_CLI_tcdirectmail');
+    'extension' => $_EXTKEY,
+    '
 
 /**
  * Register click eID events
