@@ -17,9 +17,9 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_tcdirectmail
  * Registering class to the cliDispatch
  */
 $TYPO3_CONF_VARS['SC_OPTIONS']['GLOBAL']['cliKeys']['bounce_mail'] = array(
-    'EXT:'.$_EXTKEY.'/cli/bounce_mail.php','_CLI_tcdirectmail');
-    'extension' => $_EXTKEY,
-    '
+    'EXT:'.$_EXTKEY.'/cli/bounce_mail.php','_CLI_tcdirectmail',
+    'extension' => $_EXTKEY
+);
 
 /**
  * Register click eID events
