@@ -1,6 +1,6 @@
 <?php
 
-class Tx_Tcdirectmail_Controller_ModuleController extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
+class Tx_Tcdirectmail_Controller_ModuleController extends t3lib_SCbase {
    	var $pageinfo;
 
 		/**
