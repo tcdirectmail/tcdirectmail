@@ -27,6 +27,6 @@ return array(
     'tx_tcdirectmail_bouncehandler' => $extensionPath . 'class.tx_tcdirectmail_bouncehandler.php',
     'tx_tcdirectmail_section_targets' => $extensionPath . 'section/class.tx_tcdirectmail_section_targets.php',
     'tx_tcdirectmail_section_modulefunction' => $extensionPath . 'section/class.tx_tcdirectmail_section_modulefunction.php',
+    'tx_tcdirectmail_controller_modulecontroller' => $extensionPath . 'Classes/Controller/ModuleController.php',
 );
-
 
