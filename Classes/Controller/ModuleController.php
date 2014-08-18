@@ -150,10 +150,10 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
    function moduleContent()   {
       global $LANG, $TYPO3_DB;
 
-      /* Must have an id */
+      // Must have an id
       if (!$_REQUEST['id']) return;
 
-      /* Must be a directmail page */
+      // Must be a directmail page
       $rs = $TYPO3_DB->sql_query('SELECT doktype FROM pages WHERE uid = '.intval($_REQUEST['id']));
       list($doktype) = $TYPO3_DB->sql_fetch_row($rs);
 
@@ -203,34 +203,36 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
       } 
    }
 
-	/* View all sorts of stuff about the current page. */
+   /**
+    * View all sorts of stuff about the current page. 
+    */
 	function viewStatus() {
 		global $TYPO3_DB;   
 		global $LANG;
 		global $BE_USER;
 
 
-		/* Schedule a send? */
+		// Schedule a send?
 		if ($_REQUEST['send_now']) {
 			$TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_senttime = ".time()." WHERE uid = $_REQUEST[id]");
 		}
 
-		/* Schedule a test send */
+		// Schedule a test send
 		if ($_REQUEST['send_test_cron']) {
 			$TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_dotestsend = 1 WHERE uid = $_REQUEST[id]");
 		}  
 
-		/* Send a test mail */
+		// Send a test mail
 		if ($_REQUEST['send_test']) {
 			tx_tcdirectmail_tools::mailForTest($this->pageinfo, $_REQUEST['test_send_receivers']);
 		}
 
-		/* Invoke the mailer? */
+		// Invoke the mailer?
 		if ($_REQUEST['invoke_mailer']) {
 			$this->invokeMailer();
 		}
 
-		/* Check if there is a domain-name set */
+		// Check if there is a domain-name set
 		if($BE_USER->user['admin']){
 			$output .= '<h3>'.$LANG->getLL('domain_name').'</h3>';
 
@@ -244,14 +246,14 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$output .= '<br />';
 		}
 
-		/* Write the sender name */
+		// Write the sender name
 		$output .= '<h3>'.$LANG->getLL('sender_name').'</h3>';
 
 		$sender = tx_tcdirectmail_tools::getSenderForPage($this->pageinfo);
 		$output .= '<p>'.str_replace ('###SENDER###', $sender, $LANG->getLL('sender_for_page')).'</p>';
 		$output .= '<br />';
 
-		/* Write the sender email */
+		// Write the sender email
 		$output .= '<h3>'.$LANG->getLL('sender_email').'</h3>';
 
 		$email = tx_tcdirectmail_tools::getEmailForPage($this->pageinfo);
@@ -259,17 +261,17 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		$output .= '<br />';
 
 
-		/* Get starttime for lock-records */
+		// Get starttime for lock-records
 		$rs = $TYPO3_DB->exec_SELECTquery('begintime', 'tx_tcdirectmail_lock', "stoptime = 0 AND pid = $_REQUEST[id]");
 		list ($begintime) = $TYPO3_DB->sql_fetch_row($rs);
 
 		$output .= '<form>';
 
-		/* Get current time.status */
+		// Get current time.status
 		$rs = $TYPO3_DB->exec_SELECTquery('tx_tcdirectmail_senttime', 'pages', "uid = $_REQUEST[id]");
 		list ($senttime) = $TYPO3_DB->sql_fetch_row($rs);
 
-		/* Real sends? */
+		// Real sends?
 		$output .= '<h3>'.$LANG->getLL('status_real_receivers').'</h3>';
 		if ($this->pageinfo['tx_tcdirectmail_real_target']) {
 			$targetUids = explode(',',$this->pageinfo['tx_tcdirectmail_real_target']);
@@ -311,7 +313,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		}
 		$output .= '<br />';
 
-		/* Test sends? */
+		// Test sends?
 		$output .= '<h3>'.$LANG->getLL('status_test_receivers').'</h3>';
 		if ($this->pageinfo['tx_tcdirectmail_test_target']) {
 			$target = tx_tcdirectmail_target::loadTarget($this->pageinfo['tx_tcdirectmail_test_target']);
@@ -334,7 +336,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 		 $output .= '<table cellpadding="2" cellspacing="2">';
 
-			/* List what users can be mailed */
+         // List what users can be mailed
 		 if($target->getCount() > 1){
 			$output .= '<tr><td colspan="5">&nbsp;</td></tr>';
 			$output .= '<tr><td><input type="checkbox" name="selectAll_top" onClick="checkAll(this);" /></td><td colspan="4">'.$LANG->getLL('toggleAll').'</td></tr>';
@@ -372,17 +374,17 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 	function invokeMailer() {
 		global $TYPO3_DB;
 
-		/* Find out if the mail has already been spooled */
+		// Find out if the mail has already been spooled
 		$rs = $TYPO3_DB->sql_query("SELECT COUNT(uid) FROM tx_tcdirectmail_lock  
 						WHERE stoptime = 0
 						AND pid = $_REQUEST[id]");
 
 		list($already_spooled) = $TYPO3_DB->sql_fetch_row($rs);
 
-		/* If it is NOT spooled..   spool it */
+		// If it is NOT spooled..   spool it
 		if (!$already_spooled) {
 			$begintime = time();
-			/* Lock the page */
+			// Lock the page
 			$TYPO3_DB->exec_INSERTquery('tx_tcdirectmail_lock', 
 							array('pid' => $this->pageinfo['uid'], 
 									'begintime' => $begintime, 
@@ -391,12 +393,12 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$lockid = $TYPO3_DB->sql_insert_id();
 			tx_tcdirectmail_tools::createSpool($this->pageinfo, $begintime);
 
-			/* Unlock the page */
+			// Unlock the page
 			tx_tcdirectmail_tools::setScheduleAfterSending ($this->pageinfo);
 			$TYPO3_DB->exec_UPDATEquery('tx_tcdirectmail_lock', "uid = $lockid", array('stoptime' => time()));         
 		}
 
-		/* Go on and run the queue */
+		// Go on and run the queue
 		tx_tcdirectmail_tools::runSpoolInteractive();
 	}
 
@@ -408,19 +410,19 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
        $fail = array();
        $note = array();
 
-       /* Get the page-contents */
+       // Get the page-contents
        $id = intval($_REQUEST['id']);
        $rs = $TYPO3_DB->exec_SELECTquery('*', 'pages', "uid = ".intval($_REQUEST[id]));
        $page = $TYPO3_DB->sql_fetch_assoc($rs); 
        $domain = tx_tcdirectmail_tools::getDomainForPage($page);
        $html_src = file_get_contents("http://$domain/index.php?id=$id&no_cache=1");
 
-       /* Any linked CSS-files */
+       // Any linked CSS-files
        if (strpos($html_src, '<link rel="stylesheet" type="text/css" href="')) {
           $note[] = $LANG->getLL('mail_contains_linked_styles');
        }
 
-       /* Find linked css and convert into a style-tag */
+       // Find linked css and convert into a style-tag
        preg_match_all('|<link rel="stylesheet" type="text/css" href="([^"]+)"[^>]+>|Ui', $html_src, $urls);
        foreach ($urls[1] as $i => $url) {
            $get_url = str_replace("http://$domain/", '', $url);
@@ -433,26 +435,26 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 					 }
        }
 
-       /* Any javascript */
+       // Any javascript
        if (strpos($html_src, '<script')) {
-      $fail[] = $LANG->getLL('mail_contains_javascript');
+           $fail[] = $LANG->getLL('mail_contains_javascript');
        }
+       
 
-
-       /* Images in CSS */
+       // Images in CSS
        if (preg_match('|background-image: url\([^\)]+\)|', $html_src) || preg_match('|list-style-image: url\([^\)]+\)|', $html_src)) {
-      $fail[] = $LANG->getLL('mail_contains_css_images');
+           $fail[] = $LANG->getLL('mail_contains_css_images');
        }
-
-       /* CSS-classes */
+       
+       // CSS-classes
        if (preg_match('|<[a-z]+ [^>]*class="[^"]+"[^>]*>|', $html_src)) {
-      $note[] = $LANG->getLL('mail_contains_css_classes');
+           $note[] = $LANG->getLL('mail_contains_css_classes');
        }
-
-       /* Positioning & element sizes in CSS */
+       
+       // Positioning & element sizes in CSS
        if (preg_match_all('|<[a-z]+[^>]+style="([^"]*)"|', $html_src, $matches)) {
-
-      foreach ($matches[1] as $stylepart) {
+           
+           foreach ($matches[1] as $stylepart) {
           if (strpos($stylepart, 'width') !== false) {
             $warn[] = str_replace ('###PROPERTY###','width', $LANG->getLL('mail_contains_css_some_property'));
           }
@@ -520,7 +522,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
        $id = intval($_REQUEST['id']);
 
-       /* Clear invalid stats? */
+       // Clear invalid stats?
        if ($_REQUEST['clear_invalid']) {
           $sql = "DELETE FROM tx_tcdirectmail_sentlog WHERE begintime = 0 AND pid = $id";
           $TYPO3_DB->sql_query($sql);
@@ -538,7 +540,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
        }
 
 
-       /* Invalid-stats form */
+       // Invalid-stats form
        $out .= "<form action=\"index.php?id=$_REQUEST[id]\">";
        $sql = "SELECT uid FROM tx_tcdirectmail_sentlog WHERE begintime = 0 AND pid = $id LIMIT 1";
 
@@ -558,8 +560,8 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
        }
 
 
-       /* Old-stats form */
-       /* Get numbers for each session */
+       // Old-stats form
+       // Get numbers for each session
        $sql = "SELECT lck.begintime, lck.stoptime, COUNT(lg.receiver)
           FROM tx_tcdirectmail_lock lck
           LEFT JOIN tx_tcdirectmail_sentlog lg ON lck.begintime = lg.begintime
@@ -570,7 +572,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
        $rs = $TYPO3_DB->sql_query($sql);
 
 
-       /* Display */
+       // Display 
        $out .= '<p><h3>'.$LANG->getLL('delete_old_stats').'</h3></p>';
        $out .= '<table>';
        $out .= '<tr><td></td><td>'.
@@ -593,13 +595,13 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
        return $out;
    }
 
-        /* View number of mails delivered in the past */
+        // View number of mails delivered in the past 
         function viewPreview() {
             global $TYPO3_DB;
             global $LANG;
 	    global $BACK_PATH;
 
-	    /* Get list of receivers */
+	    // Get list of receivers 
 	    $rs = $TYPO3_DB->exec_SELECTquery('*', 'pages', "uid = $_REQUEST[id]");
 	    $page = $TYPO3_DB->sql_fetch_assoc($rs);
 
@@ -626,17 +628,17 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		    $out .= "<td><a href=\"mailto:$record[email]\">$record[email]</td>";
 
 
-		    /* Number of fields */
+		    // Number of fields 
 		    $num_fields = count($record);
 
-		    /* Number of unsubstituted fields */
+		    // Number of unsubstituted fields 
 		    $mailer->substituteMarkers($record);
 		    preg_match_all('|###[a-z0-9_]+###|i', $mailer->html, $nonfields_html);
 		    preg_match_all('|###[a-z0-9_]+###|i', $mailer->plain, $nonfields_plain);
 		    $num_nonfields = max (count ($nonfields_html[0]), count ($nonfields_plain[0]));
 
 
-		    /* Ok fields icon? */
+		    // Ok fields icon? 
 		    $status_url = $GLOBALS['BACK_PATH'].'gfx';
 		    if ($num_nonfields != 0) {
 			$out .= '<td><img src="'.$GLOBALS['BACK_PATH'].'gfx/icon_fatalerror.gif" /></td>';
@@ -688,27 +690,27 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 	}   
 
 
-        /* View number of mails delivered in the past */
+        // View number of mails delivered in the past 
 	function viewStatistics() {
 		global $TYPO3_DB;
 		global $LANG;
 
-		/* Check if the page is a directmail */
+		// Check if the page is a directmail 
 		$sql = "SELECT doktype FROM pages WHERE uid = $_REQUEST[id]";
 		$rs = $TYPO3_DB->sql_query($sql);
 		list ($doktype) = $TYPO3_DB->sql_fetch_row($rs);
 
-		/* We do not want to show statistics for non-directmail pages */
+		// We do not want to show statistics for non-directmail pages 
 		if ($doktype != 189) {
 			return $this->notADirectmailPage();
 		}
 
-		/* Is a detailed view requested? */
+		// Is a detailed view requested? 
 		if ($_REQUEST['detail_begintime']) {
 			return $this->viewStatsDetailSum($_REQUEST['detail_begintime']);
 		}
 
-		/* Get numbers for each session */
+		// Get numbers for each session 
 		$sql = "SELECT lck.begintime, lck.stoptime, COUNT(lg.receiver) 
 				FROM tx_tcdirectmail_lock lck 
 				LEFT JOIN tx_tcdirectmail_sentlog lg ON lck.begintime = lg.begintime 
@@ -718,7 +720,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 		$rs = $TYPO3_DB->sql_query($sql);
 
-		/* Display */
+		// Display 
 		$output .= '<table>';
 		$output .= '<tr><td>'.
 		$LANG->getLL('date').'</td><td>'.
@@ -751,20 +753,20 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$receiver_option .= " AND receiver LIKE '%$_REQUEST[sword]%' ";
 		}
 
-		/******************************************/
-		/****** Save stats as receiver target *****/
-		/******************************************/
+		//****************************************
+		//***** Save stats as receiver target ****
+		//****************************************
 
 		// if ($_REQUEST['save_stats']) {
 		//  $this->saveCurrentStatsAsTarget();
 		//}
 
 
-		/**********************/
-		/**** Filter  form ****/
-		/**********************/
+		//********************
+		//*** Filter  form ***
+		//********************
 
-		/* total activated links */
+		// total activated links 
 		$sql = "SELECT linktype, linkid, SUM(opened)
 			FROM tx_tcdirectmail_sentlog 
 			INNER JOIN tx_tcdirectmail_clicklinks ON sentlog = uid 
@@ -775,7 +777,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 		$rs = $TYPO3_DB->sql_query($sql);
 
-		/* Filter form */
+		// Filter form 
 		$out .= '<form action="index.php" method="POST">';
 		$out .= '<input type="hidden" name="detail_begintime" value="'.$_REQUEST['detail_begintime'].'" />';
 		$out .= '<input type="hidden" name="id" value="'.$_REQUEST['id'].'" />';
@@ -811,14 +813,14 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 
 
-		/***********************/
-		/*** General success ***/
-		/***********************/
+		//*********************
+		//** General success **
+		//*********************
 
 		$out .= '<table>';
 		$out .= '<tr><td colspan="3"><h3>'.$LANG->getLL('mail_success').'</h3></td></tr>';
 
-		/* If a specific link is requested */
+		// If a specific link is requested 
 		if ($_REQUEST['opened_link']) {
 			list($linktype, $linkid) = explode('|', $_REQUEST['opened_link']);
 			$sql = "SELECT COUNT(uid) 
@@ -837,7 +839,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$out .= '<tr style="background-color: eeeeee;"><td>'
 					.$LANG->getLL('total_receivers').'</td><td align="right" colspan="2"><b>'.$total_receivers.'</b></td></tr>';                      
 
-			/* Or just confirmed addresses in general */
+			// Or just confirmed addresses in general 
 		} elseif ($_REQUEST['beenthere'] == 'yes') {
 			$sql = "SELECT COUNT(uid)
 				FROM tx_tcdirectmail_sentlog 
@@ -851,9 +853,9 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$out .= '<tr style="background-color: eeeeee;"><td>'
 					.$LANG->getLL('total_receivers').'</td><td align="right" colspan="2"><b>'.$total_receivers.'</b></td></tr>';             
 
-			/* Or unconfirmed addresses */
+			// Or unconfirmed addresses 
 		} elseif ($_REQUEST['beenthere'] == 'no') {
-			/* Get total numbers of recients */
+			// Get total numbers of recients 
 			$sql = "SELECT COUNT(uid) 
 			FROM tx_tcdirectmail_sentlog 
 			WHERE begintime = $_REQUEST[detail_begintime] 
@@ -863,7 +865,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$rs = $TYPO3_DB->sql_query($sql);
 			list($total_receivers) = $TYPO3_DB->sql_fetch_row($rs);
 
-			/* Count opened emails */
+			// Count opened emails 
 			$sql = "SELECT COUNT(uid) 
 				FROM tx_tcdirectmail_sentlog 
 				WHERE begintime = $_REQUEST[detail_begintime] 
@@ -877,7 +879,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 				.$LANG->getLL('numbers_not_spied_upon').'</td><td align="right">'
 				.$this->viewSums($sumnotbeenthere,$total_receivers).'</td></tr>';
 
-			/* Count bounced emails */
+			// Count bounced emails 
 			$sql = "SELECT SUM(bounced) 
 				FROM tx_tcdirectmail_sentlog 
 				WHERE begintime = $_REQUEST[detail_begintime] 
@@ -889,9 +891,9 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$out .= '<tr style="background-color: eeeeee;"><td>'
 				.$LANG->getLL('numbers_bounced').'</td><td align="right">'
 				.$this->viewSums($sumbounced,$total_receivers).'</td></tr>';
-			/* Or everyone */
+			// Or everyone 
 		} else  {
-			/* Get total numbers of recients */
+			// Get total numbers of recients 
 			$sql = "SELECT COUNT(uid) 
 				FROM tx_tcdirectmail_sentlog 
 				WHERE begintime = $_REQUEST[detail_begintime] 
@@ -901,7 +903,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 			$rs = $TYPO3_DB->sql_query($sql);
 			list($total_receivers) = $TYPO3_DB->sql_fetch_row($rs);
 
-			/* Count opened emails */
+			// Count opened emails 
 			$sql = "SELECT SUM(beenthere) 
 				FROM tx_tcdirectmail_sentlog 
 				WHERE begintime = $_REQUEST[detail_begintime] 
@@ -918,7 +920,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 				.$LANG->getLL('numbers_spied_upon').'</td><td align="right">'
 				.$this->viewSums($sumbeenthere,$total_receivers).'</td></tr>';
 
-			/* Count bounced emails */
+			// Count bounced emails 
 			$sql = "SELECT SUM(bounced) 
 				FROM tx_tcdirectmail_sentlog 
 				WHERE begintime = $_REQUEST[detail_begintime] 
@@ -935,9 +937,9 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		$out .= '</table>';
 
 
-          /**************************/
-          /***** Counting links *****/
-          /**************************/
+          //************************
+          //**** Counting links ****
+          //************************
 
           if ($_REQUEST['beenthere'] <> 'no') {
              $out .= '<table>';
@@ -969,7 +971,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
              }
 
              $opened_options .= "<option></option>";
-             /* Get all links for the sessions */
+             // Get all links for the sessions 
              foreach (array('html','plain') as $type) {
                $out .= '<tr><td colspan="4"><h3>'.$LANG->getLL($type.'_links').'</h3></td></tr>';
                $out .= '<tr style="background-color: eeeeee;"><td><b>'.
