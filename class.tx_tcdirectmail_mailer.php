@@ -22,6 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script! 
 ***************************************************************/
 
+require_once(PATH_typo3 . 'contrib/swiftmailer/swift_required.php');
 
 /**
  * This is the holy inner core of tcdirectmail. 
@@ -52,7 +53,6 @@ class tx_tcdirectmail_mailer {
 		$this->extConf = unserialize($TYPO3_CONF_VARS['EXT']['extConf']['tcdirectmail']);
 		$this->realPath = PATH_site;
 		$this->inlinefiles = array();
-		$this->inlinemimes = array();
 		$this->files = array();
 		$this->mimes = array();      
 	      
@@ -159,23 +159,21 @@ class tx_tcdirectmail_mailer {
 				'/ background="([^"]+)"/',
 		);
 
-		/* Attach */
+		// Attach
 		if ($this->extConf['attach_images']) {
 			foreach ($replace_regs as $replace_reg) {
 				preg_match_all($replace_reg, $src, $urls);
 				foreach ($urls[1] as $i => $url) {
 					$urlParts = parse_url($url);
 					$get_url = $urlParts['path'];
-					$name = explode ('.', $get_url);
-					$ext = array_pop ($name);
-					$substname = substr(md5($url), 0, 10).'.'.$ext;
-					$this->inlinefiles[$substname] = base64_encode(t3lib_div::getURL("$this->realPath$get_url"));
-					$this->inlinemimes[$substname] = $this->getMimeType("$this->realPath$get_url");
-					$src = str_replace ($urls[0][$i], str_replace($url, "cid:$substname", $urls[0][$i]), $src);
+					$total_url = $this->realPath . $get_url;
+					$this->inlinefiles[$get_url] = Swift_Image::fromPath($total_url);
 				}
 			}
-		/* Or correct link */
-		} else {
+		}
+
+		// Or correct link
+		else {
 			foreach ($replace_regs as $replace_reg) {
 				preg_match_all($replace_reg, $src, $urls);
 				foreach ($urls[1] as $i => $url) {
@@ -428,14 +426,22 @@ class tx_tcdirectmail_mailer {
 		$messageId = md5(microtime().$receiverRecord['email']).'@'.$this->hostname;
 		$charset = $GLOBALS['TSFE']->metaCharset?$GLOBALS['TSFE']->metaCharset:'utf-8';
 
-		/* Hook for actions INSTEAD of actually sending the mail */
+		// Hook for actions INSTEAD of actually sending the mail
 		if (is_array($this->mailReplacers)) {
 			foreach($this->mailReplacers as $_procObj) {
 				$_procObj->mailReplacementHook($receiverRecord['email'], $title, implode("\n", $body), implode("\n", $headers), $this->bounceAddress);
 			}
-    } else {
-      /* Mail it */
+    }
+		// Mail it
+		else {
+
       $mail = t3lib_div::makeInstance('t3lib_mail_Message');
+
+      // Get the inline images
+      foreach ($this->inlinefiles as $filename => $embedObj) {
+				$this->html = str_replace($filename, $mail->embed($embedObj), $this->html);
+      }
+
       $mail->setTo(array($receiverRecord['email']))
         ->setFrom(array($this->senderEmail => $this->senderName))
         ->setSender($this->bounceAddress?$this->bounceAddress:$this->senderEmail)
@@ -444,16 +450,6 @@ class tx_tcdirectmail_mailer {
         ->addPart($this->plain, 'text/plain')
         ->setBody($this->html, 'text/html')
         ->setCharset($charset);
-
-      /* Get the inline files for use with pictures, stylesheets etc. */
-      foreach ($this->inlinefiles as $filename => $content) {
-        $attachment = Swift_Attachment::newInstance()
-          ->setFilename($filename)
-          //->setContentType('application/pdf')
-          ->setBody($content)
-          ;
-        $mail->attach($attachment);
-      }
 
       $mail->send();
       $success = $mail->isSent();
