@@ -2,7 +2,7 @@
 /*************************************************************** 
 *  Copyright notice 
 * 
-*  (c) 2007-2008 Daniel Schledermann <daniel@schledermann.net> 
+*  (c) 2007-2014 Daniel Schledermann <daniel@schledermann.net>
 *  All rights reserved 
 * 
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -56,24 +56,6 @@ class tx_tcdirectmail_mailer {
 		$this->files = array();
 		$this->mimes = array();      
 	      
-		/* Generate some boundaries for the mime-mails and make them interesting for geeks to look at */
-		$boundary_hash = substr(md5(time()), 0,10);
-		switch (rand(0,8)) {
-			case 0 : $this->boundaries = array('We-come-in-peace','Dont-run-we-are-your-friends','Take-me-to-your-leader'); break;
-			case 1 : $this->boundaries = array('Im-not-looking-for-a-friend', 'Im-looking-for-a-Jedi-master','You-seek-yoda'); break;
-			case 2 : $this->boundaries = array('Your-culture-will-adapt-to-service-us', 'Resistance-is-futile', 'We-are-the-borg'); break;
-			case 3 : $this->boundaries = array('looks-can-be-deceiving','we-are-not-here-because-we-are-free', 'we-are-here-because-we-are-not-free'); break;
-			case 4 : $this->boundaries = array('The-best-thing-about-me','is-that-there-is-so-many-of-me', 'me,-me,-me'); break;
-			case 5 : $this->boundaries = array('Open-the-door-please-Hal', 'Im-sorry-Dave','Im-afraid-I-cant-do-that'); break;
-			case 6 : $this->boundaries = array('What-do-you-mean---they-cut-the-power', 'how-could-they-cut-the-power', 'They-are-animals-mans'); break;
-			case 7 : $this->boundaries = array('Use-the-force-luke','The-Force-will-be-with-you--always','I-felt-a-great-disturbance-in-the-Force'); break;
-			case 8 : $this->boundaries = array('I-am-your-father','Search-your-feelings','You-know-it-to-be-true'); break;
-		}
-      
-		$this->boundaries[0] = '----'.$this->boundaries[0].'--'.$boundary_hash;
-		$this->boundaries[1] = '----'.$this->boundaries[1].'--'.$boundary_hash;
-		$this->boundaries[2] = '----'.$this->boundaries[2].'--'.$boundary_hash;
-	      
 		/* Set up mail replacement hooks */
 		if (is_array($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'])) {
 			foreach ($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'] as $_classRef) {
@@ -81,22 +63,6 @@ class tx_tcdirectmail_mailer {
 			}
 		}
 	}
-    
-	/**
-	 * Encodes a text in qouted printable format. Either via build in function, with fallback to a php-implementation.
-	 *
-	 * @static
-	 * @param    string      Text to be encoded
-	 * @return   string      Encoded text
-	 */
-	public function qoutedPrintableEncode($ascii_in = "") {
-		if(strtolower($this->charset) != 'utf-8' && function_exists('imap_8bit')){
-			return imap_8bit($ascii_in);
-		} else {
-			return t3lib_div::quoted_printable($ascii_in);
-		}
-	}
-	
 
 	/**
 	 * Determine the charset encoding of the mail.
@@ -117,42 +83,6 @@ class tx_tcdirectmail_mailer {
        
 		/* Oh well..  We'll just have to guess something reasonable */
 		return 'iso-8859-1';
-	}
-
-	/**
-	 * Get mime-type for a file
-	 *
-	 * @static
-	 * @return    string      Mime type determined.
-	 */
-	public function getMimeType($filename) {
-		if (function_exists('mime_content_type')) {
-			return mime_content_type ($filename);
-		} else if (function_exists('finfo_file')) {
-			$finfo    = finfo_open(FILEINFO_MIME);
-			$mimetype = finfo_file($finfo, $filename);
-			finfo_close($finfo);
-        		return $mimetype;
-		} else if (!ini_get('safe_mode')) {
-			return trim ( exec ('file -bi '.escapeshellarg($filename)));
-		} else {
-			die ("Arghh... methods of determining mimetypes exhaustet. Please consider any of: adding legacy function 'mime_content_type', installing 'fileinfo' pecl-extension or allowing shell access to unix 'file'-utility. You can not send out mails containing any files until you resolve this issue.");
-		}
-	}
-
-	/**
-	 * Add a file attachement to the mail
-	 *
-	 * @param   string      Filename of file to attach.
-	 * @return   void
-	 */
-	public function addAttachment($filename) {
-		if (trim($filename) != '') {
-			$path = explode ('/', $filename);
-			$basename = array_pop ($path);
-			$this->files[$basename] = base64_encode(t3lib_div::getURL($filename));
-			$this->mimes[$basename] = $this->getMimeType($filename);
-		}
 	}
 
 	/**
@@ -525,114 +455,8 @@ class tx_tcdirectmail_mailer {
         $mail->attach($attachment);
       }
 
-
       $mail->send();
       $success = $mail->isSent();
-
-
     }
-	}
-
-	/** 
-	 * Get plain
-	 *
-	 * @return	string	The plaintext code
-	 */
-	public function getPlainChunck() {
-		$body[] = 'Content-Type: text/plain; charset="'.$this->charset.'"';
-		$body[] = 'Content-Transfer-Encoding: quoted-printable';
-		$body[] = '';
-		$body[] = $this->qoutedPrintableEncode(t3lib_div::substUrlsInPlainText($this->plain,'all',$this->siteUrl));
-
-		return implode ("\n", $body);
-	}
-
-	/**
- 	 * Get html with inline files (multipart/related)
-	 *
-	 * @param	string	MIME boundary.
-	 * @return 	string	The HTML code.
-	 */
-	public function getHtmlChunckWithFiles ($boundary) {
-		$body[] = 'Content-Type: multipart/related;';
-		$body[] = " boundary=\"$boundary\"";
-		$body[] = '';
-		$body[] = "--$boundary";
-		$body[] = "Content-Type: text/html; charset=\"$this->charset\"";
-
-		if ($this->extConf['html_base64']) {
-			$body[] = 'Content-Transfer-Encoding: base64';
-			$body[] = '';				
-			$body[] = chunk_split(base64_encode($this->html));
-		} else {
-			$body[] = 'Content-Transfer-Encoding: quoted-printable';
-			$body[] = '';			
-			$body[] = $this->qoutedPrintableEncode ($this->html);
-		}
-
-		/* Get the inline files for use with pictures, stylesheets etc. */
-		foreach ($this->inlinefiles as $filename => $content) {
-			$body[] = "--$boundary";
-			$body[] = 'Content-Type: '.$this->inlinemimes[$filename];
-			$body[] = ' name="'.$filename.'"';
-			$body[] = "Content-ID: <$filename>";
-			$body[] = 'Content-Transfer-Encoding: base64';
-			$body[] = 'Content-Disposition: inline;';
-			$body[] = ' filename="'.$filename.'"';
-			$body[] = '';
-			$body[] = chunk_split($content);
-		}
-
-		$body[] = "--$boundary--";
-		$body[] = '';
-
-		return implode ("\n", $body);
-	}
-
-	/**
-	 * Get html without inline files
-	 *
-	 * @param	string	Charset
-	 * @return	string	The HTML code.
-	 */
-	public function getHtmlChunckWithoutFiles () {
-		$body[] = "Content-Type: text/html; charset=\"$this->charset\"";
-
-		if ($this->extConf['html_base64']) {
-			$body[] = 'Content-Transfer-Encoding: base64';
-			$body[] = '';			
-			$body[] = chunk_split(base64_encode($this->html));
-		} else {
-			$body[] = 'Content-Transfer-Encoding: quoted-printable';
-			$body[] = '';			
-			$body[] = $this->qoutedPrintableEncode ($this->html);
-		}
-
-		return implode ("\n", $body);
-	}
-
-
-	/**
-	 * Get the MIME encoded attached files of the mail.
-	 *
-	 * @param   string      MIME boundary to encode the MIME parts with.
-	 * @return   string      The MIME encoded files.
-	 */
-	public function getAttachedFiles($boundary) {
-		$body = array();
-
-		/* Attach the files */
-		foreach ($this->files as $filename => $content) {
-			$body[] = "--$boundary";
-			$body[] = "Content-Type: ".$this->mimes[$filename].';';
-			$body[] = " name=\"$filename\"";
-			$body[] = 'Content-Transfer-Encoding: base64';      
-			$body[] = "Content-Disposition: inline;";
-			$body[] = " filename=\"$filename\"";
-			$body[] = '';
-			$body[] = chunk_split($content);
-		}
-
-		return implode("\n", $body);    
 	}
 }
