@@ -442,6 +442,11 @@ class tx_tcdirectmail_mailer {
 				$this->html = str_replace($filename, $mail->embed($embedObj), $this->html);
       }
 
+			// Get the attached files
+			foreach ($this->files as $attachObj) {
+				$mail->attach($attachObj);
+			}
+
       $mail->setTo(array($receiverRecord['email']))
         ->setFrom(array($this->senderEmail => $this->senderName))
         ->setSender($this->bounceAddress?$this->bounceAddress:$this->senderEmail)
@@ -454,5 +459,9 @@ class tx_tcdirectmail_mailer {
       $mail->send();
       $success = $mail->isSent();
     }
+	}
+
+	public function addAttachment($filename) {
+		$this->files[] = Swift_Attachment::fromPath($filename);
 	}
 }
