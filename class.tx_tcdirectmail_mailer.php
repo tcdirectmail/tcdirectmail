@@ -167,6 +167,9 @@ class tx_tcdirectmail_mailer {
 					if (preg_match("|^https?://|", $url)) {
 						$this->inlinefiles[$url] = Swift_Image::fromPath($url);
 					}
+					elseif (preg_match("|^//|", $url)) {
+						$this->inlinefiles[$url] = Swift_Image::fromPath("http:" . $url);
+					}
 					else {
 						$this->inlinefiles[$url] = Swift_Image::fromPath($this->realPath . preg_replace('/\?.+$/', '', $url));
 					}
