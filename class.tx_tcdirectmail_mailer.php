@@ -150,13 +150,13 @@ class tx_tcdirectmail_mailer {
 				."\n-->\n</style>", $src);
 		}
 
-		/* We cant very well have attached javascript in a newsmail ... removing */
+		// We cant very well have attached javascript in a newsmail ... removing
 		$src = preg_replace('|<script type="text/javascript" src="[^"]+"></script>|', '', $src);
 
-		/* Convert external file resouces to attached filer or correct their links */
+		// Convert external file resouces to attached filer or correct their links
 		$replace_regs = array(
-				'/ src="([^"]+)"/',
-				'/ background="([^"]+)"/',
+			'/ src="([^"]+)"/',
+			'/ background="([^"]+)"/',
 		);
 
 		// Attach
@@ -164,10 +164,12 @@ class tx_tcdirectmail_mailer {
 			foreach ($replace_regs as $replace_reg) {
 				preg_match_all($replace_reg, $src, $urls);
 				foreach ($urls[1] as $i => $url) {
-					$urlParts = parse_url($url);
-					$get_url = $urlParts['path'];
-					$total_url = $this->realPath . $get_url;
-					$this->inlinefiles[$get_url] = Swift_Image::fromPath($total_url);
+					if (preg_match("|^https?://|", $url)) {
+						$this->inlinefiles[$url] = Swift_Image::fromPath($url);
+					}
+					else {
+						$this->inlinefiles[$url] = Swift_Image::fromPath($this->realPath . preg_replace('/\?.+$/', '', $url));
+					}
 				}
 			}
 		}
