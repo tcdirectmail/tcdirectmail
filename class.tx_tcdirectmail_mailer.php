@@ -71,18 +71,14 @@ class tx_tcdirectmail_mailer {
 	 * @return   string      Determined charset encoding
 	 */
 	public function getCharsetEncoding() {
-		/* Does the code come with anything? */
+		// Do the code come with anything?
 		if (preg_match ('|<meta http-equiv="Content-Type" content="text/html; charset=([^"]*)" />|', $this->html_tpl, $match)) {
 			return $match[1];
 		}
-       
-		/* Is anything provided in TYPO3_CONF_VARS? */
-		if (trim($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'])) {
-			return $GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'];
+		// If nothing is found, we assume UTF-8
+		else {
+			return 'UTF-8';
 		}
-       
-		/* Oh well..  We'll just have to guess something reasonable */
-		return 'iso-8859-1';
 	}
 
 	/**
