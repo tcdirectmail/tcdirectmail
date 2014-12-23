@@ -11,7 +11,7 @@ CREATE TABLE pages (
 	tx_tcdirectmail_attachfiles mediumtext NOT NULL,
 	tx_tcdirectmail_sendername tinytext NOT NULL,
 	tx_tcdirectmail_senderemail tinytext NOT NULL,
-	tx_tcdirectmail_bounceaccount int(10) unsigned DEFAULT '0' NOT NULL,
+	tx_tcdirectmail_bounceaccount tinytext DEFAULT '' NOT NULL,
 	tx_tcdirectmail_spy tinyint(2) DEFAULT '0' NOT NULL,
 	tx_tcdirectmail_register_clicks tinyint(2) DEFAULT '0' NOT NULL,
 
@@ -123,24 +123,5 @@ CREATE TABLE tx_tcdirectmail_clicklinks (
   KEY sentlog (sentlog),
   KEY used_links_with_id (linkid,opened,linktype,sentlog),
   KEY used_links (linktype,opened,sentlog)  
-);
-
-
-#
-# Table structure for table 'tx_tcdirectmail_bounceaccount'
-#
-
-CREATE TABLE tx_tcdirectmail_bounceaccount (
-    uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
-    pid int(11) unsigned DEFAULT '0' NOT NULL,
-    tstamp int(11) unsigned DEFAULT '0' NOT NULL,
-    crdate int(11) unsigned DEFAULT '0' NOT NULL,
-    cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
-    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-    hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-    email tinytext NOT NULL,
-    
-    PRIMARY KEY (uid),
-    KEY parent (pid) 
 );
 

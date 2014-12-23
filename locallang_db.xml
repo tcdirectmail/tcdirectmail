@@ -62,14 +62,7 @@
 			<label index="tx_tcdirectmail_targets.opthtml">HTML</label>
 			<label index="tx_tcdirectmail_targets.optmailto">Anchor tags with mailto:</label>
 			<label index="tx_tcdirectmail_targets.optregex">Match email addresses</label>
-			<label index="tx_tcdirectmail_bounceaccount">Bounce account</label>
-			<label index="tx_tcdirectmail_bounceaccount.servertype">Server type:</label>
-			<label index="tx_tcdirectmail_bounceaccount.server">Server:</label>
-			<label index="tx_tcdirectmail_bounceaccount.username">Username:</label>
-			<label index="tx_tcdirectmail_bounceaccount.passwd">Password:</label>
-			<label index="fe_users.tx_tcdirectmail_bounce">Directmail bounce level</label>
-			<label index="tt_address.tx_tcdirectmail_bounce">Directmail bounce level</label>
-			<label index="be_users.tx_tcdirectmail_bounce">Directmail bounce level</label>
+			<label index="tx_tcdirectmail_bounce_level">Directmail bounce level</label>
 		</languageKey>
 		<languageKey index="dk" type="array">
 			<label index="pages.directmailtype">Nyhedsbrev</label>
@@ -132,11 +125,6 @@
 			<label index="tx_tcdirectmail_targets.opthtml">HTML</label>
 			<label index="tx_tcdirectmail_targets.optmailto">mailto:-links</label>
 			<label index="tx_tcdirectmail_targets.optregex">Mønstergenkend emailadresser</label>
-			<label index="tx_tcdirectmail_bounceaccount">Emailkonto for returnede mails</label>
-			<label index="tx_tcdirectmail_bounceaccount.servertype">Servertype:</label>
-			<label index="tx_tcdirectmail_bounceaccount.server">Server:</label>
-			<label index="tx_tcdirectmail_bounceaccount.username">Brugernavn:</label>
-			<label index="tx_tcdirectmail_bounceaccount.passwd">Adgangskode:</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="pages.directmailtype">Newsletter</label>

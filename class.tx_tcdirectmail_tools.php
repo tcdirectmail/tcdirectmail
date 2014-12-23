@@ -210,28 +210,11 @@ class tx_tcdirectmail_tools {
 	}
 
 	/**
-	* Get the bounce address for the mail 
-	*
-	* @param   array     Record of the mail page 
-	* @return  sting     Email address to collect bounces
-	*/
-	function getBounceAddressForPage($page) {
-		global $TYPO3_DB;
-
-		$rs = $TYPO3_DB->exec_SELECTquery('email', 'tx_tcdirectmail_bounceaccount', "uid = $page[tx_tcdirectmail_bounceaccount]");
-		if (list($address) =$TYPO3_DB->sql_fetch_row($rs)) {
-			return $address;
-		} else {
-			return '';
-		}
-	}
-
-	/**
-	* Update a directmail with a new schedule.
-	*
-	* @param    array      Page record.
-	* @return   void
-	*/
+	 * Update a directmail with a new schedule.
+	 *
+	 * @param    array      Page record.
+	 * @return   void
+	 */
 	function setScheduleAfterSending ($page) {
 		global $TYPO3_DB;
 
@@ -291,7 +274,14 @@ class tx_tcdirectmail_tools {
 		$mailer->siteUrl = "http://$domain/";
 		$mailer->senderName = tx_tcdirectmail_tools::getSenderForPage($page);
 		$mailer->senderEmail = tx_tcdirectmail_tools::getEmailForPage($page);
-		$mailer->bounceAddress = tx_tcdirectmail_tools::getBounceAddressForPage($page);
+
+		if (t3lib_div::validEmail($page['tx_tcdirectmail_bounceaccount'])) {
+			$mailer->bounceAddress = $page['tx_tcdirectmail_bounceaccount'];
+		}
+		else {
+			$mailer->bounceAddress = $mailer->senderEmail;
+		}
+
 		$mailer->setTitle($page['title']);
 		$url = "http://$domain/index.php?id=$page[uid]&no_cache=1$lang$append_url";
 		$mailer->setHtml(tx_tcdirectmail_tools::getURL($url));

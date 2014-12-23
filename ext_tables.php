@@ -117,16 +117,10 @@ $tempColumns = Array (
        'exclude' => 1,
        'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:pages.tx_tcdirectmail_bounceaccount',
        'config' => Array (
-           "type" => "select",
-           "foreign_table" => "tx_tcdirectmail_bounceaccount",
-           "foreign_table_where" => "ORDER BY tx_tcdirectmail_bounceaccount.uid",
-           "size" => 1,
-           "minitems" => 0,
-           "maxitems" => 1,
-        ),
+				 'type' => 'input',
+				 'size' => 30,
+			 ),
     ),
-
-
     
     'tx_tcdirectmail_spy' => Array (
 	'exclude' => 1,
@@ -194,26 +188,6 @@ $TCA["tx_tcdirectmail_targets"] = Array (
     ),
     "feInterface" => Array (
         "fe_admin_fieldList" => "hidden, title",
-    )
-);
-
-$TCA["tx_tcdirectmail_bounceaccount"] = Array (
-    "ctrl" => Array (
-        "title" => "LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_bounceaccount",        
-        "label" => "email",    
-        "tstamp" => "tstamp",
-        "crdate" => "crdate",
-        "cruser_id" => "cruser_id",
-        "default_sortby" => "ORDER BY crdate",    
-        "delete" => "deleted",    
-        "enablecolumns" => Array (        
-            "disabled" => "hidden",
-        ),
-        "dynamicConfigFile" => t3lib_extMgm::extPath($_EXTKEY)."tca.php",
-        "iconfile" => t3lib_extMgm::extRelPath($_EXTKEY)."bounceaccount.gif",
-    ),
-    "feInterface" => Array (
-        "fe_admin_fieldList" => "hidden, email",
     )
 );
 
