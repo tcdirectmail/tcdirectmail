@@ -7,9 +7,6 @@ sender_name = user
   # cat=System; type=string; label=Path to Lynx CLI browser. This program is not required, but can be used by TC Directmail to produce an acceptable plaintext conversion with no efford at all.
 path_to_lynx = /usr/bin/lynx
 
-  # cat=System; type=boolean; label=Keep bounce messages on the ingoing mail server. Checking this option will leave bounce messages on the ingoing server. Default behaviour is to *delete* bounce messages, once they have been processed.
-keep_messages = 0
-
   # cat=System; type=boolean; label=Attach images. Leave this checked to enable attached, inline images. This will normally improve you viewers experience, but reduces the performance of the mailer, since it has to deliver much more (binary) data. Uncheckit to instead link to the images online.
 attach_images = 1
 
