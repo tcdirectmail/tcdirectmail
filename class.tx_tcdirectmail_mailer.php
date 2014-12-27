@@ -188,8 +188,9 @@ class tx_tcdirectmail_mailer {
 		/* Fix relative links */
 		preg_match_all ('|<a [^>]*href="(.*)"|Ui', $src, $urls);
 		foreach ($urls[1] as $i => $url) {
+			header("X-Url-$i: $url");
 			/* If this is already a absolute link, dont replace it */
-			if (!preg_match('|^http://|', $url) && !preg_match('|^mailto:|', $url) && !preg_match('|^#|', $url)) {
+			if (!preg_match('|^https?://|', $url) && !preg_match('|^mailto:|', $url) && !preg_match('|^#|', $url)) {
 				$replace_url = str_replace($url, $this->siteUrl.$url, $urls[0][$i]);
 				$src = str_replace ($urls[0][$i], $replace_url, $src);
 			}
