@@ -1,0 +1,7 @@
+﻿.. |img-5|      image:: ../../Images/manual_html_2a90f817.png
+   :height: 303
+   :width: 591
+.. :align: left
+.. :border: 0
+.. :name: Grafik6
+
