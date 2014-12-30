@@ -18,7 +18,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
         ),
         "title" => Array (        
 
-            "label" => "LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.title",        
+            "label" => "LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.title",        
             "config" => Array (
                 "type" => "input",    
                 "size" => "30",
@@ -27,7 +27,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
         "plain_only" => Array (        
             "exclude" => 1,    
-            "label" => "LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.plain_only",
+            "label" => "LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.plain_only",
             "config" => Array (
                 "type" => "check",
                 "default" => "0"
@@ -53,7 +53,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'beusers' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.beusers',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.beusers',
 	    'config' => Array (
                 "type" => "select",    
 		"foreign_table" => "be_users",    
@@ -66,7 +66,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'fegroups' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.fegroups',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.fegroups',
 	    'config' => Array (
                 "type" => "group",    
 		"internal_type" => "db",    
@@ -79,7 +79,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'fepages' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.fepages',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.fepages',
 	    'config' => Array (
                 "type" => "group",    
 		"internal_type" => "db",    
@@ -93,7 +93,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	'ttaddress' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.ttaddress',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.ttaddress',
 	    'config' => Array (
                 "type" => "group",    
 		"internal_type" => "db",    
@@ -107,7 +107,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'rawsql' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.rawsql',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.rawsql',
 	    'config' => Array (
 		'type' => 'text',
 		'cols' => '50',
@@ -117,7 +117,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'csvseparator' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.sepchar',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.sepchar',
 	    'config' => Array(
 		'type' => 'input',
 		'size' => 1,
@@ -126,7 +126,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'csvfields' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.csvfields',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.csvfields',
 	    'config' => Array(
 		'type' => 'input',
 		'size' => 20,
@@ -135,7 +135,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	
 	'csvvalues' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.csvdata',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.csvdata',
 	    'config' => Array(
 		'type' => 'text',
 		'cols' => 40,
@@ -145,7 +145,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	'csvfilename' => Array (
 	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.csvfile',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.csvfile',
 	    'config' => Array(
                 "type" => "group",
 		"internal_type" => "file",
@@ -161,7 +161,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	'csvurl' => Array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.csvurl',
+            'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.csvurl',
             'config' => Array(
                 'type' => 'input',
                 'size' => 20,
@@ -172,19 +172,19 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	"targettype" => Array (
 	    "exclude" => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.type',
+	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.type',
 	    "config" => array(
 		'type' => 'select',
 		'items' => array(
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optbeusers', 'tx_tcdirectmail_target_beusers'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optfegroups', 'tx_tcdirectmail_target_fegroups'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optfepages', 'tx_tcdirectmail_target_fepages'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optttaddress', 'tx_tcdirectmail_target_ttaddress'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optrawsql', 'tx_tcdirectmail_target_rawsql'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optcsvfile', 'tx_tcdirectmail_target_csvfile'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optcsvlist', 'tx_tcdirectmail_target_csvlist'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optcsvurl', 'tx_tcdirectmail_target_csvurl'),
-		    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.opthtml', 'tx_tcdirectmail_target_html'), 
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optbeusers', 'tx_tcdirectmail_target_beusers'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optfegroups', 'tx_tcdirectmail_target_fegroups'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optfepages', 'tx_tcdirectmail_target_fepages'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optttaddress', 'tx_tcdirectmail_target_ttaddress'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optrawsql', 'tx_tcdirectmail_target_rawsql'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optcsvfile', 'tx_tcdirectmail_target_csvfile'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optcsvlist', 'tx_tcdirectmail_target_csvlist'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optcsvurl', 'tx_tcdirectmail_target_csvurl'),
+		    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.opthtml', 'tx_tcdirectmail_target_html'), 
 		    ),
 		'size' => 1,
 		'maxitems' => 1,
@@ -193,7 +193,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	'htmlfile' => Array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.htmlurl',
+            'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.htmlurl',
             'config' => Array(
                 'type' => 'input',
                 'size' => 20,
@@ -203,12 +203,12 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	'htmlfetchtype' => Array (
             "exclude" => 1,
-            'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.htmlfetch',
+            'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.htmlfetch',
             "config" => array(
                 'type' => 'select',
                 'items' => array(
-                    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optmailto', 'mailto'),
-                    array('LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.optregex', 'regex'),
+                    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optmailto', 'mailto'),
+                    array('LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.optregex', 'regex'),
                     ),
                 'size' => 1,
                 'maxitems' => 1,
@@ -217,7 +217,7 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 
 	
         "calculated_receivers" => array (
-            'label' => 'LLL:EXT:tcdirectmail/locallang_db.xml:tx_tcdirectmail_targets.actual_receivers',
+            'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.actual_receivers',
             'config' => array (
                 'type' => 'user',
                 'userFunc' => 'user_showreceivers',

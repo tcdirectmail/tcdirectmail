@@ -15,7 +15,7 @@ class Tx_Tcdirectmail_Controller_ModuleController extends t3lib_SCbase {
      */
    	function init()   {
       	global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$CLIENT,$TYPO3_CONF_VARS;
-				$LANG->includeLLFile("EXT:tcdirectmail/mod1/locallang.xml");
+				$LANG->includeLLFile("EXT:tcdirectmail/Lang/locallang.xlf");
 
       	parent::init();
 

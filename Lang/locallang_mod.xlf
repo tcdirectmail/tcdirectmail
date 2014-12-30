@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:15:10Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="mlang_labels_tablabel">
+        <source>Directmail</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mlang_tabs_tab">
+        <source>Directmail</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mlang_labels_tabdescr">
+        <source>Directmail control module. This module allows you to control the newsletter settings.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

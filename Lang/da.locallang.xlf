@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" target-language="da" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:20:59Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="title">
+        <source>Directmail</source>
+        <target>Nyhedsbrev</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="statistics">
+        <source>Statistics</source>
+        <target>Statistik</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="validity">
+        <source>Mail validity</source>
+        <target>Mail validitet</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="reciep">
+        <source>Recipients</source>
+        <target>Modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="ext_configs">
+        <source>Extension configurations</source>
+        <target>Extension opsætninger</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="name">
+        <source>Name</source>
+        <target>Navn</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="current_sending">
+        <source>Current sending directmail</source>
+        <target>Sender lige nu nyhedsbrev</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_current_sending">
+        <source>Not currently sending this page to anyone</source>
+        <target>Der bliver ikke udsendt nyhedsbrev i øjeblikket</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_test">
+        <source>Send a testmail now.</source>
+        <target>Send en testmail nu.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_test_cron">
+        <source>Send a testmail with cronjob.</source>
+        <target>Send testmail via cronjob</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test">
+        <source>No test reciepients defined.</source>
+        <target>Der er ikke defineret nogle testmodtagere.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="testsent">
+        <source>Test mail being send.</source>
+        <target>Test mail bliver udsendt.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_now">
+        <source>Send the mail now.</source>
+        <target>Udsend mail nu.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="queued">
+        <source>Now in sent queue.</source>
+        <target>Sat i kø</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="unworkable_sql">
+        <source>Database query unworkable</source>
+        <target>Databaseforspørgslen virker ikke</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="thispage">
+        <source>This page</source>
+        <target>Denne side</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_recipients">
+        <source>There are no recipients.</source>
+        <target>Der er ikke nogen modtagere.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="many_recipients">
+        <source>Too many recipients to show. Choose the view recipients function</source>
+        <target>For mange modtagere til at vise. Vælg "vis modtagere" funktionen.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="show_recipients">
+        <source>View recipients</source>
+        <target>Vis modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_receivers">
+        <source>Total receivers</source>
+        <target>Ialt modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_confirmed">
+        <source>Total confirmed</source>
+        <target>Bekræftede modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_real_receivers">
+        <source>Real receivers</source>
+        <target>Status for rigtige modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="currently_sending">
+        <source>Currently sending &lt;b&gt;###STATUS###&lt;/b&gt;</source>
+        <target>Udsender lige nu: &lt;b&gt;###STATUS###&lt;/b&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_info">
+        <source>Scheduled send at &lt;strong&gt;###TIME_TO_SEND###&lt;/strong&gt; to receivers &lt;strong&gt;####NUMBERS_TO_SEND###&lt;/strong&gt;&lt;/p&gt;</source>
+        <target>Planlagt udsendelse &lt;b&gt;###TIME_TO_SEND###&lt;/b&gt; til ialt &lt;b&gt;###NUMBERS_TO_SEND###&lt;/b&gt; modtagere.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_scheduled">
+        <source>Not currently sceduled or sending.</source>
+        <target>Ingen udsendelse.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_real_receivers">
+        <source>No real receivers defined.</source>
+        <target>Ingen rigtige modtagere angivet.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_test_receivers">
+        <source>Test receivers</source>
+        <target>Status for testmodtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_test">
+        <source>Scheduled test send.</source>
+        <target>Testudsendelse sat i værk.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_currently_sending">
+        <source>Not currently sending</source>
+        <target>Ingen udsendelse.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test_receivers">
+        <source>No test receivers defined.</source>
+        <target>Ingen testmodtagere angivet.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_a_directmail">
+        <source>This page is not a directmail.</source>
+        <target>Denne side er ikke et nyhedsbrev.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="date">
+        <source>Date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="totime">
+        <source>To</source>
+        <target>Til</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="fromtime">
+        <source>From</source>
+        <target>Fra</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="examples">
+        <source>Examples</source>
+        <target>Eksempler</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="description">
+        <source>Description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="setup_value">
+        <source>Setup field</source>
+        <target>Setupfelt</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="install">
+        <source>Install</source>
+        <target>Installer</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="example_made">
+        <source>Example made</source>
+        <target>Eksempel indsat</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="exampleText">
+        <source>The ###TITLE### mailtarget template has been inserted. Go to the "List" module, and edit the directmail target to fit you.</source>
+        <target>###TITLE### modtagermål er indsat. Gå til listmodulet og redigermodtagermålet til at passe dig.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_php">
+        <source>Mailer.php</source>
+        <target>Mailer.php</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_name">
+        <source>Domain name</source>
+        <target>Domænenavn</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_ok">
+        <source>The domain &lt;b&gt;###DOMAIN###&lt;/b&gt; is defined.</source>
+        <target>Domænet ###DOMAIN### er defineret.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_notok">
+        <source>No domain defined in page tree. Make a domain record somewhere in the pagetree for this page.</source>
+        <target>Der er intet domæne defineret i sidetræet. Lav en domænerecord i sidetræet, så tcdirectmail kan finde siderne via http.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sender_name">
+        <source>Sender name</source>
+        <target>Afsender navn</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sender_for_page">
+        <source>&lt;b&gt;###SENDER###&lt;/b&gt; will be used as sender name.</source>
+        <target>&lt;b&gt;###SENDER###&lt;/b&gt; vil blive brugt som afsendernavn for nyhedsbrevet.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sender_email">
+        <source>Sender email</source>
+        <target>Afsender email</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="email_for_page">
+        <source>&lt;b&gt;###EMAIL###&lt;/b&gt; will be used as sender email.</source>
+        <target>&lt;b&gt;###EMAIL###&lt;/b&gt; vil blive brugt som afsenderemail for nyhedsbrevet.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="set_domain">
+        <source>Set domain</source>
+        <target>Sæt domæne</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="update">
+        <source>Update</source>
+        <target>Opdater</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="crontab_explain">
+        <source>If you have not already done so, please add the following line to root, apache or user crontab:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</source>
+        <target>Hvis du ikke allerede har gjort det, så tilføj følgende linie til roots, apaches eller din brugers crontab:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_recipients">
+        <source>Total recipients</source>
+        <target>Ialt modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sys_status">
+        <source>System status</source>
+        <target>Systemstatus</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_spied_upon">
+        <source>Opened mails</source>
+        <target>Åbnede mails</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_not_spied_upon">
+        <source>Not opened mails</source>
+        <target>Ikke-åbnede mails</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="html_links">
+        <source>HTML links</source>
+        <target>HTML-links</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="plain_links">
+        <source>Plain text links</source>
+        <target>Plaintekst-links</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="link_number">
+        <source>Link</source>
+        <target>Link</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_of_times_opened">
+        <source>Used</source>
+        <target>Brugt</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="url">
+        <source>Url</source>
+        <target>Url</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="testmail_sent">
+        <source>Test mail sent.</source>
+        <target>Testmail udsendt til:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_testmail_sent">
+        <source>No test mails sent.</source>
+        <target>Ingen testmails blev udsendt.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="view_stats_for">
+        <source>View stats for</source>
+        <target>Se statistik for</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="all_receivers">
+        <source>All receivers</source>
+        <target>Alle modtagere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="maintenance">
+        <source>Maintenance</source>
+        <target>Vedligeholdelse</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats_status">
+        <source>Statistics status</source>
+        <target>Statistikstatus</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="invalid_stats_found">
+        <source>Invalid log data found.</source>
+        <target>Ugyldige logdata fundet på siden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="clear_invalid">
+        <source>Clear invalid log data</source>
+        <target>Slet ugyldige logdata</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats_ok">
+        <source>Log data valid</source>
+        <target>Logdata er i orden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="delete">
+        <source>Delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="delete_old_stats">
+        <source>Delete old statistics</source>
+        <target>Slet gammel statistik</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_javascript">
+        <source>Your mail seems to contain JavaScript-code. This is generally considered bad style and will probably generate warnings either in your users MUAs or spamfilters. I have taken the liberty to try and remove the JavaScript-code from you mail.</source>
+        <target>Din mail ser ud til at indeholde JavaScript. Dette betrages som dårlig stil, og de fleste emailklienter og spamfiltre til også reagere negativt over for det. tcdirectmail fjerner JavaScript-koden i den endelige mail. Så kontroller at layoutet er i orden i test mailen.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_linked_styles">
+        <source>Your mail seem to link to an external style-sheet. Your style sheet will be included in the mail, since most MUAs does not cope well on external style-sheets.</source>
+        <target>CSS-koden i din mail ligger i en ekstern fil. Dette er et problem for de fleste email-programmer. Derfor er koden blevet inkluderet i mailen. Kontroller at dette ikke gør mailen meget stor.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_css_images">
+        <source>You have used images linked to by CSS in your mail. This will break your layout with most MUAs</source>
+        <target>Du linker til billeder fra CSS. Dette virker ikke i nogen emailprogrammer.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_css_classes">
+        <source>The styling in you mail is made by using CSS classes. This works fine on "real" MUAs like Outlook or Thunderbird, but it will break in many popular webmails like Hotmail. Make sure all your important styles are defined inline.</source>
+        <target>Din CSS er opbygget med klasser. Dette virker fint i email-programmer som Outlook Express eller Thunderbird, men virker ikke i de fleste webmail-klienter.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_css_some_property">
+        <source>Layout is done by the "###PROPERTY###" CSS property. This breaks your layout in numerous MUAs. Use old-style HTML layout instead.</source>
+        <target>I layoutet benyttes CSS "###PROPERTY###". Dette giver ikke ensartet resultat i forskellige emailprogrammer.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_serious_errors">
+        <source>Your mail contains serious errors that will affect its appearance severely. You should really correct these.</source>
+        <target>Din email indeholde alvorlige fejl som muligvis påvirker dens udseende voldsomt. Dette bør rettes.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_no_serious_errors">
+        <source>Your mail contains no serious errors.</source>
+        <target>Din email indeholder ingen alvorlige fejl.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_warnings">
+        <source>Your mail contains some warnings, that you should maybe look into.</source>
+        <target>Din email indeholder mindre fejl, som muligvis kan påvirke dens udseende.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_no_warnings">
+        <source>Your mail contains no warnings.</source>
+        <target>Din email indeholder ingen mindre fejl.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_notices">
+        <source>Your mail contains some minor issues. Verify that they are of no importance.</source>
+        <target>Din email indeholder nogle mindre forhold, som sandsynligvis ingen betydning har.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_no_notices">
+        <source>Your mail contains no notices.</source>
+        <target>Din email indejolder ingen mindre forhold.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="receiver">
+        <source>Receiver</source>
+        <target>Modtager</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="preview_html">
+        <source>Html</source>
+        <target>Html</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="preview_plain">
+        <source>Plain</source>
+        <target>Plain</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="num_fields">
+        <source>Fields in record</source>
+        <target>Felter i recorden</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="missing_fields">
+        <source>Missing fields</source>
+        <target>Manglende felter</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="preview">
+        <source>Preview</source>
+        <target>Forhåndsvisning</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="filter_form">
+        <source>Filter options</source>
+        <target>Filtermuligheder</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="update_view">
+        <source>Update statistics view</source>
+        <target>Opdater statistikudtræk</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_success">
+        <source>General mail success</source>
+        <target>Generel mailsucces</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_bounced">
+        <source>Bounced mails</source>
+        <target>Afviste mails</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_email_sword">
+        <source>Email search word</source>
+        <target>Email søgeord</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="beenthere">
+        <source>Confirmed addresses</source>
+        <target>Bekræftede adresser</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="beenthere_yes">
+        <source>Only</source>
+        <target>Kun</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="beenthere_no">
+        <source>None</source>
+        <target>Intet</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_beenthere">
+        <source>Confirmed addresses only</source>
+        <target>Vis kun bekræftede adresser</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_notbeenthere">
+        <source>Unconfirmed addresses only</source>
+        <target>Vi ikke bekræftede adresser</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_opened_link">
+        <source>Has activated this link</source>
+        <target>Har aktiveret link</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_exe_ok">
+        <source/>
+        <target>&lt;b&gt;mailer.php&lt;/b&gt; er udførbar fil.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_exe_notok">
+        <source/>
+        <target>&lt;b&gt;mailer.php&lt;/b&gt; er ikke en udførbar fil.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="try_make_exe">
+        <source/>
+        <target>Gør udførbar</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_browser">
+        <source/>
+        <target>Lynx CLI browser</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_found">
+        <source/>
+        <target>Lynx browser (&lt;b&gt;###LYNX_VERSION###&lt;/b&gt;) fundet på dit system.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_not_found">
+        <source/>
+        <target>Ingen lynx browser fundet på stien ###LYNX_PATH###. Hvis du ønsker at bruge "Lynx cli-browser" som plaintext metode, skal du rette stien til Lynx i install-tool'et.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="bcc_was_used">
+        <source/>
+        <target>BCC-udsendelse blev brugt. Derfor findes der ingen yderligere detaljer.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats">
+        <source/>
+        <target>Statistik</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="confirm_text">
+        <source>Are you sure you will send the mails now?</source>
+        <target>Er du sikker på du vil udsende nu?</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="toggleAll">
+        <source>Check all</source>
+        <target>Vælg alle</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

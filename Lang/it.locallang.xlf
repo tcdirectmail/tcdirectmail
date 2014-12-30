@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:21:03Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="title">
+        <source>Directmail</source>
+        <target>Directmail (Newsletter)</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status">
+        <source>Status</source>
+        <target>Stato</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats">
+        <source/>
+        <target>Statistiche</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="reciep">
+        <source>Recipients</source>
+        <target>Destinatari</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="ext_configs">
+        <source>Extension configurations</source>
+        <target>Configurazioni Estensioni</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="name">
+        <source>Name</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="current_sending">
+        <source>Current sending directmail</source>
+        <target>Directmail (newsletter) in spedizione</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_current_sending">
+        <source>Not currently sending this page to anyone</source>
+        <target>Nessuna spedizione in corso per questa pagina</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_now">
+        <source>Send the mail now.</source>
+        <target>Spedisci ora.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="queued">
+        <source>Now in sent queue.</source>
+        <target>Ora nella coda di spedizione.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="unworkable_sql">
+        <source>Database query unworkable</source>
+        <target>Errore nella query nel database</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="thispage">
+        <source>This page</source>
+        <target>Questa pagina</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_recipients">
+        <source>There are no recipients.</source>
+        <target>Non ci sono destinatari.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="many_recipients">
+        <source>Too many recipients to show. Choose the view recipients function</source>
+        <target>Troppi destinatari. Scegli la funzione ``Elenca destinatari''</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="show_recipients">
+        <source>View recipients</source>
+        <target>Elenca destinatari</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_receivers">
+        <source>Total receivers</source>
+        <target>Totale destinatari</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_confirmed">
+        <source>Total confirmed</source>
+        <target>Totale confermati</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_real_receivers">
+        <source>Real receivers</source>
+        <target>Stato destinatari reali</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="currently_sending">
+        <source>Currently sending &lt;b&gt;###STATUS###&lt;/b&gt;</source>
+        <target>In spedizione al momento &lt;strong&gt;###STATUS###&lt;/strong&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_info">
+        <source>Scheduled send at &lt;strong&gt;###TIME_TO_SEND###&lt;/strong&gt; to receivers &lt;strong&gt;####NUMBERS_TO_SEND###&lt;/strong&gt;&lt;/p&gt;</source>
+        <target>In spedizione alle ore &lt;strong&gt;###TIME_TO_SEND###&lt;/strong&gt; a &lt;strong&gt;####NUMBERS_TO_SEND###&lt;/strong&gt; destinatari.&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_scheduled">
+        <source>Not currently sceduled or sending.</source>
+        <target>Al momento nessuna newsletter in spedizione.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_a_directmail">
+        <source>This page is not a directmail.</source>
+        <target>Questa pagina non e` una directmail (newsletter).</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="date">
+        <source>Date</source>
+        <target>Data</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="totime">
+        <source>To</source>
+        <target>A</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="fromtime">
+        <source>From</source>
+        <target>Da</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="examples">
+        <source>Examples</source>
+        <target>Esempi</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="description">
+        <source>Description</source>
+        <target>Descrizione</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_php">
+        <source>Mailer.php</source>
+        <target>Mailer.php</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_name">
+        <source>Domain name</source>
+        <target>Nome dominio</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="all_receivers">
+        <source>All receivers</source>
+        <target>Tutti i destinatari</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_test">
+        <source>Send a testmail now.</source>
+        <target>Spedisci la mail di test ora.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test">
+        <source>No test reciepients defined.</source>
+        <target>Nessun destinatario della mail di test definito.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="testsent">
+        <source>Test mail being send.</source>
+        <target>La mail di test e` in corso di spedizione.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_real_receivers">
+        <source>No real receivers defined.</source>
+        <target>Nessun destinatario reale definito.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_test_receivers">
+        <source>Test receivers</source>
+        <target>Stato dei destinatari delle mail di test.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_test">
+        <source>Scheduled test send.</source>
+        <target>Spedizione email di test in agenda.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_currently_sending">
+        <source>Not currently sending</source>
+        <target>Nessuna spedizione in corso.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test_receivers">
+        <source>No test receivers defined.</source>
+        <target>Nessun destinatario di test definito.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="setup_value">
+        <source>Setup field</source>
+        <target>Campo setup</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="install">
+        <source>Install</source>
+        <target>Installazione</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="example_made">
+        <source>Example made</source>
+        <target>Esempio eseguito.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="exampleText">
+        <source>The ###TITLE### mailtarget template has been inserted. Go to the "List" module, and edit the directmail target to fit you.</source>
+        <target>Il template destinatari email ###TITLE### e` stato inserito, Vai al modulo "Lista" e modifica i destinatari directmail per adattarli alle tue esigenze.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_exe_ok">
+        <source/>
+        <target>&lt;b&gt;mailer.php&lt;/b&gt; e` eseguibile.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_exe_notok">
+        <source/>
+        <target>&lt;b&gt;mailer.php&lt;/b&gt; non e` eseguibile.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_ok">
+        <source>The domain &lt;b&gt;###DOMAIN###&lt;/b&gt; is defined.</source>
+        <target>Il dominio &lt;b&gt;###DOMAIN###&lt;/b&gt; e` definito</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_notok">
+        <source>No domain defined in page tree. Make a domain record somewhere in the pagetree for this page.</source>
+        <target>Nessun dominio definito. Crea un record di tipo dominio all'interno dell'albero delle pagine.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="try_make_exe">
+        <source/>
+        <target>Tentativo di rendere eseguibile.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="set_domain">
+        <source>Set domain</source>
+        <target>Imposta il dominio</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="update">
+        <source>Update</source>
+        <target>Aggiornamento</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="crontab_explain">
+        <source>If you have not already done so, please add the following line to root, apache or user crontab:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</source>
+        <target>Se non lo hai ancora fatto, aggiungi la riga seguente al crontab di apache o di un utente:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_recipients">
+        <source>Total recipients</source>
+        <target>Totale destinatari</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_browser">
+        <source/>
+        <target>Browser a riga di comando Lynx</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_found">
+        <source/>
+        <target>Browser Lynx (&lt;b&gt;###LYNX_VERSION###&lt;/b&gt;) trovato nel sistema.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_not_found">
+        <source/>
+        <target>Non e` stato trovato il browser Lynx. Cio` comporta che non si puo` utilizzare la voce  "Browser a riga di comando Lynx" come metodo di puro testo.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sys_status">
+        <source>System status</source>
+        <target>Stato sistema</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_spied_upon">
+        <source>Opened mails</source>
+        <target>Email aperte rilevate</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="html_links">
+        <source>HTML links</source>
+        <target>Link HTML</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="plain_links">
+        <source>Plain text links</source>
+        <target>Link di puro testo</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="link_number">
+        <source>Link</source>
+        <target>Link</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_of_times_opened">
+        <source>Used</source>
+        <target>Usati</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="url">
+        <source>Url</source>
+        <target>Url</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="bcc_was_used">
+        <source/>
+        <target>E` stato utilizzato il metodo BCC (CCN), non e` possibile ottenere maggiori dettagli.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="view_stats_for">
+        <source>View stats for</source>
+        <target>Visualizza statistiche per:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="maintenance">
+        <source>Maintenance</source>
+        <target>Manutenzione</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats_status">
+        <source>Statistics status</source>
+        <target>Stato statistiche</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="invalid_stats_found">
+        <source>Invalid log data found.</source>
+        <target>Sono stati rilevati dati di log invalidi.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="clear_invalid">
+        <source>Clear invalid log data</source>
+        <target>Cancella i dati di log invalidi</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats_ok">
+        <source>Log data valid</source>
+        <target>Dati di log validi</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="delete">
+        <source>Delete</source>
+        <target>Cancella</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="delete_old_stats">
+        <source>Delete old statistics</source>
+        <target>Cancella le vecchie statistiche</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

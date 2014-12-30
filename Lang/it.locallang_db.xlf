@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:04:40Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.directmailtype">
+        <source>Directmail</source>
+        <target>Directmail (Newsletter)</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_senttime">
+        <source>Directmail send time:</source>
+        <target>Ora di spedizione:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.0">
+        <source>Do not repeat</source>
+        <target>Non ripetere</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.1">
+        <source>One day</source>
+        <target>Fra un giorno</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.2">
+        <source>One week</source>
+        <target>Fra una settimana</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.3">
+        <source>Two weeks</source>
+        <target>Fra due settimane</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.4">
+        <source>One month</source>
+        <target>Fra un mese</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.5">
+        <source>Three months</source>
+        <target>Fra tre mesi</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.6">
+        <source>Six months</source>
+        <target>Fra sei mesi</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.7">
+        <source>One year</source>
+        <target>Un anno</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat">
+        <source>Directmail repeat:</source>
+        <target>Ripeti spedizione:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_attachfiles">
+        <source>Attach files to directmail:</source>
+        <target>Allega files alla directmail (newsletter):</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_sendername">
+        <source>Sender name:</source>
+        <target>Nome mittente:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_senderemail">
+        <source>Sender email:</source>
+        <target>Email mittente:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_real_target">
+        <source>Real receivers:</source>
+        <target>Indirizzo per i destinatari reali:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_dotestsend">
+        <source>Directmail do test send:</source>
+        <target>Directmail, esegui il test</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_test_target">
+        <source>Test receivers:</source>
+        <target>Indirizzo per i destinatari del test:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets">
+        <source>Directmail receivers</source>
+        <target>Destinatario directmail:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.title">
+        <source>Receivers title:</source>
+        <target>Titolo destinatario:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.actual_receivers">
+        <source>Actual receivers:</source>
+        <target>Destinatari effettivi:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_spy">
+        <source>Attempt to detect opened emails:</source>
+        <target>Prove per conteggiare le email aperte:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_usebcc">
+        <source>Use BCC-header to send mails:</source>
+        <target>Utilizza lo header BCC (CCN) per spedire le email:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_register_clicks">
+        <source>Register clicked links:</source>
+        <target>Registra i link cliccati:</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.0">
+        <source>Plain text template (&amp;type=99)</source>
+        <target>Template puro testo (&amp;type=99)</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.1">
+        <source>Lynx cli-browser</source>
+        <target>Browser a riga di comando Lynx</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.2">
+        <source>Build-in html converter</source>
+        <target>Convertitore html integrato</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert">
+        <source>Plain text method:</source>
+        <target>Metodo puro testo:</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:03:52Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.directmailtype">
+        <source>Directmail</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_senttime">
+        <source>Directmail send time:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.0">
+        <source>Do not repeat</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.1">
+        <source>One day</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.2">
+        <source>One week</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.3">
+        <source>Two weeks</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.4">
+        <source>One month</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.5">
+        <source>Three months</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.6">
+        <source>Six months</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat.I.7">
+        <source>One year</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_repeat">
+        <source>Directmail repeat:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_attachfiles">
+        <source>Attach files to directmail:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_real_target">
+        <source>Real receivers:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_dotestsend">
+        <source>Directmail do test send:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_test_target">
+        <source>Test receivers:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_sendername">
+        <source>Sender name:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_senderemail">
+        <source>Sender email:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_bounceaccount">
+        <source>Bounce account</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_spy">
+        <source>Attempt to detect opened emails:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_usebcc">
+        <source>Use BCC-header to send mails:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_register_clicks">
+        <source>Register clicked links:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.0">
+        <source>Plain text template (&amp;type=99)</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.1">
+        <source>Lynx cli-browser</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.2">
+        <source>Build-in html converter</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert.I.3">
+        <source>Chuggnutt's html2text</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="pages.tx_tcdirectmail_plainconvert">
+        <source>Plain text method:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets">
+        <source>Directmail receivers</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.title">
+        <source>Receivers title:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.plain_only">
+        <source>Receive as plaintext only:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.actual_receivers">
+        <source>Actual receivers:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.beusers">
+        <source>BE-users:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.fegroups">
+        <source>FE-groups:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.fepages">
+        <source>Pages with FE-users:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.ttaddress">
+        <source>Pages with tt_address-records</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.rawsql">
+        <source>Raw SQL:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.sepchar">
+        <source>Separator character:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.csvfields">
+        <source>CSV fields:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.csvdata">
+        <source>CSV data:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.csvfile">
+        <source>CSV file:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.csvurl">
+        <source>CSV url:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.type">
+        <source>Type:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.htmlurl">
+        <source>HTML url:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.htmlfetch">
+        <source>HTML fetch type:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.direct_mail_compat">
+        <source>direct_mail compatible html-allow flag:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.confirmed_receivers">
+        <source>Registered mailed addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optalreadymailed">
+        <source>Already mailed addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optconfirmed">
+        <source>Confirmed addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optnotconfirmed">
+        <source>Non-confirmed addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optalladdresses">
+        <source>All mailed addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optbeusers">
+        <source>BE-users</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optfegroups">
+        <source>FE-groups with FE-users</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optfepages">
+        <source>Pages with FE-users</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optttaddress">
+        <source>Pages with tt_address-records</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optrawsql">
+        <source>Raw SQL</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optcsvfile">
+        <source>CSV file</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optcsvlist">
+        <source>CSV list</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optcsvurl">
+        <source>CSV url</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.opthtml">
+        <source>HTML</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optmailto">
+        <source>Anchor tags with mailto:</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_targets.optregex">
+        <source>Match email addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="tx_tcdirectmail_bounce_level">
+        <source>Directmail bounce level</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

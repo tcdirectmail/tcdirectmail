@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:20:56Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="title">
+        <source>Directmail</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status">
+        <source>Status</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="statistics">
+        <source>Statistics</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="validity">
+        <source>Mail validity</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="help">
+        <source>Help</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="reciep">
+        <source>Recipients</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="ext_configs">
+        <source>Extension configurations</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="name">
+        <source>Name</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="current_sending">
+        <source>Current sending directmail</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_current_sending">
+        <source>Not currently sending this page to anyone</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_test">
+        <source>Send a testmail now.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_test_cron">
+        <source>Send a testmail with cronjob.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test">
+        <source>No test reciepients defined.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="testsent">
+        <source>Test mail being send.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_now">
+        <source>Send the mail now.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="queued">
+        <source>Now in sent queue.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="unworkable_sql">
+        <source>Database query unworkable</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="thispage">
+        <source>This page</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_recipients">
+        <source>There are no recipients.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="many_recipients">
+        <source>Too many recipients to show. Choose the view recipients function</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="show_recipients">
+        <source>View recipients</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_receivers">
+        <source>Total receivers</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_confirmed">
+        <source>Total confirmed</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_real_receivers">
+        <source>Real receivers</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="currently_sending">
+        <source>Currently sending &lt;b&gt;###STATUS###&lt;/b&gt;</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_info">
+        <source>Scheduled send at &lt;strong&gt;###TIME_TO_SEND###&lt;/strong&gt; to receivers &lt;strong&gt;####NUMBERS_TO_SEND###&lt;/strong&gt;&lt;/p&gt;</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_scheduled">
+        <source>Not currently sceduled or sending.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_real_receivers">
+        <source>No real receivers defined.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_test_receivers">
+        <source>Test receivers</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_test">
+        <source>Scheduled test send.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_currently_sending">
+        <source>Not currently sending</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test_receivers">
+        <source>No test receivers defined.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_a_directmail">
+        <source>This page is not a directmail.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="date">
+        <source>Date</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="totime">
+        <source>To</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="fromtime">
+        <source>From</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="examples">
+        <source>Examples</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="description">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="setup_value">
+        <source>Setup field</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="install">
+        <source>Install</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="example_made">
+        <source>Example made</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="exampleText">
+        <source>The ###TITLE### mailtarget template has been inserted. Go to the "List" module, and edit the directmail target to fit you.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_php">
+        <source>Mailer.php</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_name">
+        <source>Domain name</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_ok">
+        <source>The domain &lt;b&gt;###DOMAIN###&lt;/b&gt; is defined.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_notok">
+        <source>No domain defined in page tree. Make a domain record somewhere in the pagetree for this page.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sender_name">
+        <source>Sender name</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sender_for_page">
+        <source>&lt;b&gt;###SENDER###&lt;/b&gt; will be used as sender name.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sender_email">
+        <source>Sender email</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="email_for_page">
+        <source>&lt;b&gt;###EMAIL###&lt;/b&gt; will be used as sender email.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="set_domain">
+        <source>Set domain</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="update">
+        <source>Update</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="crontab_explain">
+        <source>If you have not already done so, please add the following line to root, apache or user crontab:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_recipients">
+        <source>Total recipients</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sys_status">
+        <source>System status</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_spied_upon">
+        <source>Opened mails</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_not_spied_upon">
+        <source>Not opened mails</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="html_links">
+        <source>HTML links</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="plain_links">
+        <source>Plain text links</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="link_number">
+        <source>Link</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_of_times_opened">
+        <source>Used</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="url">
+        <source>Url</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="testmail_sent">
+        <source>Test mail sent.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_testmail_sent">
+        <source>No test mails sent.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="view_stats_for">
+        <source>View stats for</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="all_receivers">
+        <source>All receivers</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="maintenance">
+        <source>Maintenance</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats_status">
+        <source>Statistics status</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="invalid_stats_found">
+        <source>Invalid log data found.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="clear_invalid">
+        <source>Clear invalid log data</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats_ok">
+        <source>Log data valid</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="delete">
+        <source>Delete</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="delete_old_stats">
+        <source>Delete old statistics</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_javascript">
+        <source>Your mail seems to contain JavaScript-code. This is generally considered bad style and will probably generate warnings either in your users MUAs or spamfilters. I have taken the liberty to try and remove the JavaScript-code from you mail.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_linked_styles">
+        <source>Your mail seem to link to an external style-sheet. Your style sheet will be included in the mail, since most MUAs does not cope well on external style-sheets.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_css_images">
+        <source>You have used images linked to by CSS in your mail. This will break your layout with most MUAs</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_css_classes">
+        <source>The styling in you mail is made by using CSS classes. This works fine on "real" MUAs like Outlook or Thunderbird, but it will break in many popular webmails like Hotmail. Make sure all your important styles are defined inline.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_css_some_property">
+        <source>Layout is done by the "###PROPERTY###" CSS property. This breaks your layout in numerous MUAs. Use old-style HTML layout instead.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_serious_errors">
+        <source>Your mail contains serious errors that will affect its appearance severely. You should really correct these.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_no_serious_errors">
+        <source>Your mail contains no serious errors.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_warnings">
+        <source>Your mail contains some warnings, that you should maybe look into.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_no_warnings">
+        <source>Your mail contains no warnings.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_notices">
+        <source>Your mail contains some minor issues. Verify that they are of no importance.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_contains_no_notices">
+        <source>Your mail contains no notices.</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="receiver">
+        <source>Receiver</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="preview_html">
+        <source>Html</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="preview_plain">
+        <source>Plain</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="num_fields">
+        <source>Fields in record</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="missing_fields">
+        <source>Missing fields</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="preview">
+        <source>Preview</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="filter_form">
+        <source>Filter options</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="update_view">
+        <source>Update statistics view</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mail_success">
+        <source>General mail success</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="numbers_bounced">
+        <source>Bounced mails</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_email_sword">
+        <source>Email search word</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="beenthere">
+        <source>Confirmed addresses</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="beenthere_yes">
+        <source>Only</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="beenthere_no">
+        <source>None</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_beenthere">
+        <source>Confirmed addresses only</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_notbeenthere">
+        <source>Unconfirmed addresses only</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="has_opened_link">
+        <source>Has activated this link</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="confirm_text">
+        <source>Are you sure you will send the mails now?</source>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="toggleAll">
+        <source>Check all</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" target-language="nl" datatype="plaintext" original="messages" product-name="tcdirectmail" date="2014-12-30T12:21:04Z">
+    <header/>
+    <body>
+      <trans-unit xml:space="preserve" approved="yes" id="title">
+        <source>Directmail</source>
+        <target>Nieuwsmodule</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="stats">
+        <source/>
+        <target>Statistieken</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="reciep">
+        <source>Recipients</source>
+        <target>Addressen</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="ext_configs">
+        <source>Extension configurations</source>
+        <target>Instellingen van de extensie</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="name">
+        <source>Name</source>
+        <target>Naam</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="current_sending">
+        <source>Current sending directmail</source>
+        <target>Op dit moment wordt een mailing verzonden</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_current_sending">
+        <source>Not currently sending this page to anyone</source>
+        <target>Op dit momemt wordt deze pagina aan niemand verzonden</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_test">
+        <source>Send a testmail now.</source>
+        <target>Stuur een testmail.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test">
+        <source>No test reciepients defined.</source>
+        <target>Er zijn geen test-mailaddressen opgegeven.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="testsent">
+        <source>Test mail being send.</source>
+        <target>Een testmail wordt verzonden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="send_now">
+        <source>Send the mail now.</source>
+        <target>Verstuur nu een testmail.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="queued">
+        <source>Now in sent queue.</source>
+        <target>Op dit moment staan er berichten klaar om verzonden te worden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="unworkable_sql">
+        <source>Database query unworkable</source>
+        <target>De database-query is niet goed</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="thispage">
+        <source>This page</source>
+        <target>These pagina</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_recipients">
+        <source>There are no recipients.</source>
+        <target>Er zijn geen adressen opgegeven.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="many_recipients">
+        <source>Too many recipients to show. Choose the view recipients function</source>
+        <target>Te veel addressen om te tonen. Kies voor de TOON ADDRESSEN-functie</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="show_recipients">
+        <source>View recipients</source>
+        <target>Toon addressen</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_receivers">
+        <source>Total receivers</source>
+        <target>Alle addressen</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_confirmed">
+        <source>Total confirmed</source>
+        <target>Totaal bevestigd</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_real_receivers">
+        <source>Real receivers</source>
+        <target>Status addressenlijst</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="currently_sending">
+        <source>Currently sending &lt;b&gt;###STATUS###&lt;/b&gt;</source>
+        <target>Currently sending &lt;b&gt;###STATUS###&lt;/b&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_info">
+        <source>Scheduled send at &lt;strong&gt;###TIME_TO_SEND###&lt;/strong&gt; to receivers &lt;strong&gt;####NUMBERS_TO_SEND###&lt;/strong&gt;&lt;/p&gt;</source>
+        <target>Er zijn &lt;strong&gt;####NUMBERS_TO_SEND###&lt;/strong&gt; nieuwsbrieven verstuurd om &lt;strong&gt;###TIME_TO_SEND###&lt;/strong&gt;&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_scheduled">
+        <source>Not currently sceduled or sending.</source>
+        <target>Op dit moment zijn er geen nieuwsbrieven te verzenden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_real_receivers">
+        <source>No real receivers defined.</source>
+        <target>Geen adressenbestand opgegeven.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="status_test_receivers">
+        <source>Test receivers</source>
+        <target>Status test-adressen.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="scheduled_test">
+        <source>Scheduled test send.</source>
+        <target>Verzenden naar test-adresenbestand staat gereed.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_currently_sending">
+        <source>Not currently sending</source>
+        <target>Op dit moment zijn er geen nieuwsbrieven te verzenden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="no_test_receivers">
+        <source>No test receivers defined.</source>
+        <target>Geen adressenbestand opgegeven voor test-brief.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="not_a_directmail">
+        <source>This page is not a directmail.</source>
+        <target>Deze pagina is geen nieuwsbrief-pagina.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="date">
+        <source>Date</source>
+        <target>Datum</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="totime">
+        <source>To</source>
+        <target>Aan</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="fromtime">
+        <source>From</source>
+        <target>Van</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="examples">
+        <source>Examples</source>
+        <target>Voorbeelden adresbestanden</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="description">
+        <source>Description</source>
+        <target>Beschrijving</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="setup_value">
+        <source>Setup field</source>
+        <target>Instellingen</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="install">
+        <source>Install</source>
+        <target>Installeer</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="example_made">
+        <source>Example made</source>
+        <target>Voorbeeld is uitgevoerd</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="exampleText">
+        <source>The ###TITLE### mailtarget template has been inserted. Go to the "List" module, and edit the directmail target to fit you.</source>
+        <target>Het ###TITLE### voorbeeld-adressenbestand is ingevoerd. Ga naar "Lijst" module, en pas het adressenbestand aan indien nodig.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_php">
+        <source>Mailer.php</source>
+        <target>Mailer.php</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_name">
+        <source>Domain name</source>
+        <target>Domeinnaam</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_exe_ok">
+        <source/>
+        <target>&lt;b&gt;mailer.php&lt;/b&gt; kan uitgevoerd worden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="mailer_exe_notok">
+        <source/>
+        <target>&lt;b&gt;mailer.php&lt;/b&gt; kan &lt;b&gt;niet&lt;/b&gt; uitgevoerd worden.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_ok">
+        <source>The domain &lt;b&gt;###DOMAIN###&lt;/b&gt; is defined.</source>
+        <target>De domeinnaam &lt;b&gt;###DOMAIN###&lt;/b&gt; is opgegeven.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="domain_notok">
+        <source>No domain defined in page tree. Make a domain record somewhere in the pagetree for this page.</source>
+        <target>Er is geen domeinnaam opgegeven in de pagina-boomstructuur. Maak een domeinrecord aan ergens in de pagina-boomstructuur van deze pagina.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="try_make_exe">
+        <source/>
+        <target>Maak dit bestand uitvoerbaar</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="set_domain">
+        <source>Set domain</source>
+        <target>Stel domeinnaam in</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="update">
+        <source>Update</source>
+        <target>Ververs</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="crontab_explain">
+        <source>If you have not already done so, please add the following line to root, apache or user crontab:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</source>
+        <target>Indien U dit nog niet heeft gedaan, voeg dan de volgende regel als zgn &lt;b&gt;cronjob&lt;/b&gt; toe (root, apache of gebruiker) in de crontab:&lt;br /&gt;&lt;b&gt;* * * * * ###MAILERPATH### &gt;/dev/null 2&gt;&amp;1&lt;/b&gt;</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="total_recipients">
+        <source>Total recipients</source>
+        <target>Totaal aantal addressen</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_browser">
+        <source/>
+        <target>Tekstbrowser (Lynx)</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_found">
+        <source/>
+        <target>Tekstbrowser (&lt;b&gt;###LYNX_VERSION###&lt;/b&gt;) gevonden op uw systeem.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="lynx_not_found">
+        <source/>
+        <target>Geen tekstbrowser (lynx) gevonden. Dit betekent dat U niet "Lynx browser" kunt selecteren als methode om platte tekst nieuwsbrieven aan te maken.</target>
+      </trans-unit>
+      <trans-unit xml:space="preserve" approved="yes" id="sys_status">
+        <source>System status</source>
+        <target>Systeem status</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
