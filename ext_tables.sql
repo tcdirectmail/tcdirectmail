@@ -117,11 +117,11 @@ CREATE TABLE tx_tcdirectmail_clicklinks (
   sentlog int(11) unsigned NOT NULL default '0',
   linkid int(11) unsigned NOT NULL default '0',
   linktype varchar(6) NOT NULL default '',
-  url varchar(255) NOT NULL default '',
-  opened int(11) unsigned DEFAULT '0' NOT NULL,
+  url mediumtext NOT NULL default '',
   
   KEY sentlog (sentlog),
-  KEY used_links_with_id (linkid,opened,linktype,sentlog),
-  KEY used_links (linktype,opened,sentlog)  
+  KEY used_links1 (linktype,sentlog),
+  KEY used_links2 (linkid,sentlog),
+  KEY used_links3 (linktype,linkid,sentlog)
 );
 

@@ -7,5 +7,5 @@ $eidTools = t3lib_div::makeInstance('tslib_eidtools');
 $eidTools->connectDB();
 
 $click =  t3lib_div::makeInstance('tx_tcdirectmail_click');
-$click->click();
+$click->click(t3lib_div::_GP('a'));
 

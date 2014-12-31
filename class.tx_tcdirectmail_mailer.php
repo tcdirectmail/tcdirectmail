@@ -34,6 +34,7 @@ class tx_tcdirectmail_mailer {
 	var $senderEmail = "test@test.net";
 	var $bounceAddress = 'bounce@test.test';
 	var $siteUrl = "http://www.test.test/";
+	var $clickHandler = null;
 
 	/**
 	 * Constructor that set up basic internal datastructures. Do not call directly
@@ -61,6 +62,12 @@ class tx_tcdirectmail_mailer {
 			foreach ($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'] as $_classRef) {
 				$this->mailReplacers[] = & t3lib_div::getUserObj($_classRef);
 			}
+		}
+	}
+
+	protected function activateClickHandler() {
+		if (!$this->clickHandler) {
+			$this->clickHandler = t3lib_div::makeInstance('tx_tcdirectmail_click');
 		}
 	}
 
@@ -243,10 +250,12 @@ class tx_tcdirectmail_mailer {
 	 *
 	 * @return   void
 	 */
-	public function insertSpy($authCode, $sendid) {
+	public function insertSpy($sendid) {
+		$this->activateClickHandler();
+		$argument = $this->clickHandler->createBeenthereArgurment($sendid);
 		$this->html = str_replace (
 				'</body>', 
-				'<div><img src="'.$this->siteUrl.'index.php?eID=beenthere&c='.$authCode.'&s='.$sendid.'" width="0" height="0" /></div></body>',
+				'<div><img src="' . $this->siteUrl . 'index.php?eID=beenthere&a=' . urlencode($argument) . '" width="0" height="0" /></div></body>',
 				$this->html);
 	}
     
@@ -353,29 +362,32 @@ class tx_tcdirectmail_mailer {
 	/**
 	 * Replace all links in the mail to make spy links.
 	 *
-	 * @param    string     Encryption code for the links
+	 * @param    integer    Sentlog row id
 	 * @return   array      Data structure with original links.
 	 */
-	public function makeClickLinks ($authCode, $sendid) {
+	public function makeClickLinks ($sendid) {
 		$links['plain'] = array();
 		$links['html'] = array();
+		$this->activateClickHandler();
 
 		// Exchange all http:// links  html 
-		preg_match_all ('|<a [^>]*href="(http://[^"]*)"|Ui', $this->html, $urls);
+		preg_match_all ('|<a [^>]*href="(https?://[^"]*)"|Ui', $this->html, $urls);
 
 		foreach ($urls[1] as $i => $url) {
 			$links['html'][$i] = html_entity_decode($url);
 			  
 			// Two step replace to be as precise as possible
-			$link = str_replace($url, $this->siteUrl."index.php?eID=click&l=$i&t=html&c=$authCode&s=$sendid", $urls[0][$i]);
+			$clickArgument = $this->clickHandler->createClickArgument($links['html'][$i], $sendid, $i, 'html');
+			$link = str_replace($url, $this->siteUrl . "index.php?eID=click&a=" . urlencode($clickArgument), $urls[0][$i]);
 			$this->html  = str_replace($urls[0][$i], $link, $this->html);
 		}
 
 		// Exchange all http:// links plaintext
-		preg_match_all ('|http://[^ \r\n\)]*|i', $this->plain, $urls);
+		preg_match_all ('|https?://[^ \r\n\)]*|i', $this->plain, $urls);
 		foreach ($urls[0] as $i => $url) {
 			$links['plain'][$i] = html_entity_decode($url);
-			$this->plain = str_replace($url, $this->siteUrl."index.php?eID=click&l=$i&t=plain&c=$authCode&s=$sendid", $this->plain);
+			$clickArgument = $this->clickHandler->createClickArgument($links['plain'][$i], $sendid, $i, 'plain');
+			$this->plain = str_replace($url, $this->siteUrl . "index.php?eID=click&a=$clickArgument", $this->plain);
 		}
 
 		return $links;   
@@ -390,14 +402,14 @@ class tx_tcdirectmail_mailer {
 	 */
 	public function testClickLinks () {
 		/* Exchange all http:// links  html */
-		preg_match_all ('|<a [^>]*href="(http://[^"]*)"|Ui', $this->html, $urls);
+		preg_match_all ('|<a [^>]*href="(https?://[^"]*)"|Ui', $this->html, $urls);
 		foreach ($urls[1] as $i => $url) {
 			$link = str_replace($url, $this->siteUrl."index.php?eID=tclick&l=".base64_encode(html_entity_decode($url)), $urls[0][$i]);
 			$this->html  = str_replace($urls[0][$i], $link, $this->html);
 		}
 
 		/* Exchange all http:// links plaintext */
-		preg_match_all ('|http://[^ \n\r\)]*|i', $this->plain, $urls);
+		preg_match_all ('|https?://[^ \n\r\)]*|i', $this->plain, $urls);
 		foreach ($urls[0] as $i => $url) {   
 			$this->plain = str_replace($url, $this->siteUrl."index.php?eID=tclick&l=".base64_encode($url),$this->plain);
 		}

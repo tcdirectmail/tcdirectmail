@@ -524,7 +524,7 @@ class tx_tcdirectmail_tools {
 
 			/* Was a language with this page defined, if not create one */ 
 			if (!is_object($mailers[$L])) {
-				$mailers[$L] = &tx_tcdirectmail_tools::getConfiguredMailer($page, $L); 
+				$mailers[$L] = tx_tcdirectmail_tools::getConfiguredMailer($page, $L); 
 			}
 
 			/* Mark it as send already */
@@ -539,29 +539,19 @@ class tx_tcdirectmail_tools {
 
 			/* Spy included? */
 			if ($page['tx_tcdirectmail_spy']) {                                                       
-				$mailers[$L]->insertSpy($receiver['authCode'], $sendid);
+				$mailers[$L]->insertSpy($sendid);
 			}
             
 			/* Should we register what links have been clicked? */
 			if ($page['tx_tcdirectmail_register_clicks']) {
 				$mailers[$L]->substituteMarkers($receiver);
-				$links = $mailers[$L]->makeClickLinks($receiver['authCode'], $sendid);
+				$links = $mailers[$L]->makeClickLinks($sendid);
 				$mailers[$L]->raw_send($receiver, $infoHeaders);
 				$mailers[$L]->resetMarkers();
-            
-				/* Write to the DB the links that have been registered */
-				foreach ($links as $type => $sublinks) {
-					foreach ($sublinks as $linkid => $url) {
-						$TYPO3_DB->exec_INSERTquery('tx_tcdirectmail_clicklinks', array(
-											'sentlog' => $sendid,
-											'linktype' => $type,
-											'linkid' => $linkid,
-											'url' => $url));
-					}				
-				}
-			} else {
+			}
+			else {
 				/* Do the send */
-				$mailers[$L]->send ($receiver, $infoHeaders);
+				$mailers[$L]->send($receiver, $infoHeaders);
 			}
 
 			$numberOfMails++;
