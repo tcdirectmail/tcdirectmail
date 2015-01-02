@@ -13,7 +13,7 @@ class Tx_Tcdirectmail_Controller_ModuleController extends t3lib_SCbase {
    	/**
      * 
      */
-   	function init()   {
+	public function init()   {
       	global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$CLIENT,$TYPO3_CONF_VARS;
 				$LANG->includeLLFile("EXT:tcdirectmail/Lang/locallang.xlf");
 
@@ -31,7 +31,7 @@ class Tx_Tcdirectmail_Controller_ModuleController extends t3lib_SCbase {
    	/**
      * Adds items to the ->MOD_MENU array. Used for the function menu selector.
      */
-   	function menuConfig()   {
+	public function menuConfig()   {
       	global $LANG, $MODULE_PARTS;
 
       	$this->MOD_MENU = Array (
@@ -53,7 +53,7 @@ class Tx_Tcdirectmail_Controller_ModuleController extends t3lib_SCbase {
    	/**
      * Main function of the module. Write the content to $this->content
      */
-   	function main()   {
+	public function main() {
       	global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$CLIENT,$TYPO3_CONF_VARS;
 
       	// Access check!
@@ -206,7 +206,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
    /**
     * View all sorts of stuff about the current page. 
     */
-	function viewStatus() {
+	protected function viewStatus() {
 		global $TYPO3_DB;   
 		global $LANG;
 		global $BE_USER;
@@ -371,7 +371,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		return $output;
 	}
 
-	function invokeMailer() {
+	protected function invokeMailer() {
 		global $TYPO3_DB;
 
 		// Find out if the mail has already been spooled
@@ -402,7 +402,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		tx_tcdirectmail_tools::runSpoolInteractive();
 	}
 
-   function checkMailValidity() {
+	protected function checkMailValidity() {
        global $LANG;
        global $TYPO3_DB;
 
@@ -512,11 +512,11 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 
 
-   function notADirectmailPage() {
-       return '<p>'.$GLOBALS['LANG']->getLL('not_a_directmail').'</p>';
-   }
+	protected function notADirectmailPage() {
+		return '<p>'.$GLOBALS['LANG']->getLL('not_a_directmail').'</p>';
+	}
 
-   function doMaintenance () {
+	protected function doMaintenance () {
        global $LANG;
        global $TYPO3_DB;
 
@@ -596,7 +596,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
    }
 
         // View number of mails delivered in the past 
-        function viewPreview() {
+	protected function viewPreview() {
             global $TYPO3_DB;
             global $LANG;
 	    global $BACK_PATH;
@@ -668,12 +668,12 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 	    return $out;
 	}
 
-	function previewLink($type, $email) {
+	protected function previewLink($type, $email) {
 	    return '<a target="_new" href="/index.php?eID=preview&email='.rawurlencode($email).'&type='.$type.'&uid='.$_REQUEST['id'].'">'.
             $GLOBALS['LANG']->getLL("preview_$type").'</a>';
 	}
 
-	function editTarget($uid) {
+	protected function editTarget($uid) {
 	    global $TYPO3_DB;
 	    global $BACK_PATH;
 
@@ -691,7 +691,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 
         // View number of mails delivered in the past 
-	function viewStatistics() {
+	protected function viewStatistics() {
 		global $TYPO3_DB;
 		global $LANG;
 
@@ -740,12 +740,12 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		return $output;
 	}
 
-	function showHelp() {
+	protected function showHelp() {
 		return "No help yet";
 	}
 
 
-	function viewStatsDetailSum() {
+	protected function viewStatsDetailSum() {
 		global $TYPO3_DB;
 		global $LANG;
 
@@ -997,7 +997,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
         }
 
 
-        function viewSums ($sum, $total) {
+	protected function viewSums ($sum, $total) {
           if ($total < 1) {
               return "</td><td align=\"right\"><b>$sum</b>";
           } else {
@@ -1006,4 +1006,4 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
         }	
 }
 
-?>
+
