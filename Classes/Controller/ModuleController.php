@@ -214,12 +214,12 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 		// Schedule a send?
 		if ($_REQUEST['send_now']) {
-			$TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_senttime = ".time()." WHERE uid = $_REQUEST[id]");
+			$TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_senttime = " . time() . " WHERE uid = " . intval($_REQUEST['id']));
 		}
 
 		// Schedule a test send
 		if ($_REQUEST['send_test_cron']) {
-			$TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_dotestsend = 1 WHERE uid = $_REQUEST[id]");
+			$TYPO3_DB->sql_query("UPDATE pages SET tx_tcdirectmail_dotestsend = 1 WHERE uid = " . intval($_REQUEST['id']));
 		}  
 
 		// Send a test mail
@@ -234,7 +234,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 		// Check if there is a domain-name set
 		if($BE_USER->user['admin']){
-			$output .= '<h3>'.$LANG->getLL('domain_name').'</h3>';
+			$output .= '<h3>' . $LANG->getLL('domain_name') . '</h3>';
 
 			$domain = tx_tcdirectmail_tools::getDomainForPage($this->pageinfo);
 			if ($domain) {
@@ -541,7 +541,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 
        // Invalid-stats form
-       $out .= "<form action=\"mod.php?M=web_txtcdirectmailM1&id=$_REQUEST[id]\">";
+       $out .= "<form action=\"" . t3lib_BEfunc::getModuleUrl('web_txtcdirectmailM1', array('id' => $_REQUEST['id'])) ."\">";
        $sql = "SELECT uid FROM tx_tcdirectmail_sentlog WHERE begintime = 0 AND pid = $id LIMIT 1";
 
        $rs = $TYPO3_DB->sql_query($sql);
@@ -583,7 +583,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
        while (list($begintime, $stoptime, $num_receivers) = $TYPO3_DB->sql_fetch_row($rs)) {
           $out .= "<tr style=\"background-color: eeeeee;\">
-                <td><a href=\"mod.php?M=web_txtcdirectmailM1&id=$id&delete_begintime=$begintime\"><strong>".
+                <td><a href=\"" . t3lib_BEfunc::getModuleUrl('web_txtcdirectmailM1', array('id' => $id, 'delete_begintime' => $begintime)) ."\"><strong>".
                 $LANG->getLL('delete')."</strong></td><td>".
                 strftime('%Y-%m-%d',$begintime)."</td>
                 <td>".strftime('%H:%M',$begintime).'</td><td>'.strftime('%H:%M',$stoptime)."</td>
@@ -730,7 +730,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 
 		while (list($begintime, $stoptime, $num_receivers) = $TYPO3_DB->sql_fetch_row($rs)) {
 			$output .= "<tr style=\"background-color: eeeeee;\"> 
-                                    <td><a href=\"mod.php?M=web_txtcdirectmailM1&id=$_REQUEST[id]&detail_begintime=$begintime\"><strong>".
+                                    <td><a href=\"" . t3lib_BEfunc::getModuleUrl('web_txtcdirectmailM1', array('id' => $_REQUEST['id'], 'detail_begintime' => $begintime)) . "\"><strong>".
                                     strftime('%Y-%m-%d',$begintime)."</strong></a></td> 
                                     <td>".strftime('%H:%M',$begintime).'</td><td>'.strftime('%H:%M',$stoptime)."</td> 
                                     <td align=right>".$num_receivers."</td></tr>";
@@ -778,7 +778,7 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		$rs = $TYPO3_DB->sql_query($sql);
 
 		// Filter form 
-		$out .= '<form action="mod.php?M=web_txtcdirectmailM1" method="POST">';
+		$out .= '<form action="' . t3lib_BEfunc::getModuleUrl('web_txtcdirectmailM1') . '" method="POST">';
 		$out .= '<input type="hidden" name="detail_begintime" value="'.$_REQUEST['detail_begintime'].'" />';
 		$out .= '<input type="hidden" name="id" value="'.$_REQUEST['id'].'" />';
 		$out .= '<table>';
