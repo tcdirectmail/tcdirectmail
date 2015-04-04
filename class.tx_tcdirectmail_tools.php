@@ -530,14 +530,24 @@ class tx_tcdirectmail_tools {
 			/* Mark it as send already */
 			$TYPO3_DB->exec_UPDATEquery('tx_tcdirectmail_sentlog', "uid = $sendid", array('sendtime' => time()));
            
-			/* Give it the stamp */
-			if ($receiver['uid'] && $receiver['authCode']) {
-				$infoHeaders = array('X-tcdirectmail-info' => "//$pid/$target/$receiver[uid]/$receiver[authCode]/$sendid//");
-			} else {
+			// Give it the stamp
+			if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['extraMailHeaders']) {
+				$infoHeaders = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['extraMailHeaders'];
+			}
+			else {
 				$infoHeaders = array();
-			}		
+			}
 
-			/* Spy included? */
+			if ($receiver['uid'] && $receiver['authCode']) {
+				$infoHeaders['X-Bounce'] = urlencode(base64_encode(json_encode(array(
+					'p' => $pid,
+					't' => $target,
+					'r' => $receiver['uid'],
+					'h' => t3lib_div::stdAuthCode($pid . '|' . $target . '|' . $receiver['uid'] . '|' . $sendid),
+					's' => $sendid))));
+			}
+
+			// Spy included?
 			if ($page['tx_tcdirectmail_spy']) {                                                       
 				$mailers[$L]->insertSpy($sendid);
 			}

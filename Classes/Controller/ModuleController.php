@@ -700,11 +700,6 @@ if (top.fsMod) top.fsMod.recentIds["web"] = '.intval($this->id).';
 		$rs = $TYPO3_DB->sql_query($sql);
 		list ($doktype) = $TYPO3_DB->sql_fetch_row($rs);
 
-		// We do not want to show statistics for non-directmail pages 
-		if ($doktype != 189) {
-			return $this->notADirectmailPage();
-		}
-
 		// Is a detailed view requested? 
 		if ($_REQUEST['detail_begintime']) {
 			return $this->viewStatsDetailSum($_REQUEST['detail_begintime']);

@@ -82,7 +82,7 @@ class tx_tcdirectmail_bouncehandler {
       
       /* If we got this far, it is a bounce mail. Get the X-tcdirectmail-info header value to see who we we a dealing with.
          If we can get the values and the authcode checks out, return with success, else report unremovable. */
-      if (preg_match('|X-tcdirectmail-info: //(.*)//|', $mailsource, $match)) {
+      if (preg_match('|X-Bounce: ([^\n]*)|', $mailsource, $match)) {
          list($pageUid, $targetUid, $uid, $this->authCode, $sendid) = explode('/', $match[1]);
          $this->pageUid = intval($pageUid);
          $this->targetUid = intval($targetUid);

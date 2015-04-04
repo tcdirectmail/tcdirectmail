@@ -195,7 +195,6 @@ class tx_tcdirectmail_mailer {
 		/* Fix relative links */
 		preg_match_all ('|<a [^>]*href="(.*)"|Ui', $src, $urls);
 		foreach ($urls[1] as $i => $url) {
-			header("X-Url-$i: $url");
 			/* If this is already a absolute link, dont replace it */
 			if (!preg_match('|^https?://|', $url) && !preg_match('|^mailto:|', $url) && !preg_match('|^#|', $url)) {
 				$replace_url = str_replace($url, $this->siteUrl.$url, $urls[0][$i]);
@@ -459,6 +458,14 @@ class tx_tcdirectmail_mailer {
 			// Get the attached files
 			foreach ($this->files as $attachObj) {
 				$mail->attach($attachObj);
+			}
+
+			// Add the extra headers
+			if (count($extraHeaders)) {
+				$headers = $mail->getHeaders();
+				foreach ($extraHeaders as $name => $value) {
+					$headers->addTextHeader($name, $value);
+				}
 			}
 
       $mail->setTo(array($receiverRecord['email']))
