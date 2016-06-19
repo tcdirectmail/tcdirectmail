@@ -273,8 +273,11 @@ class tx_tcdirectmail_mailer {
 	public function substituteMarker($name, $value) {
 		/* For each marker, only substitute if the field is registered as a marker. This approach has shown to 
 		 speed up things quite a bit.  */
+
+		$value = strip_tags($value);
+
 		if (in_array($name, $this->htmlAdvancedMarkers)) {
-			$this->html = tx_tcdirectmail_mailer::advancedSubstituteMarker($this->html, $name, $value);
+			$this->html = tx_tcdirectmail_mailer::advancedSubstituteMarker($this->html, $name, htmlspecialchars($value));
 		}
 
 		if (in_array($name, $this->plainAdvancedMarkers)) {
@@ -286,7 +289,7 @@ class tx_tcdirectmail_mailer {
 		}
 
 		if (in_array($name, $this->htmlMarkers)) {
-			$this->html  = str_replace("###$name###", $value, $this->html);
+			$this->html  = str_replace("###$name###", htmlspecialchars($value), $this->html);
 		}
 
 		if (in_array($name, $this->plainMarkers)) {

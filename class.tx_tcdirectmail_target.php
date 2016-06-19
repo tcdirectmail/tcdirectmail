@@ -41,6 +41,8 @@ abstract class tx_tcdirectmail_target {
 	 */
 	public static function getTarget($uid) {
 		global $TYPO3_DB;
+
+		$uid = intval($uid);
        
 		$rs = $TYPO3_DB->sql_query("SELECT * FROM tx_tcdirectmail_targets WHERE uid = $uid");
 		$fields = $TYPO3_DB->sql_fetch_assoc($rs);
