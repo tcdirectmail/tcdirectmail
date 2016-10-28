@@ -104,18 +104,6 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 	    ),
 	),
 
-
-	'rawsql' => Array (
-	    'exclude' => 1,
-	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.rawsql',
-	    'config' => Array (
-		'type' => 'text',
-		'cols' => '50',
-		'rows' => '10',
-	    ),
-		'displayCond' => 'HIDE_FOR_NON_ADMINS',
-	),
-
 	'csvseparator' => Array (
 	    'exclude' => 1,
 	    'label' => 'LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets.sepchar',
@@ -231,7 +219,6 @@ $TCA["tx_tcdirectmail_targets"] = Array (
          'tx_tcdirectmail_target_fegroups' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, lang, targettype, fegroups,;;;;2-2-2, calculated_receivers'),
          'tx_tcdirectmail_target_fepages' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, lang, targettype, fepages,;;;;2-2-2, calculated_receivers'),
          'tx_tcdirectmail_target_ttaddress' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, lang, targettype, ttaddress,;;;;2-2-2, calculated_receivers'),
-         'tx_tcdirectmail_target_rawsql' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, targettype, rawsql,;;;;2-2-2, calculated_receivers'),
          'tx_tcdirectmail_target_csvfile' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, targettype, csvseparator, csvfields, csvfilename,;;;;2-2-2, calculated_receivers'),
          'tx_tcdirectmail_target_csvlist' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, targettype, csvseparator, csvfields, csvvalues,;;;;2-2-2, calculated_receivers'),
          'tx_tcdirectmail_target_csvurl' => Array('showitem' => 'hidden;;1;;1-1-1, title, plain_only, targettype, csvseparator, csvfields, csvurl,;;;;2-2-2, calculated_receivers'),
