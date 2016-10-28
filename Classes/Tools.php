@@ -30,6 +30,8 @@
 
 namespace Tcdirectmail\Tcdirectmail;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 class Tools {
 	/**
 	  * Get a tcdirectmail-conf-template parameter
@@ -48,7 +50,7 @@ class Tools {
 	/**
 	 * Get dynamic TYPO3 content in a safe way.
 	 *
-	 * This is just a wrapper to t3lib_div::getURL that will abort with a silent die, if the content seems strange. This is to prevent 
+	 * This is just a wrapper to \TYPO3\CMS\Core\Utility\GeneralUtility::getURL that will abort with a silent die, if the content seems strange. This is to prevent 
 	 * error-filled content being sent to the receivers. This is only used for fetching dynamic text or html content with. It should *not*
 	 * be used to fetch CSS, images or other static content.
 	 * 
@@ -57,7 +59,7 @@ class Tools {
 	 * 
 	 */
 	function getURL($url) {
-		$content = t3lib_div::getURL($url);
+		$content = GeneralUtility::getURL($url);
        
 		/* Content should be more that just a few characters. Apache error propably occured */
 		if (strlen($content) < 200) {
@@ -93,14 +95,14 @@ class Tools {
 		global $TYPO3_DB;
 
 		/* Is anything hardcoded from TYPO3_CONF_VARS? */
-		if ($fetchPath = tx_tcdirectmail_tools::confParam('fetch_path')) {
+		if ($fetchPath = self::confParam('fetch_path')) {
 			return $fetchPath;
 		}
 
 		/* Else we try to resolve a domain */
 
 		/* What pages to search */
-		$pids = array_reverse(t3lib_befunc::BEgetRootLine($p['uid']));
+		$pids = array_reverse(\TYPO3\CMS\Backend\Utility\BackendUtility::BEgetRootLine($p['uid']));
 
 		foreach ($pids as $page) {
 			/* Domains */
@@ -140,7 +142,7 @@ class Tools {
 		}
 
 		/* Anything in typo3_conf_vars? */
-		$sender = tx_tcdirectmail_tools::confParam('sender_name');
+		$sender = self::confParam('sender_name');
 		if ($sender == 'user') {
 			/* Use the page-owner as user */
 			$rs = $GLOBALS['TYPO3_DB']->sql_query("SELECT realName 
@@ -179,12 +181,12 @@ class Tools {
 		global $TYPO3_DB;
 
 		/* The sender defined on the page? */
-		if (t3lib_div::validEmail($p['tx_tcdirectmail_senderemail'])) {
+		if (GeneralUtility::validEmail($p['tx_tcdirectmail_senderemail'])) {
 			return $p['tx_tcdirectmail_senderemail'];
 		}
 
 		/* Anything in typo3_conf_vars? */
-		$email = tx_tcdirectmail_tools::confParam('sender_email');        
+		$email = self::confParam('sender_email');        
 		if ($email == 'user') {
 			/* Use the page-owner as user */
 			$rs = $GLOBALS['TYPO3_DB']->sql_query("SELECT email 
@@ -193,13 +195,13 @@ class Tools {
 			WHERE p.uid = $p[uid]");
 
 			list($email) = $GLOBALS['TYPO3_DB']->sql_fetch_row($rs);
-			if (t3lib_div::validEmail($email)) {
+			if (GeneralUtility::validEmail($email)) {
 				return $email;
 			}
 		}
 
 		/* Maybe it was a hardcoded email address? */
-		if (t3lib_div::validEmail($email)) {
+		if (GeneralUtility::validEmail($email)) {
 			return $email;
 		}
 
@@ -257,7 +259,7 @@ class Tools {
 	* @return   object      tx_tcdirectmail_mailer object preconfigured for sending.
 	*/
 	function getConfiguredMailer ($page, $lang = '') {
-		$append_url = tx_tcdirectmail_tools::confParam('append_url');
+		$append_url = self::confParam('append_url');
 
 		/* Any language defined? */
 		
@@ -271,13 +273,13 @@ class Tools {
 		}
 		
 		/* Configure the mailer */
-		$mailer = t3lib_div::makeInstance('tx_tcdirectmail_mailer');
-		$domain = tx_tcdirectmail_tools::getDomainForPage($page);
+		$mailer = GeneralUtility::makeInstance('Tcdirectmail\\Tcdirectmail\\Mailer');
+		$domain = self::getDomainForPage($page);
 		$mailer->siteUrl = "http://$domain/";
-		$mailer->senderName = tx_tcdirectmail_tools::getSenderForPage($page);
-		$mailer->senderEmail = tx_tcdirectmail_tools::getEmailForPage($page);
+		$mailer->senderName = self::getSenderForPage($page);
+		$mailer->senderEmail = self::getEmailForPage($page);
 
-		if (t3lib_div::validEmail($page['tx_tcdirectmail_bounceaccount'])) {
+		if (GeneralUtility::validEmail($page['tx_tcdirectmail_bounceaccount'])) {
 			$mailer->bounceAddress = $page['tx_tcdirectmail_bounceaccount'];
 		}
 		else {
@@ -286,7 +288,7 @@ class Tools {
 
 		$mailer->setTitle($page['title']);
 		$url = "http://$domain/index.php?id=$page[uid]&no_cache=1$lang$append_url";
-		$mailer->setHtml(tx_tcdirectmail_tools::getURL($url));
+		$mailer->setHtml(self::getURL($url));
 
 		/* Construct plaintext */
 		$plain = tx_tcdirectmail_plain::loadPlain($page, $mailer->domain);
@@ -308,7 +310,7 @@ class Tools {
 		/* hook for modifing the mailer before finish preconfiguring */
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['getConfiguredMailerHook'])) {
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['getConfiguredMailerHook'] as $_classRef) {
-				$_procObj = & t3lib_div::getUserObj($_classRef);
+				$_procObj = GeneralUtility::getUserObj($_classRef);
 				$mailer = $_procObj->getConfiguredMailerHook($mailer, $page);
 			}
 		}
@@ -342,17 +344,17 @@ class Tools {
 				}
 			}
 
-			$target = t3lib_div::makeInstance('tx_tcdirectmail_target_array');
+			$target = GeneralUtility::makeInstance('Tcdirectmail\\Tcdirectmail\\Target\\AbstactArrayTarget');
 			$target->data = $targetdata;
 			$target->resetTarget();
 		}
 
 		while ($receiver = $target->getRecord()) {
-			if (t3lib_div::validEmail($receiver['email'])) {
+			if (GeneralUtility::validEmail($receiver['email'])) {
 				/* We need to use a mailer with the correct language */
 				$L = $receiver['L'];
 				if (! is_object($mailers[$L])) {
-					$mailers[$L] = &tx_tcdirectmail_tools::getConfiguredMailer($page, $L);
+					$mailers[$L] = self::getConfiguredMailer($page, $L);
 				}	
 
 				/* a TEST-version of the spy-image. Makes same warning in MUA, but with no serverside stats */
@@ -387,7 +389,7 @@ class Tools {
 		$targets = explode(',',$page['tx_tcdirectmail_real_target']);
 
 		/* Get the servers */
-		$hosts = array_map('trim', explode(',', tx_tcdirectmail_tools::confParam('lb_hosts')));
+		$hosts = array_map('trim', explode(',', self::confParam('lb_hosts')));
 
 		foreach ($targets as $target_uid) {
 			$target = tx_tcdirectmail_target::loadTarget($target_uid);
@@ -401,7 +403,7 @@ class Tools {
 				next($hosts);
           
 				/* Register the receiver */
-				if (t3lib_div::validEmail($receiver['email'])) {
+				if (GeneralUtility::validEmail($receiver['email'])) {
 					$TYPO3_DB->exec_INSERTquery('tx_tcdirectmail_sentlog', array(   
 						'receiver' => $receiver['email'],
 						'user_uid' => intval($receiver['uid']),
@@ -447,7 +449,7 @@ class Tools {
 		}
        
 		/* Do we any limit to this session? */
-		if ($mails_per_round = tx_tcdirectmail_tools::confParam('mails_per_round')) {
+		if ($mails_per_round = self::confParam('mails_per_round')) {
 			$limit = " LIMIT 0, $mails_per_round ";
 		}
 
@@ -460,7 +462,7 @@ class Tools {
 
 		/* Do it, if there is any records */
 		if ($numRows = $TYPO3_DB->sql_num_rows($rs)) {
-			tx_tcdirectmail_tools::_runSpool($rs);
+			self::_runSpool($rs);
 		}
 
 		return $numRows;
@@ -477,7 +479,7 @@ class Tools {
 		$id = intval($_REQUEST['id']);
        
 		/* Do we any limit to this session? */
-		if ($mails_per_round = tx_tcdirectmail_tools::confParam('mails_per_round')) {
+		if ($mails_per_round = self::confParam('mails_per_round')) {
 			$limit = " LIMIT 0, $mails_per_round ";
 		}
 
@@ -491,7 +493,7 @@ class Tools {
 
 		/* Do it, if there is any records */
 		if ($numRows = $TYPO3_DB->sql_num_rows($rs)) {
-			tx_tcdirectmail_tools::_runSpool($rs);
+			self::_runSpool($rs);
 		}
 
 		return $numRows;
@@ -526,7 +528,7 @@ class Tools {
 
 			/* Was a language with this page defined, if not create one */ 
 			if (!is_object($mailers[$L])) {
-				$mailers[$L] = &tx_tcdirectmail_tools::getConfiguredMailer($page, $L); 
+				$mailers[$L] = &self::getConfiguredMailer($page, $L); 
 			}
 
 			/* Mark it as send already */

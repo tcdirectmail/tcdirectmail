@@ -3,9 +3,9 @@
  * This is the click link script that identifies and registers the user, and provides the correct link
  */
 
-$eidTools = t3lib_div::makeInstance('tslib_eidtools');
+$eidTools = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_eidtools');
 $eidTools->connectDB();
 
-$click =  t3lib_div::makeInstance('tx_tcdirectmail_click');
+$click =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_tcdirectmail_click');
 $click->click();
 

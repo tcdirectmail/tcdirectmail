@@ -2,7 +2,7 @@
 if (!defined ("TYPO3_MODE")) 	die ("Access denied.");
 
 if (TYPO3_MODE=="BE")	{		
-	t3lib_extMgm::addModule("web","txtcdirectmailM1","before:info",t3lib_extMgm::extPath($_EXTKEY)."mod1/");
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule("web","txtcdirectmailM1","before:info",\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY)."mod1/");
 }
 
 
@@ -45,10 +45,10 @@ $tempColumns = Array (
 		"config" => Array (
 			"type" => "select",
 			"items" => Array (
-				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.2", "tx_tcdirectmail_plain_simple"),
-				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.0", "tx_tcdirectmail_plain_template"),
-				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.1", "tx_tcdirectmail_plain_lynx"),
-				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.3", "tx_tcdirectmail_plain_html2text"),
+				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.2", "\\Tcdirectmail\\Tcdirectmail\\PlainConverter\\SimplePlainConverter"),
+				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.0", "\\Tcdirectmail\\Tcdirectmail\\PlainConverter\\TemplatePlainConverter"),
+				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.1", "\\Tcdirectmail\\Tcdirectmail\\PlainConverter\\LynxPlainConverter"),
+				Array("LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.tx_tcdirectmail_plainconvert.I.3", "\\Tcdirectmail\\Tcdirectmail\\PlainConverter\\Html2TextPlainConverter"),
 			),
 			"size" => 1,	
 			"maxitems" => 1,
@@ -139,26 +139,26 @@ $tempColumns = Array (
 );
 
 
-t3lib_div::loadTCA("pages");
-t3lib_extMgm::addTCAcolumns("pages",$tempColumns,1);
+\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA("pages");
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns("pages",$tempColumns,1);
 
 global $PAGES_TYPES;
 $PAGES_TYPES[189] = Array(
 	"type" => "Directmail",
-	"icon" => t3lib_extMgm::extRelPath('tcdirectmail')."mail.gif",
+	"icon" => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tcdirectmail')."mail.gif",
 );
 
 
 array_splice ($TCA["pages"]["columns"]["doktype"]["config"]["items"], 3, 0, array(array(
 	0 => "LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.directmailtype",
 	1 => 189,
-	2 => t3lib_extMgm::extRelPath('tcdirectmail')."mail.gif"
+	2 => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tcdirectmail')."mail.gif"
 ))
 );
 
-t3lib_SpriteManager::addTcaTypeIcon('pages', 189, t3lib_extMgm::extRelPath('tcdirectmail')."mail.gif");
+\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 189, \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tcdirectmail')."mail.gif");
 // Add the new doktype to the list of types available from the new page menu at the top of the page tree
-t3lib_extMgm::addUserTSConfig(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
 	'options.pageTree.doktypesToShowInNewPageDragArea := addToList(189)'
 );
 
@@ -166,7 +166,7 @@ t3lib_extMgm::addUserTSConfig(
 $TCA['pages']['types']['189'] = $TCA['pages']['types']['1'];
 $TCA['pages']['types']['189']['showitem'] .= ',--div--;LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:pages.directmailtype, tx_tcdirectmail_sendername, tx_tcdirectmail_senderemail, tx_tcdirectmail_bounceaccount, tx_tcdirectmail_plainconvert, tx_tcdirectmail_spy, tx_tcdirectmail_register_clicks, tx_tcdirectmail_usebcc,;;;;4-4-4, tx_tcdirectmail_senttime, tx_tcdirectmail_repeat, tx_tcdirectmail_real_target,tx_tcdirectmail_test_target,;;;;6-6-6, tx_tcdirectmail_attachfiles';
 
-t3lib_extMgm::allowTableOnStandardPages("tx_tcdirectmail_targets");
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages("tx_tcdirectmail_targets");
 $TCA["tx_tcdirectmail_targets"] = Array (
 	"ctrl" => Array (
 		"title" => "LLL:EXT:tcdirectmail/Lang/locallang_db.xlf:tx_tcdirectmail_targets",
@@ -180,8 +180,8 @@ $TCA["tx_tcdirectmail_targets"] = Array (
 		"enablecolumns" => Array (
 			"disabled" => "hidden",
 		),
-		"dynamicConfigFile" => t3lib_extMgm::extPath($_EXTKEY)."tca.php",
-		"iconfile" => t3lib_extMgm::extRelPath($_EXTKEY)."mailtargets.gif",
+		"dynamicConfigFile" => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY)."tca.php",
+		"iconfile" => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY)."mailtargets.gif",
 	),
 	"feInterface" => Array (
 		"fe_admin_fieldList" => "hidden, title",
@@ -209,14 +209,9 @@ $tempColumns = Array (
 );
 
 
-t3lib_div::loadTCA("fe_users");
-t3lib_extMgm::addTCAcolumns("fe_users",$tempColumns,1);
-t3lib_extMgm::addToAllTCAtypes("fe_users","tx_tcdirectmail_bounce;;;;1-1-1");
-
-t3lib_div::loadTCA("tt_address");
-t3lib_extMgm::addTCAcolumns("tt_address",$tempColumns,1);
-t3lib_extMgm::addToAllTCAtypes("tt_address","tx_tcdirectmail_bounce;;;;1-1-1");
-
-t3lib_div::loadTCA("be_users");
-t3lib_extMgm::addTCAcolumns("be_users",$tempColumns,1);
-t3lib_extMgm::addToAllTCAtypes("be_users","tx_tcdirectmail_bounce;;;;1-1-1");
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns("fe_users",$tempColumns,1);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes("fe_users","tx_tcdirectmail_bounce;;;;1-1-1");
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns("tt_address",$tempColumns,1);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes("tt_address","tx_tcdirectmail_bounce;;;;1-1-1");
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns("be_users",$tempColumns,1);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes("be_users","tx_tcdirectmail_bounce;;;;1-1-1");

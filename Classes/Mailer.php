@@ -58,7 +58,7 @@ class Mailer {
 		/* Set up mail replacement hooks */
 		if (is_array($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'])) {
 			foreach ($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'] as $_classRef) {
-				$this->mailReplacers[] = & t3lib_div::getUserObj($_classRef);
+				$this->mailReplacers[] = & \TYPO3\CMS\Core\Utility\GeneralUtility::getUserObj($_classRef);
 			}
 		}
 	}
@@ -141,7 +141,7 @@ class Mailer {
 			$get_url = $urlParts['path'];
 			$src = str_replace ($urls[0][$i],
 								"<style type=\"text/css\">\n<!--\n"
-								.t3lib_div::getURL($this->realPath.$get_url)
+								.\TYPO3\CMS\Core\Utility\GeneralUtility::getURL($this->realPath.$get_url)
 								."\n-->\n</style>", $src);
 		}
 
@@ -340,7 +340,7 @@ class Mailer {
 	public function substituteMarkers ($record) {
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['substituteMarkersHook'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tcdirectmail']['substituteMarkersHook'] as $_classRef) {
-				$_procObj = & t3lib_div::getUserObj($_classRef);
+				$_procObj = & \TYPO3\CMS\Core\Utility\GeneralUtility::getUserObj($_classRef);
 				$this->html = $_procObj->substituteMarkersHook($this->html, 'html', $record);
 				$this->plain = $_procObj->substituteMarkersHook($this->plain, 'plain', $record);
 				$this->title = $_procObj->substituteMarkersHook($this->title, 'title', $record);
@@ -439,7 +439,7 @@ class Mailer {
 		// Mail it
 		else {
 
-			$mail = t3lib_div::makeInstance('t3lib_mail_Message');
+			$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 
 			// Get the inline images
 			foreach ($this->inlinefiles as $filename => $embedObj) {

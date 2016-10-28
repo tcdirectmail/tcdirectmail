@@ -1,7 +1,7 @@
 <?php
 
 // We are talking to the DB
-$eidTools = t3lib_div::makeInstance('tslib_eidtools');
+$eidTools = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_eidtools');
 $eidTools->connectDB();
 
 // Load the page

@@ -23,9 +23,9 @@ class AbstractArrayTarget extends AbstractTarget {
 			}
 
 			if (isset($r['uid'])) {
-				$r['authCode'] = t3lib_div::stdAuthCode($r['uid']);
+				$r['authCode'] = \TYPO3\CMS\Core\Utility\GeneralUtility::stdAuthCode($r['uid']);
 			} else {
-				$r['authCode'] = t3lib_div::stdAuthCode($r['email']);
+				$r['authCode'] = \TYPO3\CMS\Core\Utility\GeneralUtility::stdAuthCode($r['email']);
 			}
 
 			return $r;

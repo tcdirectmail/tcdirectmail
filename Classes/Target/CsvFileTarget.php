@@ -6,7 +6,7 @@ class CsvFileTarget extends AbstractArrayTarget {
     function init() {
 		$this->data = array();
 		if ($this->fields['csvfilename'] && $this->fields['csvseparator'] && $this->fields['csvfields']) {
-			$csvdata = t3lib_div::getURL(PATH_site.'uploads/tx_tcdirectmail/'.$this->fields['csvfilename']);
+			$csvdata = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL(PATH_site.'uploads/tx_tcdirectmail/'.$this->fields['csvfilename']);
 			$sepchar = $this->fields['csvseparator']?$this->fields['csvseparator']:',';
 			$fields = array_map ('trim', explode ($sepchar, $this->fields['csvfields']));
 			$lines = explode ("\n", $csvdata);

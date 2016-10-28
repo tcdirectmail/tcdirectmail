@@ -9,10 +9,10 @@ class tx_tcdirectmail_click {
      */
     protected function readParams() {
         global $TYPO3_DB;
-        $this->authCode = $TYPO3_DB->quoteStr(t3lib_div::_GET('c'));
-        $this->linkType = $TYPO3_DB->quoteStr(t3lib_div::_GET('t'));
-        $this->linkId = intval(t3lib_div::_GET('l'));
-        $this->sendId = intval(t3lib_div::_GET('s'));
+        $this->authCode = $TYPO3_DB->quoteStr(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('c'));
+        $this->linkType = $TYPO3_DB->quoteStr(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('t'));
+        $this->linkId = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('l'));
+        $this->sendId = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('s'));
     }
 
     /**

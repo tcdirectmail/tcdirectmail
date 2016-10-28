@@ -1,5 +1,5 @@
 <?php
-$extensionPath = t3lib_extMgm::extPath('tcdirectmail');
+$extensionPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tcdirectmail');
 return array(
 	'tx_tcdirectmail_scheduler' => $extensionPath . 'class.tx_tcdirectmail_scheduler.php',
     'tx_tcdirectmail_click' => $extensionPath . 'eid/class.tx_tcdirectmail_click.php',

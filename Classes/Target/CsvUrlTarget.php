@@ -6,7 +6,7 @@ class CsvUrlTarget extends AbstractArrayTarget {
     function init() {
 		$this->data = array();
 		if ($this->fields['csvurl'] && $this->fields['csvseparator'] && $this->fields['csvfields']) {
-			$csvdata = t3lib_div::getURL($this->fields['csvurl']);
+			$csvdata = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($this->fields['csvurl']);
 			$sepchar = $this->fields['csvseparator']?$this->fields['csvseparator']:',';
 			$fields = array_map ('trim', explode ($sepchar, $this->fields['csvfields']));
 			$lines = explode ("\n", $csvdata);

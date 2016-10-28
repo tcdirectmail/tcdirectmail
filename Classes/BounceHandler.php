@@ -92,7 +92,7 @@ class BounceHandler {
 			$this->uid = intval($uid);
 			$this->sendid = intval($sendid);
 
-			if ($this->authCode != t3lib_div::stdAuthCode($this->uid)) {
+			if ($this->authCode != \TYPO3\CMS\Core\Utility\GeneralUtility::stdAuthCode($this->uid)) {
 				$this->status = TCDIRECTMAIL_BOUNCE_UNREMOVABLE;
 			}
 		} else {

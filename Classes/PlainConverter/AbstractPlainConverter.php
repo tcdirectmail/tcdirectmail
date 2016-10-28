@@ -47,7 +47,7 @@ abstract class AbstractPlainConverter {
 	 * @return   object      plain text object to use.
 	 */
 	static public function loadPlain($pageRecord, $baseUrl) {
-		$obj =  t3lib_div::makeInstance($pageRecord['tx_tcdirectmail_plainconvert']);
+		$obj =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($pageRecord['tx_tcdirectmail_plainconvert']);
 
 		if (is_subclass_of($obj, 'tx_tcdirectmail_plain')) {
 			$obj->record = $pageRecord;

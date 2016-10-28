@@ -7,7 +7,7 @@ class HtmlTarget extends AbstractArrayTarget {
 		$htmlfile = $this->fields['htmlfile'];
 		$htmlfetchtype = $this->fields['htmlfetchtype'];
        
-		$content = t3lib_div::getURL($htmlfile);
+		$content = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($htmlfile);
        
 		if ($htmlfetchtype == 'mailto') {
 			preg_match_all('|<a[^>]+href="mailto:([^"]+)"[^>]*>(.*)</a>|Ui', $content, $fetched_data);

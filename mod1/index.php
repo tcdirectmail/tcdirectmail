@@ -1,8 +1,7 @@
 <?php
 
-$SOBE = t3lib_div::makeInstance('Tx_Tcdirectmail_Controller_ModuleController');
+$SOBE = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tcdirectmail\\Tcdirectmail\\Controller\\ModuleController');
 $SOBE->init();
 
 $SOBE->main();
 $SOBE->printContent();
-?>
