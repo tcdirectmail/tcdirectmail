@@ -2,13 +2,14 @@
 /**
  * This is a more gentle version on the generic sql-driven target. It is dependant on integer field tx_tcdirectmail_bounce
  * on the $this->tableName table.
- *
- * @abstract
  */
-class tx_tcdirectmail_target_gentlesql extends tx_tcdirectmail_target_sql {
+
+namespace Tcdirectmail\Tcdirectmail\Target;
+
+class AbstractGentleSqlTarget extends AbstractSqlTarget {
 	/**
 	 * This increases the bounce-counter each time a mail has bounced.
-	 * Hard bounces count more that soft ones. After 2 hards or 10 softs the user will be disabled. 
+	 * Hard bounces count more that soft ones. After 2 hards or 10 softs the user will be disabled.
 	 * You should be able to reset then in the backend
 	 *
 	 * @param	integer		This is the uid of the receiver.
@@ -19,28 +20,28 @@ class tx_tcdirectmail_target_gentlesql extends tx_tcdirectmail_target_sql {
 		global $TYPO3_DB;
 
 		switch ($bounce_level) {
-			case	TCDIRECTMAIL_HARDBOUNCE:
-				$TYPO3_DB->sql_query("UPDATE $this->tableName 
+		case	TCDIRECTMAIL_HARDBOUNCE:
+			$TYPO3_DB->sql_query("UPDATE $this->tableName
 							SET tx_tcdirectmail_bounce = tx_tcdirectmail_bounce + 5
 							WHERE uid = $uid");
 
-				return $TYPO3_DB->sql_affected_rows();
+			return $TYPO3_DB->sql_affected_rows();
 
-			case	TCDIRECTMAIL_SOFTBOUNCE:
-				$TYPO3_DB->sql_query("UPDATE $this->tableName 
+		case	TCDIRECTMAIL_SOFTBOUNCE:
+			$TYPO3_DB->sql_query("UPDATE $this->tableName
 							SET tx_tcdirectmail_bounce = tx_tcdirectmail_bounce + 1
 							WHERE uid = $uid");
-				return $TYPO3_DB->sql_affected_rows();
+			return $TYPO3_DB->sql_affected_rows();
 
-			default:
-				return false;
+		default:
+			return false;
 		}
 	}
 
 	/**
 	 * This is a default action for registered clicks.
-	 * Here we just reset the bounce counter. If the user reads the mail, it must have succeded. 
-	 * It can also be used for marketing og statistics purposes 
+	 * Here we just reset the bounce counter. If the user reads the mail, it must have succeded.
+	 * It can also be used for marketing og statistics purposes
 	 *
 	 * @param	integer		The uid of the receiver.
 	 */
@@ -61,4 +62,3 @@ class tx_tcdirectmail_target_gentlesql extends tx_tcdirectmail_target_sql {
 							WHERE uid = $uid");
 	}
 }
-

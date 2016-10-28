@@ -1,34 +1,33 @@
 <?php
-/*************************************************************** 
-*  Copyright notice 
-* 
-*  (c) 2007-2014 Daniel Schledermann <daniel@schledermann.net>
-*  All rights reserved 
-* 
-*  This script is part of the TYPO3 project. The TYPO3 project is 
-*  free software; you can redistribute it and/or modify 
-*  it under the terms of the GNU General Public License as published by 
-*  the Free Software Foundation; either version 2 of the License, or 
-*  (at your option) any later version. 
-* 
-*  The GNU General Public License can be found at 
-*  http://www.gnu.org/copyleft/gpl.html. 
-* 
-*  This script is distributed in the hope that it will be useful, 
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of 
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-*  GNU General Public License for more details. 
-* 
-*  This copyright notice MUST APPEAR in all copies of the script! 
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2007-2016 Daniel Schledermann <daniel@schledermann.net>
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-
-require_once(PATH_typo3 . 'contrib/swiftmailer/swift_required.php');
+namespace Tcdirectmail\Tcdirectmail;
 
 /**
- * This is the holy inner core of tcdirectmail. 
+ * This is the holy inner core of tcdirectmail.
  * It is normally used in an instance per language to compile MIME 1.0 compatible mails
  */
-class tx_tcdirectmail_mailer {
+class Mailer {
 	/* Vars that might need to be overridden */
 	var $senderName = "Test Testermann";
 	var $senderEmail = "test@test.net";
@@ -41,21 +40,21 @@ class tx_tcdirectmail_mailer {
 	 */
 	public function __construct() {
 		global $TYPO3_CONF_VARS;
-    
+
 		/* Determine the supposed hostname */
 		if( ini_get('safe_mode') || TYPO3_OS == 'WIN'){
 			$this->hostname = $_SERVER['HTTP_HOST'];
 		} else {
 			$this->hostname = trim(exec('hostname'));
 		}
-        
+
 		/* Read some basic settings */
 		$this->extConf = unserialize($TYPO3_CONF_VARS['EXT']['extConf']['tcdirectmail']);
 		$this->realPath = PATH_site;
 		$this->inlinefiles = array();
 		$this->files = array();
-		$this->mimes = array();      
-	      
+		$this->mimes = array();
+
 		/* Set up mail replacement hooks */
 		if (is_array($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'])) {
 			foreach ($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['mailReplacementHook'] as $_classRef) {
@@ -112,11 +111,11 @@ class tx_tcdirectmail_mailer {
 	public function setPlain ($src) {
 		/* Remove html-comments */
 		$src = preg_replace('/<!--.*-->/U', '', $src);
-      
+
 		/* Detect what markers we need to substitute later on */
 		preg_match_all ('/###[\w]+###/', $src, $fields);
 		$this->plainMarkers = str_replace ('###', '', $fields[0]);
-      
+
 		/* Any advanced markers we need to sustitute later on */
 		$this->plainAdvancedMarkers = array();
 		preg_match_all ('/###:IF: (\w+) ###/U', $src, $fields);
@@ -127,23 +126,23 @@ class tx_tcdirectmail_mailer {
 		$this->plain_tpl = $src;
 		$this->plain = $src;
 	}
-    
+
 	/**
      * Set the html content on the mail
 	 *
 	 * @param   string      The html content of the mail
 	 * @return   void
-	 */    
+	 */
 	public function setHtml ($src) {
 		/* Find linked css and convert into a style-tag */
 		preg_match_all('|<link rel="stylesheet" type="text/css" href="([^"]+)"[^>]+>|Ui', $src, $urls);
 		foreach ($urls[1] as $i => $url) {
-				$urlParts = parse_url($url);
-				$get_url = $urlParts['path'];
-			$src = str_replace ($urls[0][$i], 
-				"<style type=\"text/css\">\n<!--\n"
-				.t3lib_div::getURL($this->realPath.$get_url)
-				."\n-->\n</style>", $src);
+			$urlParts = parse_url($url);
+			$get_url = $urlParts['path'];
+			$src = str_replace ($urls[0][$i],
+								"<style type=\"text/css\">\n<!--\n"
+								.t3lib_div::getURL($this->realPath.$get_url)
+								."\n-->\n</style>", $src);
 		}
 
 		// We cant very well have attached javascript in a newsmail ... removing
@@ -183,7 +182,7 @@ class tx_tcdirectmail_mailer {
 					}
 				}
 			}
-		}   
+		}
 
 		/* Fix relative links */
 		preg_match_all ('|<a [^>]*href="(.*)"|Ui', $src, $urls);
@@ -195,11 +194,11 @@ class tx_tcdirectmail_mailer {
 				$src = str_replace ($urls[0][$i], $replace_url, $src);
 			}
 		}
-      
+
 		/* Detect what markers we need to substitute later on */
 		preg_match_all ('/###[\w]+###/', $src, $fields);
 		$this->htmlMarkers = str_replace ('###', '', $fields[0]);
-      
+
 		/* Any advanced IF fields we need to sustitute later on */
 		$this->htmlAdvancedMarkers = array();
 		preg_match_all ('/###:IF: (\w+) ###/U', $src, $fields);
@@ -211,21 +210,21 @@ class tx_tcdirectmail_mailer {
 		$this->html = $src;
 		$this->charset = $this->getCharsetEncoding();
 	}
-    
-	/** 
+
+	/**
 	 * Tell the caller what markers are required by the mailers content
 	 *
 	 * @return   array   Array with the fields from html, plain and title.
 	 */
 	public function getMarkers() {
 		return array_unique(array_merge($this->htmlAdvancedMarkers,
-				$this->plainAdvancedMarkers,
-				$this->titleAdvancedMarkers,
-				$this->htmlMarkers,
-				$this->plainMarkers,
-				$this->titleMarkers));
+										$this->plainAdvancedMarkers,
+										$this->titleAdvancedMarkers,
+										$this->htmlMarkers,
+										$this->plainMarkers,
+										$this->titleMarkers));
 	}
-   
+
 	/**
 	 * Insert a "mail-open-spy" in the mail for test.
 	 *
@@ -233,11 +232,11 @@ class tx_tcdirectmail_mailer {
 	 */
 	public function testSpy () {
 		$this->html = str_replace (
-					'</body>', 
-					'<div><img src="'.$this->siteUrl.'typo3/clear.gif" width="0" height="0" /></div></body>', 
-					$this->html);
+			'</body>',
+			'<div><img src="'.$this->siteUrl.'typo3/clear.gif" width="0" height="0" /></div></body>',
+			$this->html);
 	}
-    
+
 	/**
 	 * Insert a "mail-open-spy" in the mail for real. This relies on the $this->authcode being set.
 	 *
@@ -245,11 +244,11 @@ class tx_tcdirectmail_mailer {
 	 */
 	public function insertSpy($authCode, $sendid) {
 		$this->html = str_replace (
-				'</body>', 
-				'<div><img src="'.$this->siteUrl.'index.php?eID=beenthere&c='.$authCode.'&s='.$sendid.'" width="0" height="0" /></div></body>',
-				$this->html);
+			'</body>',
+			'<div><img src="'.$this->siteUrl.'index.php?eID=beenthere&c='.$authCode.'&s='.$sendid.'" width="0" height="0" /></div></body>',
+			$this->html);
 	}
-    
+
 	/**
 	 * Reset all modifications to the content.
 	 *
@@ -260,9 +259,9 @@ class tx_tcdirectmail_mailer {
 		$this->plain = $this->plain_tpl;
 		$this->title = $this->title_tpl;
 	}
-    
+
 	/**
-	 * Replace a named marker with a suppied value. 
+	 * Replace a named marker with a suppied value.
 	 * A marker can have the form of a simple string marker ###marker###
 	 * Or a advanced boolean marker ###:IF: marker ### ..content.. (###:ELSE:###)? ..content.. ###:ENDIF:###
 	 *
@@ -271,8 +270,8 @@ class tx_tcdirectmail_mailer {
 	 * @return   void
 	 */
 	public function substituteMarker($name, $value) {
-		/* For each marker, only substitute if the field is registered as a marker. This approach has shown to 
-		 speed up things quite a bit.  */
+		/* For each marker, only substitute if the field is registered as a marker. This approach has shown to
+		   speed up things quite a bit.  */
 
 		$value = strip_tags($value);
 
@@ -346,13 +345,13 @@ class tx_tcdirectmail_mailer {
 				$this->plain = $_procObj->substituteMarkersHook($this->plain, 'plain', $record);
 				$this->title = $_procObj->substituteMarkersHook($this->title, 'title', $record);
 			}
-		}      
-      
+		}
+
 		foreach ($record as $name => $value) {
 			$this->substituteMarker($name, $value);
 		}
 	}
-    
+
 	/**
 	 * Replace all links in the mail to make spy links.
 	 *
@@ -363,12 +362,12 @@ class tx_tcdirectmail_mailer {
 		$links['plain'] = array();
 		$links['html'] = array();
 
-		// Exchange all http:// links  html 
+		// Exchange all http:// links  html
 		preg_match_all ('|<a [^>]*href="(http://[^"]*)"|Ui', $this->html, $urls);
 
 		foreach ($urls[1] as $i => $url) {
 			$links['html'][$i] = html_entity_decode($url);
-			  
+
 			// Two step replace to be as precise as possible
 			$link = str_replace($url, $this->siteUrl."index.php?eID=click&l=$i&t=html&c=$authCode&s=$sendid", $urls[0][$i]);
 			$this->html  = str_replace($urls[0][$i], $link, $this->html);
@@ -381,12 +380,12 @@ class tx_tcdirectmail_mailer {
 			$this->plain = str_replace($url, $this->siteUrl."index.php?eID=click&l=$i&t=plain&c=$authCode&s=$sendid", $this->plain);
 		}
 
-		return $links;   
+		return $links;
 	}
 
 	/**
 	 * Replace all links in the mail to make test spy links.
-	 * This will create links similar to the real spy links, but does not require any database activity in order to work, 
+	 * This will create links similar to the real spy links, but does not require any database activity in order to work,
 	 * and does not reveal any information of the receiver.
 	 *
 	 * @return   void
@@ -401,11 +400,11 @@ class tx_tcdirectmail_mailer {
 
 		/* Exchange all http:// links plaintext */
 		preg_match_all ('|http://[^ \n\r\)]*|i', $this->plain, $urls);
-		foreach ($urls[0] as $i => $url) {   
+		foreach ($urls[0] as $i => $url) {
 			$this->plain = str_replace($url, $this->siteUrl."index.php?eID=tclick&l=".base64_encode($url),$this->plain);
 		}
 	}
-	    
+
 	/**
 	 * The regular send method. Use this to send a normal personalized mail.
 	 *
@@ -414,9 +413,9 @@ class tx_tcdirectmail_mailer {
 	 * @return   void
 	 */
 	public function send ($receiverRecord, $extraHeaders = array()) {
-		$this->substituteMarkers($receiverRecord);   
+		$this->substituteMarkers($receiverRecord);
 		$this->raw_send($receiverRecord, $extraHeaders);
-		$this->resetMarkers();   
+		$this->resetMarkers();
 	}
 
 	/**
@@ -436,34 +435,34 @@ class tx_tcdirectmail_mailer {
 			foreach($this->mailReplacers as $_procObj) {
 				$_procObj->mailReplacementHook($receiverRecord['email'], $title, implode("\n", $body), implode("\n", $headers), $this->bounceAddress);
 			}
-    }
+		}
 		// Mail it
 		else {
 
-      $mail = t3lib_div::makeInstance('t3lib_mail_Message');
+			$mail = t3lib_div::makeInstance('t3lib_mail_Message');
 
-      // Get the inline images
-      foreach ($this->inlinefiles as $filename => $embedObj) {
+			// Get the inline images
+			foreach ($this->inlinefiles as $filename => $embedObj) {
 				$this->html = str_replace($filename, $mail->embed($embedObj), $this->html);
-      }
+			}
 
 			// Get the attached files
 			foreach ($this->files as $attachObj) {
 				$mail->attach($attachObj);
 			}
 
-      $mail->setTo(array($receiverRecord['email']))
-        ->setFrom(array($this->senderEmail => $this->senderName))
-        ->setSender($this->bounceAddress?$this->bounceAddress:$this->senderEmail)
-        ->setId($messageId)
-        ->setSubject($this->title)
-        ->addPart($this->plain, 'text/plain')
-        ->setBody($this->html, 'text/html')
-        ->setCharset($charset);
+			$mail->setTo(array($receiverRecord['email']))
+				->setFrom(array($this->senderEmail => $this->senderName))
+				->setSender($this->bounceAddress?$this->bounceAddress:$this->senderEmail)
+				->setId($messageId)
+				->setSubject($this->title)
+				->addPart($this->plain, 'text/plain')
+				->setBody($this->html, 'text/html')
+				->setCharset($charset);
 
-      $mail->send();
-      $success = $mail->isSent();
-    }
+			$mail->send();
+			$success = $mail->isSent();
+		}
 	}
 
 	public function addAttachment($filename) {

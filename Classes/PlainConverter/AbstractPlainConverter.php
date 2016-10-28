@@ -1,26 +1,26 @@
 <?php
-/*************************************************************** 
-*  Copyright notice 
-* 
-*  (c) 2006-2008 Daniel Schledermann <daniel@schledermann.net> 
-*  All rights reserved 
-* 
-*  This script is part of the TYPO3 project. The TYPO3 project is 
-*  free software; you can redistribute it and/or modify 
-*  it under the terms of the GNU General Public License as published by 
-*  the Free Software Foundation; either version 2 of the License, or 
-*  (at your option) any later version. 
-* 
-*  The GNU General Public License can be found at 
-*  http://www.gnu.org/copyleft/gpl.html. 
-* 
-*  This script is distributed in the hope that it will be useful, 
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of 
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-*  GNU General Public License for more details. 
-* 
-*  This copyright notice MUST APPEAR in all copies of the script! 
-***************************************************************/
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2006-2016 Daniel Schledermann <daniel@schledermann.net>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 
 /**
@@ -28,7 +28,9 @@
  *
  */
 
-abstract class tx_tcdirectmail_plain {
+namespace Tcdirectmail\Tcdirectmail\PlainConverter;
+
+abstract class AbstractPlainConverter {
 	/**
 	 * Indicate how the class handles html-content. Can be either "src" og "url"
 	 * "src" indicates that you wish to supply the html-code in the parameter.
@@ -63,9 +65,7 @@ abstract class tx_tcdirectmail_plain {
      * @param   string      Html to convert.
      * @return   void
      */
-	public function setHtml($var) {
-		die ('Implement setHtml-method');
-	}
+	public abstract function setHtml($var);
 
 	/**
      * Get the plaintext
@@ -76,4 +76,3 @@ abstract class tx_tcdirectmail_plain {
 		return $this->plainText;
 	}
 }
-

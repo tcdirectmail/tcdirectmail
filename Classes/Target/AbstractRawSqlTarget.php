@@ -1,6 +1,8 @@
 <?php
 
-class tx_tcdirectmail_target_rawsql extends tx_tcdirectmail_target_sql { 
+namespace Tcdirectmail\Tcdirectmail\Target;
+
+class AbstractRawSqlTarget extends AbstractSqlTarget { 
 	function init() {
 		if ($this->fields['rawsql'] == '') {
 			$sql = 'SELECT * FROM tt_address WHERE uid = -1';

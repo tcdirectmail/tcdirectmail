@@ -2,7 +2,7 @@
 /*************************************************************** 
 *  Copyright notice 
 * 
-*  (c) 2007-2008 Daniel Schledermann <daniel@schledermann.net> 
+*  (c) 2007-2016 Daniel Schledermann <daniel@schledermann.net> 
 *  All rights reserved 
 * 
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -28,7 +28,9 @@
  * @static
  */ 
 
-class tx_tcdirectmail_tools {
+namespace Tcdirectmail\Tcdirectmail;
+
+class Tools {
 	/**
 	  * Get a tcdirectmail-conf-template parameter
 	  *

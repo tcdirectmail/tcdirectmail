@@ -1,6 +1,8 @@
 <?php
 
-class tx_tcdirectmail_plain_simple extends tx_tcdirectmail_plain {
+namespace Tcdirectmail\Tcdirectmail\PlainConverter;
+
+class SimplePlainConverter extends AbstractPlainConverter {
 	var $fetchMethod = 'src';
 
 	function setHtml($html) {
@@ -50,4 +52,3 @@ class tx_tcdirectmail_plain_simple extends tx_tcdirectmail_plain {
 		$this->plainText = trim($html);
 	}
 }
-

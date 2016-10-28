@@ -1,6 +1,8 @@
 <?php
 
-class tx_tcdirectmail_plain_lynx extends tx_tcdirectmail_plain {
+namespace Tcdirectmail\Tcdirectmail\PlainConverter;
+
+class LynxPlainConverter extends AbstractPlainConverter {
 	var $fetchMethod = 'url';
 
 	function setHtml($url) {
@@ -8,5 +10,3 @@ class tx_tcdirectmail_plain_lynx extends tx_tcdirectmail_plain {
 		$this->plainText = implode("\n", $output);
 	}
 }
-
-

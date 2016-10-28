@@ -3,11 +3,11 @@
 /**
  * This is the basic SQL related directmail target. Methods implemented with DB calls.
  * Extend this class to create directmail targets which extracts records from the database.
- *
- * @abstract
  */
 
-class tx_tcdirectmail_target_sql extends tx_tcdirectmail_target {
+namespace Tcdirectmail\Tcdirectmail\Target;
+
+class AbstractSqlTarget extends AbstractTarget {
 	var $tableName = 'undefinedtable';
 	
 	/**

@@ -1,6 +1,8 @@
 <?php
 
-class tx_tcdirectmail_target_fepages extends tx_tcdirectmail_target_sql { 
+namespace Tcdirectmail\Tcdirectmail\Target;
+
+class FeusersFromPagesTarget extends AbstractGentleSqlTarget { 
 	var $tableName = 'fe_users';
 
 	function init () {

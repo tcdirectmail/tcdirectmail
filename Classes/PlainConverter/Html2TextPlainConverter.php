@@ -1,80 +1,82 @@
 <?php
 
 /*************************************************************************
-*                                                                       *
-* class.html2text.inc                                                   *
-*                                                                       *
-*************************************************************************
-*                                                                       *
-* Converts HTML to formatted plain text                                 *
-*                                                                       *
-* Copyright (c) 2005 Jon Abernathy <jon@chuggnutt.com>                  *
-* All rights reserved.                                                  *
-*                                                                       *
-* This script is free software; you can redistribute it and/or modify   *
-* it under the terms of the GNU General Public License as published by  *
-* the Free Software Foundation; either version 2 of the License, or     *
-* (at your option) any later version.                                   *
-*                                                                       *
-* The GNU General Public License can be found at                        *
-* http://www.gnu.org/copyleft/gpl.html.                                 *
-*                                                                       *
-* This script is distributed in the hope that it will be useful,        *
-* but WITHOUT ANY WARRANTY; without even the implied warranty of        *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the          *
-* GNU General Public License for more details.                          *
-*                                                                       *
-* Author(s): Jon Abernathy <jon@chuggnutt.com>             *
-* Modified by: Daniel Schledermann <daniel@schledermann.net>      *
-*                                                                       *
-* Last modified: 04/08/06                                               *
-* For fitness into tcdirectmail extension for TYPO3 CMS         *
-*                                                                       *
-*************************************************************************/
+ *                                                                       *
+ * class.html2text.inc                                                   *
+ *                                                                       *
+ *************************************************************************
+ *                                                                       *
+ * Converts HTML to formatted plain text                                 *
+ *                                                                       *
+ * Copyright (c) 2005 Jon Abernathy <jon@chuggnutt.com>                  *
+ * All rights reserved.                                                  *
+ *                                                                       *
+ * This script is free software; you can redistribute it and/or modify   *
+ * it under the terms of the GNU General Public License as published by  *
+ * the Free Software Foundation; either version 2 of the License, or     *
+ * (at your option) any later version.                                   *
+ *                                                                       *
+ * The GNU General Public License can be found at                        *
+ * http://www.gnu.org/copyleft/gpl.html.                                 *
+ *                                                                       *
+ * This script is distributed in the hope that it will be useful,        *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the          *
+ * GNU General Public License for more details.                          *
+ *                                                                       *
+ * Author(s): Jon Abernathy <jon@chuggnutt.com>             *
+ * Modified by: Daniel Schledermann <daniel@schledermann.net>      *
+ *                                                                       *
+ * Last modified: 04/08/06                                               *
+ * For fitness into tcdirectmail extension for TYPO3 CMS         *
+ *                                                                       *
+ *************************************************************************/
 
 
 /**
-*  Takes HTML and converts it to formatted, plain text.
-*
-*  Thanks to Alexander Krug (http://www.krugar.de/) to pointing out and
-*  correcting an error in the regexp search array. Fixed 7/30/03.
-*
-*  Updated setHtml() function's file reading mechanism, 9/25/03.
-*
-*  Thanks to Joss Sanglier (http://www.dancingbear.co.uk/) for adding
-*  several more HTML entity codes to the $search and $replace arrays.
-*  Updated 11/7/03.
-*
-*  Thanks to Darius Kasperavicius (http://www.dar.dar.lt/) for
-*  suggesting the addition of $allowed_tags and its supporting function
-*  (which I slightly modified). Updated 3/12/04.
-*
-*  Thanks to Justin Dearing for pointing out that a replacement for the
-*  <TH> tag was missing, and suggesting an appropriate fix.
-*  Updated 8/25/04.
-*
-*  Thanks to Mathieu Collas (http://www.myefarm.com/) for finding a
-*  display/formatting bug in the _build_link_list() function: email
-*  readers would show the left bracket and number ("[1") as part of the
-*  rendered email address.
-*  Updated 12/16/04.
-*
-*  Thanks to Wojciech Bajon (http://histeria.pl/) for submitting code
-*  to handle relative links, which I hadn't considered. I modified his
-*  code a bit to handle normal HTTP links and MAILTO links. Also for
-*  suggesting three additional HTML entity codes to search for.
-*  Updated 03/02/05.
-*
-*  Thanks to Jacob Chandler for pointing out another link condition
-*  for the _build_link_list() function: "https".
-*  Updated 04/06/05.
-*
-*  @author Jon Abernathy <jon@chuggnutt.com>
-*  @version 0.6.1
-*  @since PHP 4.0.2
-*/
+ *  Takes HTML and converts it to formatted, plain text.
+ *
+ *  Thanks to Alexander Krug (http://www.krugar.de/) to pointing out and
+ *  correcting an error in the regexp search array. Fixed 7/30/03.
+ *
+ *  Updated setHtml() function's file reading mechanism, 9/25/03.
+ *
+ *  Thanks to Joss Sanglier (http://www.dancingbear.co.uk/) for adding
+ *  several more HTML entity codes to the $search and $replace arrays.
+ *  Updated 11/7/03.
+ *
+ *  Thanks to Darius Kasperavicius (http://www.dar.dar.lt/) for
+ *  suggesting the addition of $allowed_tags and its supporting function
+ *  (which I slightly modified). Updated 3/12/04.
+ *
+ *  Thanks to Justin Dearing for pointing out that a replacement for the
+ *  <TH> tag was missing, and suggesting an appropriate fix.
+ *  Updated 8/25/04.
+ *
+ *  Thanks to Mathieu Collas (http://www.myefarm.com/) for finding a
+ *  display/formatting bug in the _build_link_list() function: email
+ *  readers would show the left bracket and number ("[1") as part of the
+ *  rendered email address.
+ *  Updated 12/16/04.
+ *
+ *  Thanks to Wojciech Bajon (http://histeria.pl/) for submitting code
+ *  to handle relative links, which I hadn't considered. I modified his
+ *  code a bit to handle normal HTTP links and MAILTO links. Also for
+ *  suggesting three additional HTML entity codes to search for.
+ *  Updated 03/02/05.
+ *
+ *  Thanks to Jacob Chandler for pointing out another link condition
+ *  for the _build_link_list() function: "https".
+ *  Updated 04/06/05.
+ *
+ *  @author Jon Abernathy <jon@chuggnutt.com>
+ *  @version 0.6.1
+ *  @since PHP 4.0.2
+ */
 
-class tx_tcdirectmail_plain_html2text extends tx_tcdirectmail_plain
+namespace Tcdirectmail\Tcdirectmail\PlainConverter;
+
+class Html2TextPlainConverter extends AbstractPlainConverter
 {
     var $fetchMethod = 'src';
 
@@ -175,7 +177,7 @@ class tx_tcdirectmail_plain_html2text extends tx_tcdirectmail_plain
         "\n\n",                                 // <ol> and </ol>
         "\t*",                                  // <li>
         '$this->_build_link_list($link_count++, "\\1", "\\2")',
-                                                // <a href="">
+		// <a href="">
         "\n-------------------------\n",        // <hr>
         "\n\n",                                 // <table> and </table>
         "\n",                                   // <tr> and </tr>
@@ -428,6 +430,4 @@ class tx_tcdirectmail_plain_html2text extends tx_tcdirectmail_plain
 
         return $display . ' [' . $link_count . ']';
     }
-
 }
-
