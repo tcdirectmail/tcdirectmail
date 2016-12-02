@@ -3,6 +3,7 @@
 *  Copyright notice
 *
 *  (c) 2011 Jose Antonio Guerra <jaguerra@icti.es>
+*  (c) 2016 Daniel Schledermann <daniel@schledermann.net>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,13 +24,17 @@
 ***************************************************************/
 
 /**
-* Class tx_directmail_scheduler
+* Class MailerTask
 *
 * @author	Jose Antonio Guerra <jaguerra@icti.es>
 * @package TYPO3
-* @subpackage	tx_dollytcdirectmail
 */
-class tx_tcdirectmail_scheduler extends tx_scheduler_Task {
+
+namespace Tcdirectmail\Tcdirectmail\Scheduler;
+
+use Tcdirectmail\Tcdirectmail\Tools;
+
+class MailerTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 		/**
 		 * Function executed from scheduler.
@@ -70,10 +75,10 @@ class tx_tcdirectmail_scheduler extends tx_scheduler_Task {
 
 						$lockid = $GLOBALS['TYPO3_DB']->sql_insert_id();
 
-						tx_tcdirectmail_tools::createSpool($page, $begintime);
+						Tools::createSpool($page, $begintime);
 
 						/* Unlock the page */
-						tx_tcdirectmail_tools::setScheduleAfterSending ($page);
+						Tools::setScheduleAfterSending ($page);
 						$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_tcdirectmail_lock', 'uid = ' . $lockid, array('stoptime' => time()));
 				}
 
@@ -87,11 +92,11 @@ class tx_tcdirectmail_scheduler extends tx_scheduler_Task {
 
 				/* Each pages */
 				while ($page = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-						tx_tcdirectmail_tools::mailForTest($page);
+						Tools::mailForTest($page);
 						$GLOBALS['TYPO3_DB']->sql_query('UPDATE pages SET tx_tcdirectmail_dotestsend = 0 WHERE uid = ' . $page[uid]);
 				}
 
-				tx_tcdirectmail_tools::runSpool();
+				Tools::runSpool();
 
 				return TRUE;
 		}

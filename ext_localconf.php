@@ -1,7 +1,7 @@
 <?php
    
 if (!isset($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Mailer'])) {
-	$TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Mailer'] = 'TYPO3 CMS - tcdirectmail extension';
+	$TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Mailer'] = 'TYPO3 CMS - TCDirectmail extension';
 }
 
 if (!isset($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Precedence'])) {
@@ -15,9 +15,9 @@ if (!isset($TYPO3_CONF_VARS['EXTCONF']['tcdirectmail']['extraMailHeaders']['X-Pr
 /** 
  * Registering class to scheduler
  */
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_tcdirectmail_scheduler'] = array(
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tcdirectmail\Tcdirectmail\\Scheduler\\MailerTask'] = array(
 	'extension' => $_EXTKEY,
-	'title' => 'TcDirectMail task',
+	'title' => 'TcDirectMail Mailer Task',
 	'description' => 'This task invokes tcdirectmail in order to process queued messages.',
 );
 

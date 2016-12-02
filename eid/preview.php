@@ -1,7 +1,7 @@
 <?php
 
 // We are talking to the DB
-$eidTools = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_eidtools');
+$eidTools = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Utility\\EidUtility');
 $eidTools->connectDB();
 
 // Load the page
@@ -13,12 +13,12 @@ $theConf = unserialize ($TYPO3_CONF_VARS['EXT']['extConf']['tcdirectmail']);
 $theConf['attach_images'] = 0;
 $TYPO3_CONF_VARS['EXT']['extConf']['tcdirectmail'] = serialize($theConf);
 
-$mailer = tx_tcdirectmail_tools::getConfiguredMailer($page);
+$mailer = \Tcdirectmail\Tcdirectmail\Mailer::getConfiguredMailer($page);
 $targets = array_filter(explode(',',$page['tx_tcdirectmail_real_target']));
 
 // Search the user 
 foreach ($targets as $tid) {
-    $tobj = tx_tcdirectmail_target::loadTarget($tid);
+    $tobj = \Tcdirectmail\Tcdirectmail\Target\AbstractTarget::loadTarget($tid);
 
     while ($record = $tobj->getRecord()) {
 

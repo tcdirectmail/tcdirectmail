@@ -409,12 +409,11 @@ class Mailer {
 	 * The regular send method. Use this to send a normal personalized mail.
 	 *
 	 * @param   array      Record with receivers information as name => value pairs.
-	 * @param   array      Array with extra headers to apply to mails as name => value pairs.
 	 * @return   void
 	 */
-	public function send ($receiverRecord, $extraHeaders = array()) {
+	public function send ($receiverRecord) {
 		$this->substituteMarkers($receiverRecord);
-		$this->raw_send($receiverRecord, $extraHeaders);
+		$this->raw_send($receiverRecord);
 		$this->resetMarkers();
 	}
 
@@ -423,17 +422,16 @@ class Mailer {
 	 *
 	 * @interal
 	 * @param   array      Record with receivers information as name => value pairs.
-	 * @param   array      Array with extra headers to apply to mails as name => value pairs.
 	 * @return   void
 	 */
-	public function raw_send($receiverRecord, $extraHeaders = array()) {
+	public function raw_send($receiverRecord) {
 		$messageId = md5(microtime().$receiverRecord['email']).'@'.$this->hostname;
 		$charset = $GLOBALS['TSFE']->metaCharset?$GLOBALS['TSFE']->metaCharset:'utf-8';
 
 		// Hook for actions INSTEAD of actually sending the mail
 		if (is_array($this->mailReplacers)) {
 			foreach($this->mailReplacers as $_procObj) {
-				$_procObj->mailReplacementHook($receiverRecord['email'], $title, implode("\n", $body), implode("\n", $headers), $this->bounceAddress);
+				$_procObj->mailReplacementHook($receiverRecord['email'], $title, implode("\n", $body), $this->bounceAddress);
 			}
 		}
 		// Mail it

@@ -3,16 +3,22 @@
 /**
  * Implements the click events
  */
-class tx_tcdirectmail_click {
+
+namespace Tcdirectmail\Tcdirectmail;
+
+use Tcdirectmail\Tcdirectmail\Target\AbstractTarget;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+class Click {
     /**
      * Read the common link params from _GET and place the escaped values on the object
      */
     protected function readParams() {
         global $TYPO3_DB;
-        $this->authCode = $TYPO3_DB->quoteStr(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('c'));
-        $this->linkType = $TYPO3_DB->quoteStr(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('t'));
-        $this->linkId = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('l'));
-        $this->sendId = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('s'));
+        $this->authCode = $TYPO3_DB->quoteStr(GeneralUtility::_GET('c'));
+        $this->linkType = $TYPO3_DB->quoteStr(GeneralUtility::_GET('t'));
+        $this->linkId = intval(GeneralUtility::_GET('l'));
+        $this->sendId = intval(GeneralUtility::_GET('s'));
     }
 
     /**
@@ -35,7 +41,7 @@ class tx_tcdirectmail_click {
 
         $rs = $TYPO3_DB->sql_query("SELECT target, user_uid FROM tx_tcdirectmail_sentlog WHERE authcode = '$this->authCode' AND uid = $this->sendId");
         if (list($targetUid, $userUid) = $TYPO3_DB->sql_fetch_row($rs)) {
-            $target = tx_tcdirectmail_target::getTarget($targetUid);
+            $target = AbstractTarget::getTarget($targetUid);
             $target->registerClick($userUid);
         }
         
@@ -61,7 +67,7 @@ class tx_tcdirectmail_click {
         
         $rs = $TYPO3_DB->sql_query("SELECT target, user_uid FROM tx_tcdirectmail_sentlog WHERE authcode = '$this->authCode' AND uid = $this->sendId");
         if (list($targetUid, $userUid) = $TYPO3_DB->sql_fetch_row($rs)) {
-            $target = tx_tcdirectmail_target::getTarget($targetUid);
+            $target = AbstractTarget::getTarget($targetUid);
             $target->registerOpen($userUid);
         }
         
